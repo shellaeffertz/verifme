@@ -1,0 +1,150 @@
+
+
+input[type=text], input[type=password] {
+    width: 30%;
+    padding: 12px 20px;
+    margin: 2px 0;
+    display: block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    background-color: #f3f8ff;
+    border-radius: 5px;
+  }
+
+ .button {
+    background-color: #1C3879; 
+    color: white;
+    font-weight: bold;
+    padding: 14px 20px;
+    margin: 2px 0;
+    border: none;
+    cursor: pointer;
+    width: 20%;
+    border-radius: 5px;
+  } 
+
+.page{
+    padding: 1rem;
+    
+}
+
+.page-title{
+    font-weight: bold;
+    color: #434343;
+    padding: .5rem 0;
+}
+
+.navarea{
+    margin: .1rem 0;
+}
+
+li{
+  display: inline-block;
+  padding: 19px;
+}
+
+.menu-page button{
+  font-size: 1rem;
+  font-family: sans-serif;
+  color: rgb(0, 0, 0);
+  font-weight: 500;
+  position: relative;
+  border: 0;
+ 
+}
+
+.menu-page button:hover{
+  color: #1C3879;
+}
+
+.menu-page button:before{
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  width: 100%;
+  height: 3px;
+  background-color: #1C3879;
+  transform: scale(0);
+  transform-origin: 50%;
+}
+
+.menu-page button, button:before{
+  -o-transition: 0.27s;
+  -ms-transition: 0.27s;
+  -moz-transition: 0.27s;
+  -webkit-transition: 0.27s;
+  transition: 0.27s;
+}
+
+.menu-page a:hover:before{
+  transform: scale(1);
+}
+
+li .active{
+  color: #1C3879;
+}
+
+
+.update-pass-title{
+    font-weight: bold;
+    color: #434343;
+    font-size: medium;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 0 solid rgba(0,0,0,.125);
+  border-radius: .5rem;
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);
+}
+.card-body {
+  padding: 10px;
+}
+
+.page-content{
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1);
+  padding: 1rem;
+  border-radius: 5px;
+}
+
+.line{
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  
+}
+.char1{
+  font-size: medium;
+  font-weight: bold;
+  padding: .5rem;
+}
+input{
+  padding: .5rem;
+}
+
+
+#security-content {
+  display: none;
+} 
+#notifications-content {
+  display: none;
+} 
+
+
+#general-content {
+  padding: 10px;
+}
+
+
+
+
+
+
+

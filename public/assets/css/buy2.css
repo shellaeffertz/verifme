@@ -1,0 +1,34 @@
+ .page-content{
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1);
+    padding: 1rem;
+ }
+
+ .line{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    
+ }
+ .char1{
+    font-size: medium;
+    font-weight: bold;
+    padding: .5rem;
+ }
+ input{
+    padding: .5rem;
+ }
+ .line a{
+    text-decoration: none;
+    text-transform: uppercase;
+    background-color: #6658ea;
+    color: #fff;
+    padding: .5rem 1rem;
+    border-radius: 5px;
+    font-size: .8rem;
+    font-weight: 600;
+
+ }
+ .line img {
+  width: fit-content;
+  height: fit-content;
+ }

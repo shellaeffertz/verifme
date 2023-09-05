@@ -1,0 +1,85 @@
+.loginContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.loginContainer .row div .loginCard {
+    width: 100%;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.loginContainer .row div .accordionCard {
+    width: 100%;
+    padding: 4px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    border: 0;
+    height: 100%;
+}
+
+
+.logocontainer {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.logocontainer img {
+    width: 100px;
+    max-width: 100%;
+    height: auto;
+}
+
+a {
+    text-decoration: none;
+}
+
+canvas {
+    display: block;
+}
+
+canvas#canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 0;
+    /* Change the z-index to 0 or any positive value */
+}
+
+
+/* Existing login.css styles go here */
+
+/* Add your media queries here */
+
+/* Mobile devices */
+@media (max-width: 767px) {
+    /* Adjust the login card and accordion card width for mobile devices */
+    .loginContainer .row div .loginCard,
+    .loginContainer .row div .accordionCard {
+        width: 100%;
+    }
+
+    /* Reduce the logo size on smaller screens */
+    .logocontainer img {
+        max-width: 50px;
+    }
+
+    .loginContainer .row div .termcard2{
+        display: none;
+    }
+
+    /* Adjust the font size for better readability on smaller screens */
+    /* Your mobile-specific font-size adjustments go here */
+
+    /* Customize the alert styles for mobile */
+    /* Your mobile-specific alert styles go here */
+}
+
+/* Tablets and larger screens */
+@media (min-width: 768px) {
+    /* Add specific styles for tablets and larger screens here */
+}

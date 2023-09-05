@@ -1,0 +1,47 @@
+
+   .alert-success {
+    position: relative;
+    top: 10;
+    left: 0;
+    width: auto;
+    height: auto;
+    padding: 10px;
+    margin: 10px;
+    line-height: 1.8;
+    border-radius: 5px;
+    cursor: hand;
+    cursor: pointer;
+    font-family: sans-serif;
+    font-weight: 400;
+  }
+  
+  .alertCheckbox-success {
+    display: none;
+  }
+  
+  :checked + .alert-success {
+    display: none;
+  }
+  
+  .alertText-success {
+    display: table;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 16px;
+  }
+  
+  .alertClose-success {
+    float: right;
+    padding-top: 5px;
+    font-size: 10px;
+  }
+  
+  .clear-success {
+    clear: both;
+  }
+  
+  
+  .success {
+    background-color: #3ba164;
+    color: rgb(255, 255, 255);
+  }

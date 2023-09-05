@@ -1,0 +1,87 @@
+.buy-form {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 0 solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    width: 100%;
+    position: relative;
+}
+select {
+    box-sizing: border-box;
+    background-color: #f3f8ff;
+    border-radius: 5px;
+    color: rgb(0, 0, 0);
+    padding: 12px 20px;
+    margin: 2px 0;
+    width: 60%;
+    border: 1px solid #ccc;
+    -webkit-appearance: button;
+    appearance: button;
+    outline: none;
+}
+
+.buton {
+    background-color: #1C3879;
+    color: white;
+    font-weight: bold;
+    padding: 14px 20px;
+    margin: 2px 0;
+    border: none;
+    cursor: pointer;
+    width: 20%;
+    border-radius: 5px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="number"] {
+    width: 60%;
+    padding: 12px 20px;
+    margin: 2px 0;
+    display: block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    background-color: #f3f8ff;
+    border-radius: 5px;
+}
+
+
+
+h2 {
+    font-size: 16px;
+    text-align: center;
+}
+
+.icone {
+
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-decoration: none;
+}
+ 
+.details-items-under {
+    display:block;
+    justify-content: space-between;
+    padding: 1rem;
+}
+.button-status {
+    text-decoration: none;
+    text-transform: uppercase;
+    background-color: #6658ea;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: block;
+    max-width: fit-content;
+    margin-top: 0.5rem;
+}
+
+
