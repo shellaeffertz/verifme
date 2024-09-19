@@ -12,7 +12,7 @@
 
 
         @switch($product->type)
-            @case('accounts')
+            @case('bank_accounts')
                 @include('seller.update-forms.accounts-form')
             @break
 

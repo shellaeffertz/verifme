@@ -36,8 +36,7 @@
                         <td mobile-title="TITLE">{{ $product->title }}</td>
                         <td mobile-title="PRICE">{{ $product->price }}$</td>
                         <td mobile-title="STATUS">{{ $product->status }}</td>
-                        <td mobile-title="Edit"><a href="{{ route('seller.edit', $product->id) }}" class="simple-btn"
-                                style="text-decoration: none">Edit</a></td>
+                        <td mobile-title="Edit"><a href="{{ route('seller.edit', $product->id) }}" class="simple-btn">Edit</a></td>
                         <td mobile-title="Delete"><a class="simple-btn"
                                 onclick="deleteProduct({{ $product->id }})">Delete</a></td>
                     </tr>
@@ -58,9 +57,9 @@
                 <span onclick="closeModal()" class="close">&times;</span>
                 <h2>Select Product Type</h2>
             </div>
-            <div class="modal-body">
+            <div class="modal-body"> 
                 <select name="type" class="select-box">
-                    <option value="accounts">Bank Accounts</option>
+                    <option value="bank_accounts">Bank Accounts</option>
                     <option value="payement_processors">Payement Processors</option>
                     <option value="crypto_exchanges">Crypto Exchanges</option>
                     <option value="cracked_account">Cracked Accounts</option>
@@ -94,21 +93,22 @@
         }
 
         const deleteProduct = (id) => {
-
-            console.log(id);
             deleteModalContent.innerHTML = `
              <form action="/seller/delete/${id}" method="POST" >
-             <div class="delete-modal-header">
-                 <span onclick="closeDeleteModal()" class="delete-close" id="delete-close">&times;</span>
-                 <h2>Are you sure you want to delete this product?</h2>
-             </div>
-                  <div class="delete-modal-body">
-                 <button  class="next-button">Delete</button>
-                 <button  onclick="event.preventDefault(); closeDeleteModal()" class="next-button">Cancel</button>
-                  </div>  
+                <div class="delete-modal-header">
+                    <span onclick="closeDeleteModal()" class="delete-close" id="delete-close">&times;</span>
+                    <h2>Confirmation Request</h2>
+                </div>
+                <p style="text-align:center;color: red;font-weight: bold; font-size: 18px;">
+                    Are you sure you want delete this product ?
+                </p>
+                <div class="delete-modal-body">
+                    <button  class="simple-btn">Delete</button>
+                    <button type="button"  onclick="closeDeleteModal()" class="simple-btn">Cancel</button>
+                </div>  
               </form>
              `;
-            deleteModal.style.display = "block"
+            deleteModal.style.display = "block";
         }
 
 

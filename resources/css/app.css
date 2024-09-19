@@ -511,7 +511,7 @@ main {
     }
 
     .display-table {
-        border: none;
+        border: none; 
     }
 
     .display-table table th,
@@ -563,7 +563,7 @@ main {
     padding: .5rem 1rem;
     border: 1px solid #06466d22;
     border-radius: 2px;
-    background-color: #2a2a99;
+    background-color: #3b82f6;
     color: var(--background--main);
     font-size: .75rem;
     cursor: pointer;
@@ -573,7 +573,7 @@ main {
 
 .simple-btn:hover {
     background-color: var(--background--main);
-    color: #2a2a99;
+    color: #2563eb;
     transition: all .3s ease-in-out;
 }
 

@@ -77,7 +77,9 @@
 
 
         </div> <!-- /.form-group -->
-        <input type="submit" value="UPDATE">
+        <div class="form-btn-wrapper">
+            <input type="submit" value="UPDATE">
+        </div>
 
     </form>
 

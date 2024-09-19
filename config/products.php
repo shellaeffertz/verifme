@@ -1,10 +1,10 @@
 <?php
 
 return [
-    'accounts' => [
+    'bank_accounts' => [
         'public' => [
             'country' => 'required|string|max:255|in:' . implode(',', config('country')),
-            'description' => 'nullable|string|max:150',
+            'description' => 'nullable|string',
             'account_type' => 'required|in:personal,business'
         ],
         'private' => [
@@ -16,7 +16,8 @@ return [
     'payement_processors' => [
         'public' => [
             'country' => 'required|string|max:255|in:' . implode(',', config('country')),
-            'description' => 'nullable|string|max:150',
+            'description' => 'nullable|string',
+            'account_type' => 'required|in:personal,business'
         ],
         'private' => [
             'account_details' => 'nullable|string|max:3000|required_if:delivery_type,instant',
@@ -26,7 +27,7 @@ return [
     'crypto_exchanges' => [
         'public' => [
             'country' => 'required|string|max:255|in:' . implode(',', config('country')),
-            'description' => 'nullable|string|max:150',
+            'description' => 'nullable|string',
             'account_type' => 'required|in:personal,business'
         ],
         'private' => [
@@ -37,7 +38,7 @@ return [
     'cracked_account' => [
         'public' => [
             'country' => 'required|string|max:255|in:' . implode(',', config('country')),
-            'description' => 'nullable|string|max:150',
+            'description' => 'nullable|string',
         ],
         'private' => [
             'account_details' => 'nullable|string|max:3000|required_if:delivery_type,instant',
@@ -48,7 +49,8 @@ return [
     'real_fakedocs' => [
         'public' => [
             'country' => 'required|string|max:255|in:' . implode(',', config('country')),
-            'description' => 'nullable|string|max:150',
+            'description' => 'nullable|string',
+            'account_type' => 'required|in:personal,business'
         ],
         'private' => [
             'account_details' => 'nullable|string|max:3000|required_if:delivery_type,instant',

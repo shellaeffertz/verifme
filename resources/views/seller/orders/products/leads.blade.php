@@ -21,9 +21,9 @@
         <input type="text" name="nickname" value=" {{ $order->public->description }}" disabled>
     @endif
 
-    @if ($order->public->leads_type)
+    @if ($order->public->account_type)
         <label for="nickname"> Product leads type : </label>
-        <input type="text" name="nickname" value=" {{ $order->public->leads_type }}" disabled>
+        <input type="text" name="nickname" value=" {{ $order->public->account_type }}" disabled>
     @endif
 
     @if ($order->delivery_type)
@@ -49,17 +49,17 @@
 
 
 
-        @if ($order->private->document_links)
+        @if ($order->private->account_details)
             <label for="nickname"> Product Document Links : </label>
-            <input type="text" name="nickname" value="  {{ $order->private->document_links }}" disabled>
+            <input type="text" name="nickname" value="  {{ $order->private->account_details }}" disabled>
         @endif
-    @else
+    {{-- @else
         <form method="POST">
             <textarea name="account_details" placeholder="Account Details"></textarea>
             <textarea name="document_links" placeholder="Document Links"></textarea>
             <input type="hidden" name="type" value="{{ $order->type }}">
             <button type="submit">Complete</button>
-        </form>
+        </form> --}}
     @endif
 
 </div>

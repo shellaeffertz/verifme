@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     use HasFactory;
+    use \HighIdeas\UsersOnline\Traits\UsersOnlineTrait;
 
     public function product()
     {

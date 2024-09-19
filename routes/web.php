@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
+use Laravel\Socialite\Facades\Socialite;
+use App\Http\Controllers\telegramController;
 use App\Http\Controllers\ImpersonateController;
 use App\Http\Controllers\Products\ProductsController;
 use App\Http\Controllers\Services\CoinPaymentController;
@@ -33,10 +35,10 @@ Route::middleware('auth')->prefix('/products')->group(function () {
     Route::get('/accounts', [ProductsController::class, 'accounts'])->name('products.accounts');
     Route::get('/gateways', [ProductsController::class, 'gateways'])->name('products.gateways');
     Route::get('/wallets', [ProductsController::class, 'wallets'])->name('products.wallets');
-    Route::get('/rdps-vps', [ProductsController::class, 'rdps'])->name('products.rdps');
-    Route::get('/hostings', [ProductsController::class, 'hostings'])->name('products.hostings');
+    Route::get('/cracked', [ProductsController::class, 'rdps'])->name('products.rdps');
+    Route::get('/payement-process', [ProductsController::class, 'hostings'])->name('products.hostings');
     Route::get('/smtps', [ProductsController::class, 'smtps'])->name('products.smtps');
-    Route::get('/leads', [ProductsController::class, 'leads'])->name('products.leads');
+    Route::get('/crypto', [ProductsController::class, 'leads'])->name('products.leads');
 });
 
 
@@ -46,10 +48,16 @@ Route::prefix('/support')->group(base_path('routes/web/support.php'));
 Route::middleware('auth')->get('/impersonation/end', [ImpersonateController::class, 'leave'])->name('leave-impersonation');
 Route::middleware('admin')->get('/impersonation/start/{id}', [ImpersonateController::class, 'start'])->name('start-impersonation');
 
+Route::get('/auth/telegram/redirect', function(){
+    return Socialite::driver('telegram')->redirect();
+    // return "hello telegram";
+});
 
+Route::get('/auth/telegram/callback', [telegramController::class,'callback']);
 
+Route::post('/message', [telegramController::class,'message']);
 
-
+Route::post('/orders/{uuid}', [OrdersController::class, 'completeOrder'])->name('seller.order.complete');
 
 Route::get('/', function () {    
     return view('welcome');

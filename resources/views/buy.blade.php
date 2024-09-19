@@ -20,6 +20,8 @@
                 <option value="BTC">BTC</option>
                 <option value="LTC">LTC</option>
                 <option value="ETH">ETH</option>
+                <option value="XMR">XMR</option>
+                {{-- <option value="USDT">USDT</option> --}}
             </select>
         </div>
         <input type="submit" value="buy" class="buton">
@@ -87,6 +89,17 @@
 
 
     <script type="text/javascript" src="./js/buy.js"></script>
+
+    <style>
+        @media (max-width: 768px) 
+        {
+        td{
+        white-space: nowrap; 
+        overflow: hidden; 
+        text-overflow: ellipsis;
+        }
+        }
+        </style>
 @endsection
 
 @section('title')

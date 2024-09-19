@@ -15,11 +15,12 @@ class UserServices
     public static function register($data)
     {
         $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
-        $data['is_seller'] = true;
+        $data['is_seller'] = false;
         $data['channel_id'] = Str::random(64);
         $totalUser = User::all()->count() + 1;
-        $data['nickname'] = "Seller".$totalUser;
+        $data['nickname'] = "User".$totalUser;
         $user = User::create($data);
+        $data['commission'] = 0.2;
         return $user;
     }
 

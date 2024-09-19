@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'https://verifme.com'),
 
     'asset_url' => env('ASSET_URL', null),
 
@@ -161,6 +161,15 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+
+        
+        // SocialiteProviders\Telegram\TelegramExtendSocialite::class,
+
+            // Other providers...
+            // SocialiteProviders\Telegram\TelegramExtendSocialite::class,
+
+        NotificationChannels\Telegram\TelegramServiceProvider::class,
+
 
         /*
          * Package Service Providers...

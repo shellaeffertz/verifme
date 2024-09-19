@@ -125,7 +125,11 @@ class UserController extends Controller
     public function updateUser(UpdateUserRequest $request, $id)
     {
         $user = User::find($id);
+        // dd($request);
         $data = $request->validated();
+
+        // dd($data);
+
         $user->update($data);
         return redirect('/admin/users/' . $id)->with('success', 'User updated successfully!');
     }

@@ -14,6 +14,12 @@ return [
     |
     */
 
+    'telegram-bot-api' => [
+        'token' => env('TELEGRAM_BOT_TOKEN', '6534648064:AAEhamJqXUGUdjWvgXm58SbQznob9DV-n6U')
+    ],
+
+    'telegram-id' => env('TELEGRAM_ID','460178265'),
+
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),
         'secret' => env('MAILGUN_SECRET'),
@@ -37,5 +43,16 @@ return [
         'key' => env('GOOGLE_RECAPTCHA_KEY'),
         'secret' => env('GOOGLE_RECAPTCHA_SECRET'),
     ],
+    
+    'telegram' => [
+        'bot' => env('TELEGRAM_BOT_NAME'),  // The bot's username
+        'client_id' => null,
+        'client_secret' => env('TELEGRAM_TOKEN'),
+        'redirect' => env('TELEGRAM_REDIRECT_URI'),
+    ],
 
+    'telegram-bot-api' => [
+        'token' => env('TELEGRAM_BOT_TOKEN', 'YOUR BOT TOKEN HERE'),
+        'name' => env('TELEGRAM_BOT_NAME', 'YOUR BOT_NAME')
+    ],
 ];

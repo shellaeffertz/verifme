@@ -1,4 +1,4 @@
-<a class="simple-btn" href="/support/new?order={{$order->uuid}}">Report Order</a> <br> 
+{{-- <a class="simple-btn" href="/support/new?order={{$order->uuid}}">Report Order</a> <br>  --}}
 <div class="form-group" style="gap: .5rem; 
   padding: 20px 20px 10px 10px;
 

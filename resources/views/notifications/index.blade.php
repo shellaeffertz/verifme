@@ -29,6 +29,11 @@
 
         </div>
     </ul> --}}
+    @if(Auth::user()->telegram_chat_id==NULL)
+    <div class="button-container">
+        <a class="simple-btn" href="/auth/telegram/redirect">Telegram Notification</a>
+    </div>
+    @endif
 
     <div class="display-table">
         <table>

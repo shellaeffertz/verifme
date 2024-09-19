@@ -24,10 +24,10 @@ class ProductsServices
         $product->save();
 
         $seller = $product->seller;
-        $seller->balance = $seller->balance + $product->price * (1 - $seller->commission);
+        $seller->balance = $seller->balance + $product->price;
         $seller->save();
 
-        $user->balance = $user->balance - $product->price;
+        $user->balance = $user->balance - $product->priceTotal;
         $user->save();
 
         $order = Order::forceCreate([
@@ -43,6 +43,8 @@ class ProductsServices
             'private_data' => $product->private_data,
             'price' => $product->price,
         ]);
+
+        // dd($seller);
 
         $price = $product->price;
         $fee = $price * $seller->commission;
@@ -122,6 +124,8 @@ class ProductsServices
 
     public static function handleBuyProductService($product, $user)
     {
+        $product->status = 'sold';
+        $product->save();
 
         $user->balance = $user->balance - $product->price;
         $user->save();

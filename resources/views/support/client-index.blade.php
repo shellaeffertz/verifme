@@ -38,7 +38,10 @@
                 <tbody>
                     @foreach ($support_messages as $tickets)
                         <tr>
-                            <td mobile-title="Subject">{{ $tickets->subject }}</td>
+                            {{-- <td mobile-title="Subject">{{ $tickets->subject }}</td> --}}
+                            <td mobile-title="Subject">
+                                {{ $tickets->subject }}
+                            </td>
                             <td mobile-title="Status">{{ $tickets->status }}</td>
                             <td mobile-title="view"><a href="{{ route('support.client.show', $tickets->id) }}"
                                     class="simple-btn">view</a></td>
@@ -50,6 +53,15 @@
         {{ $support_messages->links() }}
     @endif
 
-
+    <style>
+        @media (max-width: 768px) 
+        {
+        td{
+        white-space: nowrap; 
+        overflow: hidden; 
+        text-overflow: ellipsis;
+        }
+        }
+        </style>
 @endsection
 

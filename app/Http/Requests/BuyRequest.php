@@ -25,7 +25,7 @@ class BuyRequest extends FormRequest
     {
         return [
             'amount' => 'integer|min:5|max:10000',
-            'coin' => 'string|in:BTC,ETH,LTC'
+            'coin' => 'string|in:BTC,ETH,LTC,XMR,USDT'
         ];
     }
 }

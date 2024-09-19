@@ -1,8 +1,17 @@
 <div>
-    <div class="card-title">
+<div>
+    <div class="title-container card-title">
         Notes
     </div>
+    @if(!Auth::user()->is_seller)
+    <div class="button-container">
+        <a class="simple-btn" href="/support/new">Become a seller</a>
+    </div>
+    @endif
     <div class="card-body">
+        <div class="rule">
+            All the product that you will buy are warrantied for <span class="special-span">48H</span>.
+        </div>
         <div class="rule">
             If You Have Any Questions  ,Problem Or Request Please Feel Free To <a class="contact-button" href="/support"> Open Ticket</a>.
         </div>
@@ -13,7 +22,9 @@
 </div>
     <div class="d-flex">
         <div class="wrapper2">
-            <input wire:model="search" type="text" placeholder="Search product..." />
+            <div class="search-wrapper">
+                <input wire:model="search" type="text" placeholder="Search product..." />
+            </div>
             <select wire:model="country">
                 <option disabled>Select Country</option>
                 <option value="all">All Countries</option>
@@ -30,36 +41,30 @@
             <tr>
                 <th style="width:17%;">Title</th>
                 <th>Price</th>
-                <th>Type</th>
-                <th>Period</th>
+                <th>Delivery</th>
                 <th>Country</th>
                 <th style="width:30%;">Description</th>
                 <th>Seller</th>
-                <th>Buy</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
             @foreach ($products as $product)
                 <tr>
-                    <td mobile-title="Title">{{ $product->title }}</td>
-                    <td mobile-title="Price">${{ $product->price }}</td>
+                    <td mobile-title="Title" class="title-column">{{ $product->title }}</td>
+                    <td mobile-title="Price">${{ $product->priceTotal }}</td>
                     <td mobile-title="Delivery Type">{{ $product->delivery_type }}</td>
-                    <td mobile-title="Delivery Period">{{ $product->delivery_period }}</td>
                     <td mobile-title="Country">{{ $product->public_data->country }}</td>
-
-                    <td >
-                        <div class="description-container">
-                            <p class="truncated-description">
-                              {{Str::limit($product->public_data->description, 50, '...') }}
-                            </p>
-                         
-                            <span class="tooltip">                  
-                              {{  str_replace("\r\n","\n", $product->public_data->description) }}
-                            </span>
-                        </div>               
+                    <td mobile-title="Description" class="description-column">
+                        <p>
+                            {{Str::limit($product->public_data->description, 50, '...') }}
+                        </p>
+                        <p class="full-description">
+                            {{ $product->public_data->description }}
+                        </p>            
                     </td>
                     <td mobile-title="Seller">{{ $product->seller->nickname }}</td>
-                    <td mobile-title="Buy">
+                    <td mobile-title="">
                         <button class="simple-btn"
                             onclick="buy_confirm('{{ $product->id }}', '{{ $product->title }}', '{{ $product->price }}')">Buy</button>
                     </td>

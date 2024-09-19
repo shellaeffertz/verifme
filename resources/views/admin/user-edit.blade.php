@@ -52,7 +52,10 @@
             <input type="checkbox" name="is_seller" {{ $user->is_seller ? "checked" : '' }}>
          
 
+            <label for="is_support">Support</label>
+            <input type="checkbox" name="is_support" {{ $user->is_support ? "checked" : '' }}>
  
+            
             <label for="commission">Commission %</label>
             <input type="number" name="commission" value="{{ $user->commission * 100 }}">
          

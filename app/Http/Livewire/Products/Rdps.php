@@ -12,19 +12,10 @@ class Rdps extends Component
     public $country = '';
     public $max_price = 5000;
     public $min_price = 0;
-    public $query;
 
     public function render()
     {
         $products = Product::where('type', 'cracked_account');
-
-
-        if($this->query == 'business') {
-            $products->where('public_data', 'like', '%"account_type":"business"%');
-        }else if($this->query == 'personal') {
-            $products->where('public_data', 'like', '%"account_type":"personal"%');
-        }
-        
 
         if($this->search != '') {
             $products->where('title', 'like', '%' . $this->search . '%');

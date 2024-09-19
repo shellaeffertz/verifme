@@ -48,7 +48,7 @@ class CreateProductRequest extends FormRequest
         foreach ($private_fields as $field => $rule) {
             $rules[$field] = $rule;
         }
-
+        
         return $rules;
     }
 

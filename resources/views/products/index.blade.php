@@ -8,10 +8,9 @@
 
 
 @section('content')
-    @if ($type == 'accounts')
-        @livewire('products.accounts', ['query' => $query])
+    @if ($type == 'bank_accounts')
+        @livewire('products.accounts')
     @elseif($type == 'payement_processors')
-        {{-- @livewire('products.hostings',['query' => $query]) --}}
         @livewire('products.hostings')
     @elseif($type == 'crypto_exchanges')
         {{-- @livewire('products.leads', ['query' => $query]) --}}
@@ -24,7 +23,19 @@
 @endsection
 
 @section('title')
-    {{ $type }}
+    @if ($type == 'bank_accounts')
+        Bank accounts
+    @elseif($type == 'payement_processors')
+        {{-- @livewire('products.hostings',['query' => $query]) --}}
+        Payement processors
+    @elseif($type == 'crypto_exchanges')
+        {{-- @livewire('products.leads', ['query' => $query]) --}}
+        Crypto and exchanges
+    @elseif($type == 'real_fackedocs')
+    Real and fake docs
+    @elseif($type == 'cracked_account')
+        Cracked accounts
+    @endif
 @endsection
 
 @push('script')
@@ -42,22 +53,25 @@
             confirmation_model_content.innerHTML = `
                <div class="modal-header">
                 <span onclick="buy_cancel()" class="close">&times;</span>
-                <h3>Are you sure  want to buy this product?</h3>
+                <h2>Confirmation Requested</h2>
                </div>
-                <div class="line">
-                  <h4 class="char1">Title: </h4>
-                 <input  value = ${$title} disabled >
-               </div>
-               <div class="line">
-                  <h4 class="char1">Price: </h4>
-                 <input  value = "$${$price}" disabled >
-               </div>
-                
-     
                 <div class="modal-body">
-                <button class="next-button" onclick="buy('${id}')">Yes</button>
-                <button class="next-button" onclick="buy_cancel()">No</button>
+                    <p style="text-align:center;color: red;font-weight: bold; font-size: 18px;padding: 15px 0px;">
+                        Are you sure you want to buy this product ?
+                    </p>
+                    <div class="line">
+                        <h4 class="char1">Title: </h4>
+                        <input  value = ${$title} disabled >
+                    </div>
+                    <div class="line">
+                        <h4 class="char1">Price: </h4>
+                        <input  value = "$${$price}" disabled >
+                    </div>
                </div>
+               <div class="btn-wrapper">
+                    <button class="simple-btn" onclick="buy('${id}')">Yes</button>
+                    <button class="simple-btn" onclick="buy_cancel()">No</button>    
+                </div>
             `;
         }
 

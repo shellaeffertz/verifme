@@ -14,18 +14,22 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <script src="https://www.google.com/recaptcha/api.js?render={{ config('services.recaptcha.key') }}"></script>
-    <style>
+    <link rel="icon" href="{{ asset('./assets/logo3.png') }}" type="image/x-icon">
+
+   <style>
       .loginContainer {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    margin-top: 60px !important;
     }
 
 .loginContainer .row div .loginCard {
     width: 100%;
     padding: 20px;
     border-radius: 10px;
+    margin-top: 150px ;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
@@ -35,7 +39,8 @@
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     border: 0;
-    height: 100%;
+    height: 60%;
+    margin-top: 150px ;
 }
 
 /* Add media query to make the login card and accordion card full-width on small screens */
@@ -44,11 +49,24 @@
     .loginContainer .row div .loginCard,
     .loginContainer .row div .accordionCard {
         width: 100%;
+        margin-top: 60px !important;
     }
 
     .qsts {
         display: none;
     }
+
+    /* Make the canvas occupy the full width and height of the screen */
+canvas#canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: -1;
+    /* Change the z-index to -1 to move it behind other elements */
+    width: 100%;
+    height: 150vh;
+}
 }
 
 /* Update logo container to center the logo properly */
@@ -67,7 +85,7 @@ canvas#canvas {
     z-index: -1;
     /* Change the z-index to -1 to move it behind other elements */
     width: 100%;
-    height: 100vh;
+    height: 150vh;
 }
 
 .logocontainer img {
@@ -81,6 +99,13 @@ a {
 
 canvas {
     display: block;
+}
+.special-paragraph {
+    font-weight: bold;
+    font-size: 18px;
+    color: #d24216; /* Or any other color you prefer */
+    text-align: center;
+    margin: 10px 0;
 }
     </style>
 </head>
@@ -114,6 +139,9 @@ canvas {
                         <!-- logo -->
                         <img src="{{asset('./assets/logo3.png')}}" alt="logo" class="logo">
                     </div>
+                    <div class="special-paragraph">
+                      More than 80% of Sellers Are reselling to you Products for x2 at least                          
+                  </div>
                     <div class="card-body">
                         <form method="POST" id="sign-up" class="row g-3">
                             <div class="col-md-12">

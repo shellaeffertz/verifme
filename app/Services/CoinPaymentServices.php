@@ -28,7 +28,8 @@ class CoinPaymentServices
         $response =  self::getSDK()->createTransaction($amount, $coin, $user->email, config('app.url').'/coinpayment/ipn');
 
         $data = json_decode($response['data'], true);
-        if ($response['http_status'] != 200 || Arr::get($data, 'error') != 'ok')  return null;
+        if ($response['http_status'] != 200 || Arr::get($data, 'error') != 'ok')  dd(Arr::get($data, 'error'));
+        // return null;
 
         $result = Arr::get($data, 'result');
         $coin_payment = CoinPayment::forceCreate([
@@ -44,7 +45,8 @@ class CoinPaymentServices
             'qrcode_url' => Arr::get($result, 'qrcode_url'),
             'timeout_at' => date('Y-m-d H:i:s', Arr::get($result, 'timeout') + time()),
         ]);
-
+        // dd(Arr::get()->all());
+        // dd($coin_payment);
         return $coin_payment;
     }
 

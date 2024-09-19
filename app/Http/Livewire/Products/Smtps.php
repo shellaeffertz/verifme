@@ -12,14 +12,12 @@ class Smtps extends Component
     public $country = '';
     public $max_price = 5000;
     public $min_price = 0;
-    public $query;
+    public $query = 'personal';
 
     public function render()
     {
         $products = Product::where('type', 'real_fakedocs');
         
-        
-
         if($this->query == 'business') {
             $products->where('public_data', 'like', '%"account_type":"business"%');
         }else if($this->query == 'personal') {
@@ -64,5 +62,9 @@ class Smtps extends Component
                 'products' => $products
             ]
         );
+    }
+
+    public function changeAccountType($accountType) {
+        $this->query = $accountType;
     }
 }

@@ -8,9 +8,9 @@
 
 
 @section('content')
-    <div class="page">
+    <div class="page"> 
         @switch($type)
-            @case('accounts')
+            @case('bank_accounts')
                 @include('seller.create-forms.accounts-form')
                 @break
 
@@ -45,7 +45,24 @@
 
 
 @section('subtitle')
-    Create a new {{ Str::camel($type) }}
+
+    @php
+
+        if($type === 'bank_accounts') {
+            $type = 'Bank Account';
+        } else if($type === 'payement_processors') {
+            $type = 'Payement Processor';
+        } else if($type === 'crypto_exchanges') {
+            $type = 'Crypto Exchange';
+        } else if($type === 'cracked_account') {
+            $type = 'Cracked Account';
+        } else if($type === 'real_fakedocs') {
+            $type = 'Real And Fake Document';
+        }
+
+    @endphp
+
+    Create a new <span style="font-size:14px;font-weight: bold;color: #1c3879;">{{ $type }}</span>
 @endsection
 
 
@@ -79,6 +96,8 @@
                 clear_children(private_data_container);
             }
         }
+
+        display_fields();
 
         delivery_type_selector.addEventListener('change', function(event) {
             display_fields();

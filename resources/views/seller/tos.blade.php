@@ -10,7 +10,7 @@
         </div>
         <div class="card-body mb-3">
             <div class="rule mb-3">
-                We Spend alot of money to get you clients So you can sell for a Higher price than u ever wish Make sure to <span class="special-span">Add 10%</span>.
+                We Spend alot of money to get you clients So you can sell for a Higher price than youu ever wish ,But  Make sure to have <span class="special-span">Resonable Price</span>.
             </div>
             <div class="rule mb-3">
                 If You Have Any Question , Suggestion Or Request Please Feel Free To <a class="contact-button" href="/support">Open Ticket</a>
@@ -22,7 +22,7 @@
                 You get paid any time you like using Withdraw section
             </div>
             <div class="rule mb-3">
-                Make sure to increase the product price by 10% this amount is used to cover our advertising
+                We increase the product price by 20% this amount is used to cover our advertising
             </div>
             <div class="rule mb-3">
                 Your total received money until now is {{ Auth::user()->balance }}            

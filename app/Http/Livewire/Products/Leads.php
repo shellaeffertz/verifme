@@ -12,7 +12,7 @@ class Leads extends Component
     public $country = '';
     public $max_price = 5000;
     public $min_price = 0;
-    public $query;
+    public $query = 'personal';
 
     public function render()
     {
@@ -63,5 +63,9 @@ class Leads extends Component
                 'products' => $products
             ]
         );
+    }
+    
+    public function changeAccountType($accountType) {
+        $this->query = $accountType;
     }
 }

@@ -2,7 +2,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\Products\ProductsController;
-use App\Http\Controllers\Products\SellerController;
+use App\Http\Controllers\Products\SellerController; 
 
 Route::get('/products', [ProductsController::class, 'index'])->name('seller.products');
 
@@ -21,4 +21,9 @@ Route::post('/delete/{id}', [ProductsController::class, 'delete'])->name('seller
 Route::get('/orders', [OrdersController::class, 'getSellerOrders'])->name('seller.orders');
 Route::get('/orders/{uuid}', [OrdersController::class, 'showSellerOrder'])->name('seller.order');
 Route::post('/orders/{uuid}', [OrdersController::class, 'completeOrder'])->name('seller.order.complete');
+
+
+// Route::get('/profile',function(){
+//     return view('seller.profile');
+// })->name('seller.profile');
 

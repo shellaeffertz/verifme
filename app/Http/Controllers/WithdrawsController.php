@@ -32,7 +32,7 @@ class WithdrawsController extends Controller
 
         $data = $request->validate([
             'amount' => 'required|numeric|min:5',
-            'coin' => 'required|in:BTC,ETH,LTC',
+            'coin' => 'required|in:BTC,ETH,LTC,XMR,USDT',
             'address' => 'required|string|min:10'
         ]);
     

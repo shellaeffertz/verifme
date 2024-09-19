@@ -1,4 +1,4 @@
-<a class="simple-btn" href="/support/new?order={{$order->uuid}}">Report Order</a> <br> 
+{{-- <a class="simple-btn" href="/support/new?order={{$order->uuid}}">Report Order</a> <br>  --}}
 <div class="form-group" style="gap: .5rem; 
   padding: 20px 20px 10px 10px;
 
@@ -50,6 +50,13 @@
 <label for="nickname"> Product Document Links : </label>
 <input type="text" name="nickname" value="   {{ $order->private->document_links }}" disabled>
 @endif --}}
+
+@if ($order->status !== 'completed')
+    <form method="POST">
+        <input type="hidden" name="type" value="{{ $order->type }}">
+        <button type="submit">Complete</button>
+    </form>
+@endif
  
 </div> 
  

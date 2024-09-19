@@ -21,7 +21,7 @@
     <ul class="navarea">
         <li class="menu-page"><button id="general" class="active">General</button></li>
         <li class="menu-page"><button id="security">Security</button></li>
-        <li class="menu-page"><button id="notifications">Notifications</button></li>
+        {{-- <li class="menu-page"><button id="notifications">Notifications</button></li> --}}
      </ul>
 
     @if ($errors->any())
@@ -70,7 +70,7 @@
 
     <div id="security-content">
 
-        <div class="col-md-8">
+        {{-- <div class="col-md-8">
             <div class="card mb-3">
                 <div class="card-body">
                     <p class="update-pass-title">Update password</p>
@@ -89,12 +89,34 @@
 
                 </div>
             </div>
+        </div> --}}
+        <div class="col-md-8">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <p class="update-pass-title">Update password</p>
+                    <form action="/profile" method="post">
+                        <br>
+                        <div class="form-group">
+                            <input type="password" name="current_password" class="form-control col-12" placeholder="current password" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" name="password" class="form-control col-12" placeholder="password" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" name="password_confirmation" class="form-control col-12" placeholder="password confirmation" required>
+                        </div>                        
+                        <div class="form-group">
+                            <input class="btn btn-primary btn-block" type="submit" value="Change">
+                        </div>
+                    </form>
+                 </div>
+            </div>
         </div>
-
+        
 
     </div>
 
-    <div id="notifications-content">
+    {{-- <div id="notifications-content">
         <div class="col-md-8">
             <div class="card mb-3">
                 <div class="card-body">
@@ -102,7 +124,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
   
 

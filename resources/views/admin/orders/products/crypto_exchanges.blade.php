@@ -1,3 +1,4 @@
+<a class="simple-btn" href="/admin/order/refund?order={{$order->uuid}}">Refund Order</a> <br> 
 
 <div class="form-group"
     style="gap: .5rem; 

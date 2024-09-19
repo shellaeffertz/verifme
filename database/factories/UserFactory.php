@@ -30,7 +30,7 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'username' => $faker->userName,
             'nickname' => $faker->firstName,
-            'password' => bcrypt('password'), // You can change 'password' to any default password you prefer
+            'password' => bcrypt('verifme//admin@@pa23ss**'), // You can change 'password' to any default password you prefer
             'referrer' => $faker->optional()->numberBetween(1, 100),
             'balance' => $faker->randomFloat(2, 0, 1000),
             'type' => $faker->randomElement(['individual', 'business']),

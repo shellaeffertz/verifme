@@ -42,6 +42,11 @@
     animation-name: animatetop;
     animation-duration: 0.4s
   }
+
+  .modal-header h2 {
+    font-size: 18px !important;
+  }
+  
 }
   /* Add Animation */
   @-webkit-keyframes animatetop {
@@ -74,29 +79,49 @@
     background-color: #243b73;
     color: #fefeff;
   }
+
+  .modal-header h2 {
+    font-size: 22px;
+  }
   
   .modal-body {
     display: flex;
+    flex-direction: column;
     padding: 16px 16px;
     gap: .5rem;
 }
 
-.two-btn {
-  
+.modal-body  .select-box {
+  box-sizing: border-box;
+  background-color: #e8f1fc;
+  border-radius: 5px;
+  color: rgb(0, 0, 0);
+  padding: 10px 15px;
+  width: 100%;
+  border: 1px solid #ccc;
+  font-size: 15px;
+  -webkit-appearance: button;
+  appearance: button;
+  outline: none;
 }
-  
-  .select-box {
-    box-sizing: border-box;
-    background-color: #e8f1fc;
-    border-radius: 5px;
-    color: rgb(0, 0, 0);
-    padding: 10px 15px;
-    margin: 2px 5px;
-    width: 50%;
-    border: 1px solid #ccc;
-    font-size: 15px;
-    -webkit-appearance: button;
-    appearance: button;
-    outline: none;
-    
-  }
+
+.modal-body .next-button {
+  width: fit-content;
+  align-self: flex-end;
+}
+
+.modal-body .line {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 15% 85%;
+  gap: 10px;
+}
+
+.modal-body .line input {
+  padding: 5px;
+  flex: 1;
+}
+
+.modal-body .char1 {
+  font-weight: bold;
+}

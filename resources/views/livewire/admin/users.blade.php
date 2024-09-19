@@ -31,6 +31,7 @@
                         <td mobile-title="Edit"><a class="simple-btn" style="text-decoration: none"
                                 href="/admin/users/{{ $user->id }}">Edit</a>
                         </td>
+                        
                     </tr>
                 @endforeach
             </tbody>
@@ -49,7 +50,7 @@
     <style>
         input[type="text"],
         input[type="number"] {
-            width: 30%;
+            width: 100%;
             padding: 13px 20px;
             margin: 2px 0;
             border: 1px solid #ccc;

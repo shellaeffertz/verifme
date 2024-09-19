@@ -6,8 +6,14 @@
             </div>
             <div class="logo">
                 <a href="{{ route('home') }}"> <!-- Replace "your_link_here" with the actual URL you want the logo to link to -->
-                  <img src="{{ asset('./assets/logo3.png') }}" alt="logo">
+                  <img src="{{ asset('./assets/logo3.png') }}" alt="logo" class="custom-image">
                 </a>
+                {{-- <a href="{{ route('home') }}">
+                    <video autoplay loop muted playsinline>
+                        <source src="{{ asset('./assets/logo4.gif.mp4') }}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </a> --}}
               </div>              
             <a href="/notifications">
                 <div class="spacer"
@@ -65,6 +71,14 @@
                                 </div>
                             </a>
 
+                            <a class="link" href="/admin/products">
+                                <img src="{{ asset('./assets/icons/product.png') }}" alt="products" />
+                                Listing Products
+                                <div class="nav-item-count">
+                                    {{ \App\Models\Product::where('status', 'active')->count() }}
+                                </div>
+                            </a>
+
                             <a class="link" href="/admin/support">
                                 <img src="{{ asset('./assets/icons/support.png') }}" alt="support" />
                                 <div class="nav-item">
@@ -95,7 +109,7 @@
                         <div class="nav-group-items">
                             <a class="link" href="/">
                                 <img src="{{ asset('./assets/icons/dash2.png') }}" alt="Dashboard Icon">
-                                {{-- have to change it and add some KPI that will helps the support --}}
+          
                                 Dashboard 
                             </a>
                             <a class="link" href="/admin/notifications">
@@ -161,14 +175,14 @@
                             </a>
                             <a class="link" href="/seller/products">
                                 <img src="{{ asset('./assets/icons/product.png') }}" alt="products" />
-                                My Products
+                                Sell Products 
                                 <div class="nav-item-count">
                                     {{ \App\Models\Product::where('status', 'active')->where('seller_id',auth()->user()->id)->count() }}
                                 </div>
                             </a>
                             <a class="link" href="/seller/orders">
                                 <img src="{{ asset('./assets/icons/order2.png') }}" alt="orders" />
-                                Orders
+                                My Orders
                                 <div class="nav-item-count">
                                     {{ \App\Models\Order::where('status', 'pending')->where('seller_id',auth()->user()->id)->count() }}
                                 </div>
@@ -180,9 +194,12 @@
                     <div class="nav-group-title">PRODUCTS</div>
                     <div class="nav-group-items">
 
+                        <a class="link" href="{{ route('products.accounts') }}" style="cursor: pointer;">
+                            <img src="{{ asset('./assets/icons/bank.png') }}" alt="banks" />
+                            Bank-Accounts
+                        </a>
 
-
-                        <a class="link" style="cursor: pointer;" onclick="showsubsection(1)">
+                        {{-- <a class="link" style="cursor: pointer;" onclick="showsubsection(1)">
 
                             <img src="{{ asset('./assets/icons/bank.png') }}" alt="banks" />
                             Bank-Accounts
@@ -197,20 +214,20 @@
                             <a class="link" href="/products/accounts?query=business">
                                 Business
                             </a>
-                        </div>
+                        </div> --}}
 
 
 
-                        <a class="link" href="/products/hostings">
+                        <a class="link" href="/products/payement-process">
                             <img src="{{ asset('./assets/icons/creditcard.png') }}" alt="creditcard" />
                             Payement Processors
                         </a>
 
-                        <a class="link" href="/products/leads">
+                        <a class="link" href="/products/crypto">
                             <img src="{{ asset('./assets/icons/cryptoexch.png') }}" alt="cryptoexch" />
                             Crypto & Exchanges
                         </a>
-                        <a class="link" href="/products/rdps-vps">
+                        <a class="link" href="/products/cracked">
                             <img src="{{ asset('./assets/icons/cracked.png') }}" alt="cracked" />
                             Cracked Accounts
                         </a>

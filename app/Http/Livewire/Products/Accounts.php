@@ -12,11 +12,11 @@ class Accounts extends Component
     public $country = '';
     public $max_price = 5000;
     public $min_price = 0;
-    public $query;
+    public $query = 'personal';
 
     public function render()
     {
-        $products = Product::where('type', 'accounts');
+        $products = Product::where('type', 'bank_accounts');
 
 
         if($this->query == 'business') {
@@ -34,7 +34,6 @@ class Accounts extends Component
 
         if($this->country != '' && $this->country != 'all') {
             $products->where('public_data', 'like', '%"country":"' . $this->country . '"%');
-            Log::info($this->country);
         }
 
 
@@ -63,5 +62,9 @@ class Accounts extends Component
                 'products' => $products
             ]
         );
+    }
+
+    public function changeAccountType($accountType) {
+        $this->query = $accountType;
     }
 }

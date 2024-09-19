@@ -11,6 +11,7 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
+    use \HighIdeas\UsersOnline\Traits\UsersOnlineTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -33,6 +34,7 @@ class User extends Authenticatable
         'affiliate_commission',
         'affiliate_code',
         'affiliate_balance',
+        'telegram_chat_id'
     ];
 
     /**
