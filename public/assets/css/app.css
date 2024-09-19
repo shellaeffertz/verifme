@@ -1105,6 +1105,7 @@ nav:first-child {
     display: flex;
     width: 100%;
     justify-content: space-between;
+    align-items: center;
     padding: .5rem 1rem;
     background-color: var(--secondary-color);
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
@@ -1375,13 +1376,13 @@ nav a {
     padding: .25rem;
     margin: 0;
     flex-grow: 0;
-    color: var(--background--main);
+    color: white;
     background-color: var(--accent-color-700);
 }
 
 .buy-balance:hover {
-    color: var(--accent-color-400);
-    background-color: var(--background--main);
+    color: white;
+    background-color: var(--accent-color-400);
 }
 
 .current-balance {

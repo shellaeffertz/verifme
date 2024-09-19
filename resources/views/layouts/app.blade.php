@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{{ asset('./assets/css/app.css') }}"> 
     <link rel="stylesheet" href="{{ asset('./assets/css/modal.css') }}" />
     <link rel="stylesheet" href="{{ asset('./css/sucess-modal.css') }}" />
+    <script src="https://kit.fontawesome.com/81f1f5a8fc.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="icon" href="{{ asset('./assets/logo3.png') }}" type="image/x-icon">
 

@@ -2,19 +2,14 @@
     <nav>
         <div class="nav-header">
             <div class="mobile-toggle">
-                <img src="{{ asset('./assets/list.png') }}" alt="menu">
+                {{-- <img src="{{ asset('./assets/list.png') }}" alt="menu"> --}}
+                <i style="font-size: 28px;color: #1C3879;" class="fa-solid fa-bars"></i>
             </div>
             <div class="logo">
                 <a href="{{ route('home') }}"> <!-- Replace "your_link_here" with the actual URL you want the logo to link to -->
                   <img src="{{ asset('./assets/logo3.png') }}" alt="logo" class="custom-image">
                 </a>
-                {{-- <a href="{{ route('home') }}">
-                    <video autoplay loop muted playsinline>
-                        <source src="{{ asset('./assets/logo4.gif.mp4') }}" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                </a> --}}
-              </div>              
+            </div>              
             <a href="/notifications">
                 <div class="spacer"
                     data-count="{{ \App\Models\Notification::where('user_id', Auth::user()->id)->where('seen', false)->count() }}">
@@ -245,7 +240,7 @@
                             <div class="current-balance">
                                 ${{ Auth::user()->balance }}
                             </div>
-                            <a class="buy-balance" href="/buy" class="buy-balance-btn">
+                            <a class="buy-balance" href="/buy">
                                 Add Balance
                             </a>
                         </div>
@@ -258,7 +253,6 @@
                                 <div class="nav-item-count">
                                     {{ \App\Models\Notification::where('user_id', Auth::user()->id)->where('seen', false)->count() }}
                                 </div>
-
                             </div>
                         </a>
 
