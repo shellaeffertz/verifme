@@ -180,7 +180,7 @@
                 </div>
 
                 
-                {{-- @if ($errors->any())
+                @if ($errors->any())
                     <div class="errors">
                         @foreach ($errors->all() as $error)
                             <label>
@@ -193,7 +193,7 @@
                             </label>
                         @endforeach
                     </div>
-                @endif --}}
+                @endif
 
                 @if (session('success'))
                     <div class="success">

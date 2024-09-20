@@ -99,7 +99,8 @@
             <div style="padding:20px;display:flex;justify-content: flex-end; gap: 15px;">
                 <a class="simple-btn" href="/support/new?order={{$order->uuid}}">Report Order</a>
                 @if ($order->status != 'completed')
-                    <form method="POST">
+                    <form method="POST" action="{{ route('buyer.order.complete', $order->uuid)}}">
+                        <input type="hidden" name="type" value="{{ $order->type}}" />
                         <button type="submit" class="simple-btn">Complete</button>
                     </form>
                 @endif

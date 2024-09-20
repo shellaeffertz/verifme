@@ -63,7 +63,7 @@ class ProductsController extends Controller
         $user->notify(new OrderNotification($order));
         Log::info('Email notif sent');
     }
-    NotificationService::addNotification( $order->seller , 'message_received', 'You have a new order', 'You have a new order', '/seller/orders/' . $order->uuid);
+    // NotificationService::addNotification( $order->seller , 'message_received', 'You have a new order', 'You have a new order', '/seller/orders/' . $order->uuid);
 
         return redirect('/orders/' . $order->uuid)->with('success', 'Order created successfully');
     }
@@ -116,9 +116,10 @@ class ProductsController extends Controller
         $data['seller_id'] = $user->id;
         $data['status'] = 'active';
         // $data['price'] = $data['price'] + ($data['price']*0.2);
-        $data['commission'] = $data['price']*0.2;
-        $data['priceTotal'] = $data['price'] + $data['commission'];
-        // dd($data);
+        // $data['commission'] = $data['price']*0.2;
+        // $data['priceTotal'] = $data['price'] + $data['commission'];
+        $data['priceTotal'] = $data['price'];
+
         Product::forceCreate($data);
 
         if($data['type'] == 'real_fakedocs' || $data['type'] == 'cracked_account' || $data['type'] == 'payement_processors')

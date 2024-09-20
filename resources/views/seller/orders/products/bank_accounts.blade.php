@@ -49,7 +49,7 @@
     @endif
  
  
-    @if ($order->status == 'completed')
+    @if($order->delivery_type == 'instant')
     
         @if ($order->private->account_details)
             <div>

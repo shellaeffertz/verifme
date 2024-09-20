@@ -14,10 +14,10 @@ class NotificationsController extends Controller
         $user = $request->user();
         $notification = Notification::where('id', $id)->where('user_id', $user->id)->first();
 
-        if(!$notification) return redirect()->back()->with('error', 'Notification not valid');
+        if(!$notification) return redirect()->back()->with('error', 'Notification not found');
 
         if(!$notification->seen) {
-            $notification->seen = 1;
+            $notification->seen = true;
             $notification->seen_at = now();
             $notification->save();
         }

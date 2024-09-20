@@ -167,8 +167,8 @@ canvas {
                                 <input type="password" class="form-control" id="Password" placeholder="Password" name="password" required>
                               </div>
                               <div class="col-md-12">
-                                <label for="Password" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="Password" placeholder="Repeat password" name="password_confirmation" required>
+                                <label for="password_confirmation" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="password_confirmation" placeholder="Repeat password" name="password_confirmation" required>
                               </div>
                               <div class="col-md-6">
                                   <div class="form-check form-switch">

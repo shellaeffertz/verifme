@@ -3,7 +3,7 @@
 
 <div>
     <div class="title-container card-title">
-        Notes
+        Notes 
     </div>
     @if(!Auth::user()->is_seller)
     <div class="button-container">

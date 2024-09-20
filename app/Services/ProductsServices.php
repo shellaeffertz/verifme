@@ -136,7 +136,7 @@ class ProductsServices
             'product_id' => $product->id,
             'buyer_id' => $user->id,
             'seller_id' => $product->seller_id,
-            'status' => 'pending',
+            'status' => 'pending', // not completed yet
             'uuid' => Str::uuid(),
             'title' => $product->title,
             'type' => $product->type,
@@ -147,11 +147,11 @@ class ProductsServices
         ]);
 
         $price = $product->price;
-        $fee = $price * $seller->commission;
+        $fee = $price * $seller->commission; // The amount of money our app gain
 
         // check if seller has a referrer
         if ($seller->referrer && User::where('id', $seller->referrer)->exists()) {
-            $affiliate = User::where('id', $seller->referrer)->first();
+            $affiliate = User::where('id', $seller->referrer)->first(); // the user who invited the seller in the first place
             $affiliate->affiliate_balance = $affiliate->affiliate_balance + $price * $affiliate->affiliate_commission;
             $affiliate->save();
 
@@ -208,8 +208,8 @@ class ProductsServices
             'type' => 'fees',
             'status' => 'pending',
             'uuid' => Str::uuid(),
-            'amount_sent' => $fee,
-            'amount_received' => 0,
+            'amount_sent' => $price * $seller->commission,
+            'amount_received' => $fee,
             'fee' => 0,
             'source' => $order->id,
         ]);

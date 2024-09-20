@@ -55,18 +55,20 @@
     </div>
   @endif
  
-  @if ($order->private->account_details)
-    <div>
-      <label>Product Account Details :  </label>
-      <input type="text" value=" {{ $order->private->account_details }}" disabled>
-    </div>
-  @endif
+  @if($order->delivery_type == 'instant')
+    @if ($order->private->account_details)
+      <div>
+        <label>Product Account Details :  </label>
+        <input type="text" value=" {{ $order->private->account_details }}" disabled>
+      </div>
+    @endif
 
-  @if ($order->private->document_links)
-    <div>
-      <label>Product Document Links : </label>
-      <input type="text" value="   {{ $order->private->document_links }}" disabled>
-    </div>
+    @if ($order->private->document_links)
+      <div>
+        <label>Product Document Links : </label>
+        <input type="text" value="   {{ $order->private->document_links }}" disabled>
+      </div>
+    @endif
   @endif
  
 </div> 

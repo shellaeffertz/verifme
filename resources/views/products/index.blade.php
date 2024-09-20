@@ -61,7 +61,7 @@
                     </p>
                     <div class="line">
                         <h4 class="char1">Title: </h4>
-                        <input  value = ${$title} disabled >
+                        <input  value = "${$title}" disabled >
                     </div>
                     <div class="line">
                         <h4 class="char1">Price: </h4>

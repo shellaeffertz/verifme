@@ -8,6 +8,7 @@ use App\Http\Controllers\telegramController;
 use App\Http\Controllers\ImpersonateController;
 use App\Http\Controllers\Products\ProductsController;
 use App\Http\Controllers\Services\CoinPaymentController;
+use App\Http\Controllers\OrdersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,11 +54,11 @@ Route::get('/auth/telegram/redirect', function(){
     // return "hello telegram";
 });
 
-Route::get('/auth/telegram/callback', [telegramController::class,'callback']);
+Route::get('/auth/telegram/callback', [telegramController::class,'callback']); 
 
 Route::post('/message', [telegramController::class,'message']);
 
-Route::post('/orders/{uuid}', [OrdersController::class, 'completeOrder'])->name('seller.order.complete');
+Route::post('/orders/{uuid}', [OrdersController::class, 'completeOrder'])->name('buyer.order.complete');
 
 Route::get('/', function () {    
     return view('welcome');

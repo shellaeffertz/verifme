@@ -14,10 +14,6 @@ class CompleteOrderRequest extends FormRequest
      */
     public function authorize()
     {
-        $user = auth()->user();
-        $uuid = $this->route('uuid');
-        $order = Order::where('seller_id', $user->id)->where('uuid', $uuid)->where('status', 'pending')->first();
-        if (!$order) return false;
         return true;
     }
 
