@@ -4,15 +4,18 @@
     <style>
         .order {
             display: flex;
-            justify-content: space-between;
+            gap: 15px;
             background: #fff;
             padding: 20px;
-            border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border: 1px solid lightgray;
+            border-radius: 15px;
         }
 
         .order-details {
-            width: 60%
+            border: 1px solid lightgray;
+            border-radius: 15px;
+            flex: 1;
         }
 
         label {
@@ -39,7 +42,8 @@
             /* height: auto !important; */
             
         }
-}
+    }
+
     </style>
     <link rel="stylesheet" href="{{ asset('../././css/chat-modal.css') }}" />
 @endsection

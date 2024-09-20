@@ -1,65 +1,70 @@
-<div class="form-group" style="gap: .5rem; 
-  padding: 20px 20px 10px 10px;
- 
-  box-shadow: 1px 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);
-">
-<label for="nickname">Product Title:</label>
-<input type="text" name="nickname" value=" {{ $order->title }}" disabled>
+<div class="form-group" style="padding: 15px;">
 
-<label for="nickname"> Product Price:</label>
-<input type="text" name="nickname" value=" ${{ $order->price }}" disabled>
+    <div>
+        <label>Product Title:</label>
+        <input type="text" value="{{ $order->title }}" disabled>
+    </div>
 
-<label for="nickname">Seller Nickname:</label>
-<input type="text" name="nickname" value="   {{ $order->seller->nickname }}" disabled>
+    <div>
+        <label> Product Price:</label>
+        <input type="text" value="${{ $order->price }}" disabled>
+    </div>
 
-<label for="nickname"> Product Type :</label>
-<input type="text" name="nickname" value=" {{ $order->type }}" disabled> 
+    <div>
+        <label>Seller Nickname:</label>
+        <input type="text" value="{{ $order->seller->nickname }}" disabled>
+    </div>
 
-@if ($order->public->description)
-<label for="nickname">  Product Description : </label>
-<input type="text" name="nickname" value=" {{ $order->public->description }}" disabled>
-@endif
+    <div>
+        <label> Product Type :</label>
+        <input type="text" value="{{ $order->type }}" disabled> 
+    </div>
 
-@if ($order->public->country)
-<label for="nickname"> Product Country : </label>
-<input type="text" name="nickname" value=" {{ $order->public->country }}" disabled>
-@endif
-
-@if ($order->delivery_type)
-<label for="nickname"> Product Delivery Type : </label>
-<input type="text" name="nickname" value=" {{ $order->delivery_type }}" disabled>
-@endif
-
-@if ($order->delivery_period)
-<label for="nickname">  Product Delivery Period :  </label>
-<input type="text" name="nickname" value=" {{ $order->delivery_period }}" disabled>
-@endif
- 
- 
-
-
-
-@if ($order->status == 'completed')
-   
-    @if ($order->private->account_details)
-    <label for="nickname">  Product Account Details :   </label>
-    <input type="text" name="nickname" value=" {{ $order->private->account_details }}" disabled>
+    @if ($order->public->description)
+        <div>
+            <label>  Product Description : </label>
+            <textarea type="text" rows="3" disabled>{{ $order->public->description }}</textarea>
+        </div>
     @endif
 
+    @if ($order->public->country)
+        <div>
+            <label> Product Country : </label>
+            <input type="text" value="{{ $order->public->country }}" disabled>
+        </div>
+    @endif
 
-     
-    @if ($order->private->document_links)
-<label for="nickname">   Product Document Links :  </label>
-<input type="text" name="nickname" value="  {{ $order->private->document_links }}" disabled>
-@endif
+    @if ($order->delivery_type)
+        <div>
+            <label> Product Delivery Type : </label>
+            <input type="text" value="{{ $order->delivery_type }}" disabled>
+        </div>
+    @endif
 
-@else
-    <form method="POST">
-        <textarea name="account_details" placeholder="Account Details"></textarea>
-        <textarea name="document_links" placeholder="Document Links"></textarea>
-        <input type="hidden" name="type" value="{{$order->type}}">
-        <button type="submit">Complete</button>
-    </form>
-@endif
+    @if ($order->delivery_period)
+        <div>
+            <label>  Product Delivery Period :  </label>
+            <input type="text" value="{{ $order->delivery_period }}" disabled>
+        </div>
+    @endif
+ 
+ 
+    @if ($order->status == 'completed')
+    
+        @if ($order->private->account_details)
+            <div>
+                <label>Product Account Details : </label>
+                <input type="text" value="{{ $order->private->account_details }}" disabled>
+            </div>
+        @endif
+        
+        @if ($order->private->document_links)
+            <div>
+                <label>Product Document Links :  </label>
+                <input type="text" value="{{ $order->private->document_links }}" disabled>
+            </div>
+        @endif
+
+    @endif
 
 </div>

@@ -4,37 +4,39 @@
     <style>
         .order {
             display: flex;
-            justify-content: space-between;
+            gap: 15px;
             background: #fff;
             padding: 20px;
-            border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border: 1px solid lightgray;
+            border-radius: 15px;
         }
 
         .order-details {
-            width: 60%
+            border: 1px solid lightgray;
+            border-radius: 15px;
+            flex: 1;
         }
             /* Media query for smaller screens (e.g., mobile devices) */
-    @media (max-width: 767px) {
-        .order {
-            flex-direction: column; /* Stack product info and chat on top of each other on mobile screens */
-            padding: 1px;
-        }
-        .order-details{
-            width: 100%;
-        }
+        @media (max-width: 767px) {
+            .order {
+                flex-direction: column; /* Stack product info and chat on top of each other on mobile screens */
+                padding: 1px;
+            }
+            .order-details{
+                width: 100%;
+            }
 
-        .convo {
-            margin-top: 20px; 
-            width: 100% !important; /* Make the chat section take up the full width of the order div */
-            
+            .convo {
+                margin-top: 20px; 
+                width: 100% !important; /* Make the chat section take up the full width of the order div */
+                
+            }
+            .chatt{
+                width: 100%;
+                /* height: auto !important; */
+            }
         }
-        .chatt{
-            width: 100%;
-            /* height: auto !important; */
-            
-        }
-}
     </style>
     <link rel="stylesheet" href="{{ asset('../././css/chat-modal.css') }}" />
 @endsection
@@ -45,7 +47,8 @@
 
 
 @section('content')
-    @if ($order->status == 'pending')
+
+    {{-- @if ($order->status == 'pending')
         <div class="order-status">
             <div class="order-status-title">
                 Order Status
@@ -63,12 +66,11 @@
                 </div>
             </div>
         </div>
-    @endif
+    @endif --}}
 
     <div class="order">
         
         <div class="order-details">
-            <a class="simple-btn" href="/support/new?order={{$order->uuid}}">Report Order</a> <br> 
             @switch($order->type)
                 @case('bank_accounts')
                     @include('buyer.orders.products.bank_accounts')
@@ -93,9 +95,20 @@
                 @default
                 @break
             @endswitch
+
+            <div style="padding:20px;display:flex;justify-content: flex-end; gap: 15px;">
+                <a class="simple-btn" href="/support/new?order={{$order->uuid}}">Report Order</a>
+                @if ($order->status != 'completed')
+                    <form method="POST">
+                        <button type="submit" class="simple-btn">Complete</button>
+                    </form>
+                @endif
+            </div>
+
         </div>
     
         @livewire('buyer-chat', ['order' => $order])
+        
     </div>
     @endsection
     {{-- <style>

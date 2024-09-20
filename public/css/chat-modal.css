@@ -1,20 +1,36 @@
 .convo {
-  padding: 20px 20px 10px 10px;
+  padding: 15px;
   width: 40%;
   box-shadow: 1px 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);
+  display: flex;
+  flex-direction: column;
+  border: 1px solid lightgray;
+  border-radius: 15px;
+  }
 
+  .convo h1 {
+    font-size: 18px;
+    font-weight: bold;
+    border-bottom: 1px solid var(--accent-color-700);
+    width: fit-content;
+    padding-right: 15px;
   }
+
   .chatt {
-    overflow-y: scroll;
-    height: 475px;
+    overflow-y: auto;
+    height: fit-content;
+    flex: 1;
+    min-height: 500px;
   }
+
 .sender {
     border: 2px solid #dedede;
     background-color: #f1f1f1;
     
     padding: 5px;
     margin: 10px 0;
-  } 
+  }
+
   .my-msg {
     border-color: #ccc;
     background-color: #a7a5a5;
@@ -52,16 +68,20 @@
   }
 .msg-form {
     display: flex;
-    justify-content: space-between;
+    flex-direction: row;
     border-top: 1px solid #e1e0e0;
-    padding-top: .3rem;
+    padding-top: 10px;
 }
 .msg-input {
-    padding: 1rem;
-    width: 90%;
-    border: 0;
+    padding: 10px;
+    flex: 1;
+    border: 1px solid var(--accent-color-700);
 }
-.msg-btn {
+
+.msg-form .simple-btn {
+  align-self: flex-start;
+}
+/* .msg-btn {
     background-color: #1C3879;
     border: 0;
     cursor: pointer;
@@ -74,4 +94,4 @@
     background-color: #ffffff;
     color: black;
     transition: all .1s ease-in-out;
-}
+} */

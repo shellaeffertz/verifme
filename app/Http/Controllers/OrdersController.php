@@ -73,8 +73,8 @@ class OrdersController extends Controller
     public function completeOrder(CompleteOrderRequest $request, $uuid)
     {
         $user = $request->user();
-        $order = Order::where('seller_id', $user->id)->where('uuid', $uuid)->where('status', '!=', 'completed')->first();
-        if (!$order) return redirect('/seller/orders')->withErrors('Order not found or already completed');
+        $order = Order::where('uuid', $uuid)->where('status', '!=', 'completed')->first();
+        if (!$order) return redirect()->back()->withErrors('Order not found or already completed');
 
         $transaction = Transaction::where('source', $order->id)->where('type', 'product')->where('status', 'pending')->first();
         if (!$transaction) return redirect()->back()->withErrors('Transaction not found');
@@ -84,8 +84,8 @@ class OrdersController extends Controller
         $order->status = 'completed';
         $order->save();
 
-        $user->balance = $user->balance + $transaction->amount_received;
-        $user->save();
+        // $user->balance = $user->balance + $transaction->amount_received;
+        // $user->save();
 
         $transaction->status = 'completed';
         $transaction->save();
@@ -105,7 +105,7 @@ class OrdersController extends Controller
 
 
         $buyer = $order->buyer;
-        NotificationService::addNotification($buyer, 'order_completed', 'Order Completed', 'Your order was completed', '/orders/' . $order->uuid);
+        // NotificationService::addNotification($buyer, 'order_completed', 'Order Completed', 'Your order was completed', '/orders/' . $order->uuid);
 
         return redirect()->back()->with('success', 'Order updated');
     }
