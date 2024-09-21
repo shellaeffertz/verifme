@@ -10,6 +10,7 @@
 
         .form-group label {
             margin-bottom: 10px;
+            font-weight: bold;
         }
 
         input[type=text],
@@ -35,42 +36,61 @@
 
 @section('content')
 
-    <h2>Order Details</h2>
     <div class="report-details">
-        <label for="nickname">Product title:</label>
-        <input type="text" name="nickname" value=" {{ $order->title }}" disabled>
+        
+        <h2 class="section-headline">ORDER DETAILS</h2>
 
-        <label for="nickname">Product type:</label>
-        <input type="text" name="nickname" value=" {{ $order->type }}" disabled>
+        <div>
+            <label>Title:</label>
+            <input type="text" value="{{ $order->title }}" disabled>
+        </div>
 
-        <label for="nickname">Product status:</label>
-        <input type="text" name="nickname" value=" {{ $order->status }}" disabled>
+        <div>
+            <label>Type:</label>
+            <input type="text" value="{{ $order->type }}" disabled>
+        </div>
 
-        <label for="nickname">Product Price:</label>
-        <input type="text" name="nickname" value=" {{ $order->price }}" disabled>
+        <div>
+            <label>Status:</label>
+            <input type="text" value="{{ $order->status }}" disabled>
+        </div>
 
-        <label for="nickname">Seller Nickname:</label>
-        <input type="text" name="nickname" value=" {{ $order->seller->nickname }}" disabled>
+        <div>
+            <label>Price:</label>
+            <input type="text" value="{{ $order->price }}" disabled>
+        </div>
+
+        <div>
+            <label>Seller Nickname:</label>
+            <input type="text" value="{{ $order->seller->nickname }}" disabled>
+        </div>
 
     </div>
 
 
-    <h2>Report a Problem</h2>
-
+    
     <form class="report-details" action="{{ route('support.client.storeReport') }}" method="POST">
-        <div class="form-group">
+        
+        <h2 class="section-headline">REPORT A PROBELM</h2>
+
+        <div>
             <label for="subject">Subject</label>
             <input type="text" name="subject" value="I'm having a issue with The order Number : {{$order->uuid}}" class="form-control" >
         </div>
+
         <input type="hidden" name="order" value="{{$order->uuid}}">
-        <div class="form-group">
+
+        <div>
             <label for="message">Message</label>
-            <textarea name="message"></textarea>
+            <textarea rows="5" name="message"></textarea>
         </div>
-        <div class="form-group">
+
+        <div class="form-btn-wrapper">
             <button type="submit" class="simple-btn">Send</button>
         </div>
+        
     </form>
+
 @endsection
 
 

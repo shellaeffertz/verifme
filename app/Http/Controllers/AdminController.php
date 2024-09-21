@@ -11,7 +11,7 @@ class AdminController extends Controller
 {
     public function orders(Request $request)
     {
-        $orders = Order::orderBy('created_at', 'desc')->paginate(30);
+        $orders = Order::orderBy('created_at', 'desc')->paginate(8);
         return view('admin.orders.index', [
             'orders' => $orders,
             

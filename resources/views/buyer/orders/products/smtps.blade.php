@@ -2,7 +2,7 @@
 
   <div class="product-info">
 
-    <span>{{ ucfirst($order->public->account_type)}} Crypto & Exchanges</span>
+    <span>{{ ucfirst($order->public->account_type)}} Real & Fake Documents</span>
 
     @if ($order->public->country)
       <span>{{ $order->public->country }}</span>

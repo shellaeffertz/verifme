@@ -16,6 +16,8 @@
             border: 1px solid lightgray;
             border-radius: 15px;
             flex: 1;
+            display: flex;
+            flex-direction: column;
         }
 
         label {

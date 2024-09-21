@@ -2,30 +2,16 @@
 
 @section('style')
     <style>
-        .ticket_details {
-            margin-top: 20px;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 3px;
+        .report-details .ticket_details {
+            display: flex;
+            flex-direction: column;
+            gap: 15px !important;
         }
 
-        .ticket_details__subject {
-            font-size: 20px;
-            font-weight: bold;
-            margin-bottom: 20px;
-            padding: .5rem 1rem;
-            border-radius: .25rem;
-            overflow: hidden;
-            background-color: #1c387952;
-
-        }
-
-        .ticket_details__message {
-            font-size: 16px;
-            background-color: #1c387944;
-            padding: .5rem 1rem;
-            border-radius: .25rem;
-            overflow: hidden;
+        .ticket_details div {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
         }
 
         .ticket_label {
@@ -148,42 +134,65 @@
 
 @section('content')
     @if ($support->type == 'report' && $order)
-        <h2>Order Details</h2>
         <div class="report-details">
-            <label for="nickname">Product title:</label>
-            <input type="text" name="nickname" value=" {{ $order->title }}" disabled>
 
-            <label for="nickname">Product type:</label>
-            <input type="text" name="nickname" value=" {{ $order->type }}" disabled>
+            <h2 class="section-headline" >ORDER DETAILS</h2>
 
-            <label for="nickname">Product status:</label>
-            <input type="text" name="nickname" value=" {{ $order->status }}" disabled>
+            <div>
+                <label>Product title:</label>
+                <input type="text" value="{{ $order->title }}" disabled>
+            </div>
 
-            <label for="nickname">Product Price:</label>
-            <input type="text" name="nickname" value=" {{ $order->price }}" disabled>
+            <div>
+                <label>Product type:</label>
+                <input type="text" value="{{ $order->type }}" disabled>
+            </div>
 
-            <label for="nickname">Seller Nickname:</label>
-            <input type="text" name="nickname" value=" {{ $order->seller->nickname }}" disabled>
+            <div>
+                <label>Product status:</label>
+                <input type="text" value="{{ $order->status }}" disabled>
+            </div>
+
+            <div>
+                <label>Product Price:</label>
+                <input type="text" value="{{ $order->price }}" disabled>
+            </div>
+
+            <div>
+                <label>Seller Nickname:</label>
+                <input type="text" value="{{ $order->seller->nickname }}" disabled>
+            </div>
 
 
-            <a href="{{ route('admin.order', $order->uuid) }}" class="simple-btn">View Order</a>
+            <div class="form-btn-wrapper">
+                <a href="{{ route('admin.order', $order->uuid) }}" class="simple-btn">View Order</a>
+            </div>
+
         </div>
     @endif
-    <div class="ticket_details">
-        <div class="ticket_label">Subject</div>
-        <div class="ticket_details__subject">
-            {{ $support->subject }}
-        </div>
-        <div class="ticket_label">Message</div>
 
-        <div class="ticket_details__message">
-            {{ $support->message }}
+    <div class="report-details">
+
+        <h2 class="section-headline" >BUYER REPORT</h2>
+
+        <div class="ticket_details">
+            <div>
+                <label>Subject:</label>
+                <input type="text" value="{{ $support->subject }}" disabled>
+            </div>
+            <div>
+                <label>Message:</label>
+                <textarea rows="5" disabled>{{ $support->message }}</textarea>
+            </div>
         </div>
+
+        <form action="{{ route('admin.support.complete', $support->id) }}" method="POST">
+            <div class="form-btn-wrapper">
+                <input type="submit" class="simple-btn" name="complete" value="Mark As Completed" />
+            </div>
+        </form>
+
     </div>
-
-    <form action="{{ route('admin.support.complete', $support->id) }}" method="POST">
-        <input type="submit" class="simple-btn" name="complete" value="Mark As Completed" />
-    </form>
 
     @livewire('support-chat', ['support' => $support], key($support->id))
 @endsection

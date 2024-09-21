@@ -984,16 +984,40 @@ video {
 
 * {
     margin: 0;
-    padding: 0;
+    padding: 0; 
     box-sizing: border-box;
 }
 
 .report-details {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 16px;
+    width: 50%;
+    margin: auto;
+    padding-bottom: 25px;
+}
 
-    padding-left: 2rem;
+.report-details h2 {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.report-details div:not(.form-btn-wrapper) {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+@media(max-width: 640px) {
+  .report-details {
+    width: 100% !important;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 769px){
+  .report-details {
+    width: 75% !important;
+  }
 }
 
 body {

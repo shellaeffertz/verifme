@@ -44,7 +44,7 @@ Route::middleware('auth')->prefix('/products')->group(function () {
 
 
 Route::prefix('/affiliate')->group(base_path('routes/web/affiliate.php'));
-Route::prefix('/support')->group(base_path('routes/web/support.php'));
+Route::middleware('auth')->prefix('/support')->group(base_path('routes/web/support.php'));
 
 Route::middleware('auth')->get('/impersonation/end', [ImpersonateController::class, 'leave'])->name('leave-impersonation');
 Route::middleware('admin')->get('/impersonation/start/{id}', [ImpersonateController::class, 'start'])->name('start-impersonation');

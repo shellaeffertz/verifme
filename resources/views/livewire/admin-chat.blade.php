@@ -1,6 +1,6 @@
 <div class="convo">
-    <h1>MESSAGES</h1>
-    <div class="chatt">
+    <h1>Chat</h1>
+    <div class="chatt" wire:poll>
         @foreach ($messages as $message)
             @if ($message->sender_id != $order->seller_id)
                 <div class="sender my-msg" style="border-radius: 0 15px 15px 15px ;">

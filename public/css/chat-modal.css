@@ -17,15 +17,16 @@
   }
 
   .chatt {
+    margin-top: 15px;
     overflow-y: auto;
-    height: fit-content;
     flex: 1;
     min-height: 500px;
+    max-height: 500px;
   }
 
 .sender {
     border: 2px solid #dedede;
-    background-color: #f1f1f1;
+    background-color: #e5e7eb;
     
     padding: 5px;
     margin: 10px 0;
@@ -33,7 +34,7 @@
 
   .my-msg {
     border-color: #ccc;
-    background-color: #a7a5a5;
+    background-color: #9ca3af;
    
   }
   
@@ -95,3 +96,18 @@
     color: black;
     transition: all .1s ease-in-out;
 } */
+
+/* Track */
+.chatt::-webkit-scrollbar-track {
+  background: lightgray;
+}
+
+/* Handle */
+.chatt::-webkit-scrollbar-thumb {
+  background: var(--accent-color-700);
+}
+
+/* Handle on hover */
+.chatt::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-color-700);
+}
