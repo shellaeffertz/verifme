@@ -41,6 +41,7 @@
 @push('script')
     <script>
         const buy_confirm = (id, $title, $price) => {
+            
             const confirmation_model = document.querySelector('.modal');
             const confirmation_model_content = document.querySelector('.modal-content ');
             const confirmation_model_buttons = document.querySelector('.confirmation_model_buttons');

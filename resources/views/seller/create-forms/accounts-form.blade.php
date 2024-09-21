@@ -1,9 +1,10 @@
 <div class="create-form">
     <form method="POST">
         <!--  General -->
-        <div class="form-group">
+        <div class="form-group"> 
+
             <h2 class="section-headline">PUBLIC DETAILS</h2>
- 
+            
             <div>
                 <label for="title">Title</label>
                 <input type="text" placeholder="Accounts Name ..." id="title" name="title" value="{{ old('title') }}" />
@@ -37,8 +38,10 @@
             <div class="hidden" id="delivery_period_container">
                 <label for="delivery_period">Delivery Period</label>
                 <select name="delivery_period" id="delivery_period">
-                    <option value="1d" {{ old('delivery_period') == '1d' ? 'selected' : '' }}>24H</option>
-                    <option value="2d" {{ old('delivery_period') == '2d' ? 'selected' : '' }}>48H</option>
+                    <option value="24H" {{ old('delivery_period') == '24H' ? 'selected' : '' }}>24H</option>
+                    <option value="48H" {{ old('delivery_period') == '48H' ? 'selected' : '' }}>48H</option>
+                    <option value="72H" {{ old('delivery_period') == '72H' ? 'selected' : '' }}>72H</option>
+                    <option value="1 Week" {{ old('delivery_period') == '1 Week' ? 'selected' : '' }}>1 Week</option>
                 </select>
                 @error('delivery_period')
                     <div class="form-error-message">{{ $message }}</div>

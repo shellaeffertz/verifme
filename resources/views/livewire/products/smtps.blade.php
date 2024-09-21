@@ -48,8 +48,8 @@
                 <th>Price</th>
                 <th>Delivery</th>
                 <th>
-                    <span style="display: block;">P.W</span>
-                    <span style="display: block;font-size: 9px;">(Product Warranty)</span>
+                    <span style="display: block;">D.P</span>
+                    <span style="display: block;font-size: 9px;">(Delivery Period)</span>
                 </th>
                 <th>Country</th>
                 <th style="width:30%;">Description</th>
@@ -62,7 +62,7 @@
                 <tr>
                     <td mobile-title="Title" class="title-column">{{ $product->title }}</td>
                     <td mobile-title="Price">${{ $product->priceTotal }}</td>
-                    <td mobile-title="Delivery Type">{{ $product->delivery_type }}</td>
+                    <td mobile-title="Delivery Type">{{ ucfirst($product->delivery_type) }}</td>
                     <td mobile-title="Delivery Period">{{ $product->delivery_period }}</td>
                     <td mobile-title="Country">{{ $product->public_data->country }}</td>
                     <td mobile-title="Description" class="description-column">

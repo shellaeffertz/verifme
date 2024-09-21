@@ -71,7 +71,7 @@ class ProductsController extends Controller
     public function index(Request $request) 
     {
         $user = $request->user();
-        $products = Product::where('seller_id', $user->id)->orderBy('created_at', 'desc')->paginate(10);
+        $products = Product::where('seller_id', $user->id)->orderBy('created_at', 'desc')->paginate(8);
         // Loop through each product and update the product type
         foreach ($products as $product) {
             // Update the product type here based on your logic

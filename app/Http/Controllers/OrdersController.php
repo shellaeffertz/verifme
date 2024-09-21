@@ -72,23 +72,25 @@ class OrdersController extends Controller
 
     public function completeOrder(CompleteOrderRequest $request, $uuid)
     {
-        $user = $request->user();
+        $user = $request->user(); // The buyer
+
+        // retrieve Order from DB
         $order = Order::where('uuid', $uuid)->where('status', '!=', 'completed')->first();
         if (!$order) return redirect()->back()->withErrors('Order not found or already completed');
 
         $transaction = Transaction::where('source', $order->id)->where('type', 'product')->where('status', 'pending')->first();
         if (!$transaction) return redirect()->back()->withErrors('Transaction not found');
+        $transaction->status = 'completed';
+        $transaction->save();
 
         $data = $request->validated();
         $order->private_data = json_encode($data);
         $order->status = 'completed';
         $order->save();
 
-        // $user->balance = $user->balance + $transaction->amount_received;
-        // $user->save();
-
-        $transaction->status = 'completed';
-        $transaction->save();
+        // pay the seller
+        $order->seller->balance += $order->price - $order->price*$order->seller->commission;
+        $order->seller->save();
 
         // get affiliate transations and complete them
         $affiliateTransactions = Transaction::where('source', $order->id)->where('type', 'affiliate')->where('status', 'pending')->get();
@@ -104,7 +106,7 @@ class OrdersController extends Controller
         }
 
 
-        $buyer = $order->buyer;
+        // $buyer = $order->buyer;
         // NotificationService::addNotification($buyer, 'order_completed', 'Order Completed', 'Your order was completed', '/orders/' . $order->uuid);
 
         return redirect()->back()->with('success', 'Order updated');

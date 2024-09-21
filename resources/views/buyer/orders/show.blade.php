@@ -16,6 +16,25 @@
             border: 1px solid lightgray;
             border-radius: 15px;
             flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .order-details .pay-attention-message {
+            color: red;
+            font-size: 12px;
+            padding: 5px 15px;
+        }
+
+        .order-details .private-info {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .order-details .private-info p {
+            color: red;
+            font-size: 12px;
         }
             /* Media query for smaller screens (e.g., mobile devices) */
         @media (max-width: 767px) {
@@ -95,6 +114,10 @@
                 @default
                 @break
             @endswitch
+
+            @if($order->delivery_type == 'preorder' && $order->status != 'completed')
+                <p class="pay-attention-message">Please request all private information from the seller in the chat section and verify its quality before  marking the order as completed. If you encounter any issues, report the order.</p>
+            @endif
 
             <div style="padding:20px;display:flex;justify-content: flex-end; gap: 15px;">
                 <a class="simple-btn" href="/support/new?order={{$order->uuid}}">Report Order</a>

@@ -1066,8 +1066,61 @@ form, .form-group {
     gap: 1rem;
 }
 
+.form-group {
+  padding: 15px;
+  flex: 1;
+}
+
+.form-group ul {
+  padding: 0 20px;
+  list-style-type: disc !important;
+}
+
+.form-group h1 {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.form-group p{
+  font-size: 14px;
+  line-height: 18px;
+  flex: 1;
+}
+
+.form-group  h3 {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.form-group .product-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.form-group .product-info span {
+  padding: 8px 12px;
+  border: 1px solid var(--accent-color-700);
+  font-size: 12px;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
 .create-form {
-  margin-bottom: 50px;
+  width: 50%;
+  margin: 0 auto 20px;
+}
+
+@media(max-width: 640px) {
+  .create-form {
+    width: 100% !important;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 769px){
+  .create-form {
+    width: 75% !important;
+  }
 }
 
 .section-headline {
@@ -1288,22 +1341,22 @@ nav:first-child {
 
 /* width */
 .nav-groups::-webkit-scrollbar {
-    width: 4px;
+    width: 2px;
 }
 
 /* Track */
 .nav-groups::-webkit-scrollbar-track {
-    background: var(--background--main);
+    background: white;
 }
 
 /* Handle */
 .nav-groups::-webkit-scrollbar-thumb {
-    background: var(--text-main)
+    background: var(--accent-color-700)
 }
 
 /* Handle on hover */
 .nav-groups::-webkit-scrollbar-thumb:hover {
-    background: var(--accent-color-400);
+    background: var(--accent-color-700);
 }
 
 nav a {
@@ -1471,12 +1524,12 @@ main {
 
 /* Track */
 .display-table::-webkit-scrollbar-track {
-    background: #FCF;
+    background: lightgray;
 }
 
 /* Handle */
 .display-table::-webkit-scrollbar-thumb {
-    background: var(--text-main);
+    background: var(--accent-color-700);
 }
 
 /* Handle on hover */

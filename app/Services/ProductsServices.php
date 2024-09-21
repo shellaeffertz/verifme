@@ -24,7 +24,7 @@ class ProductsServices
         $product->save();
 
         $seller = $product->seller;
-        $seller->balance = $seller->balance + $product->price;
+        $seller->balance = $seller->balance + ($product->priceTotal - $product->priceTotal*$seller->commission);
         $seller->save();
 
         $user->balance = $user->balance - $product->priceTotal;
@@ -44,11 +44,8 @@ class ProductsServices
             'price' => $product->price,
         ]);
 
-        // dd($seller);
-
         $price = $product->price;
         $fee = $price * $seller->commission;
-
 
         // check if seller has a referrer
         if ($seller->referrer && User::where('id', $seller->referrer)->exists()) {
@@ -109,15 +106,15 @@ class ProductsServices
             'type' => 'fees',
             'status' => 'completed',
             'uuid' => Str::uuid(),
-            'amount_sent' => $fee,
-            'amount_received' => 0,
+            'amount_sent' => $price * $seller->commission,
+            'amount_received' => $fee,
             'fee' => 0,
             'source' => $order->id,
         ]);
 
 
-        NotificationService::addNotification($user, 'product_buy', 'You have successfully bought a product', 'success', '/orders/' . $order->uuid);
-        NotificationService::addNotification($seller, 'product_sold', 'You have successfully sold a product', 'success', '/seller/orders/' . $order->uuid);
+        // NotificationService::addNotification($user, 'product_buy', 'You have successfully bought a product', 'success', '/orders/' . $order->uuid);
+        // NotificationService::addNotification($seller, 'product_sold', 'You have successfully sold a product', 'success', '/seller/orders/' . $order->uuid);
 
         return $order;
     }
@@ -141,6 +138,7 @@ class ProductsServices
             'title' => $product->title,
             'type' => $product->type,
             'delivery_type' => $product->delivery_type,
+            'delivery_period' => $product->delivery_period,
             'public_data' => $product->public_data,
             'private_data' => $product->private_data,
             'price' => $product->price,
