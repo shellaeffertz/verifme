@@ -69,7 +69,7 @@
 
     {{-- @if ($order->status == 'pending')
         <div class="order-status">
-            <div class="order-status-title">
+            <div class="order-status-title"> 
                 Order Status
             </div>
             <div class="order-status-content">

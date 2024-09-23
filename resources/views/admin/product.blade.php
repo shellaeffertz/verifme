@@ -14,52 +14,42 @@
 
 
 @section('content')
-    <div class="d-flex">
+    {{-- <div class="d-flex">
         <div class="wrapper2">
             <input wire:model="search" type="text" placeholder="Search Order By User..." />
         </div>
-    </div>
+    </div> --}}
 
     <div class="display-table">
         <table>
             <thead>
                 <tr>
-                    <th>Product ID</th>
-                    <th>Seller nickname</th>
-                    <th>Product Title</th>
-                    <th>Product Type</th>
-                    <th>Product Status</th>
-                    <th>Product Price</th>
-                    <th>Date Of Listing</th>
-                    <th>Product Description</th>
-                    <th> Delete the listing</th>
+                    <th>ID</th>
+                    <th>Seller</th>
+                    <th>Type</th>
+                    <th>Status</th>
+                    <th>Price</th>
+                    <th>Created At</th>
+                    <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($products as $product)
                     <tr>
-                        {{-- <td mobile-title="SellerName">{{$product->id}}</td> --}}
+                        <td mobile-title="ID">{{$product->id}}</td>
                         <td mobile-title="SellerName">{{$product->seller->nickname}}</td>
-                        <td mobile-title="TITLE">{{ $product->title }}</td>
                         <td mobile-title="TYPE">{{ $product->type }}</td>
-                        <td mobile-title="TITLE">{{ $product->title }}</td>
                         <td mobile-title="STATUS">{{ $product->status }}</td>
                         <td mobile-title="PRICE">{{ $product->price }}$</td>
                         <td mobile-title="DATE">{{ $product->created_at }}</td>
-                        <td mobile-title="DESC">
-                            <div class="">
-                                <p class="truncated-description">
-                                  {{Str::limit($product->public->description, 50, '...') }}
-                                </p>
-                             
-                                <span class="tooltip">                  
-                                  {{  str_replace("\r\n","\n", $product->public->description) }}
-                                </span>
-                            </div> 
+                        <td>
+                            <a class="simple-btn" href="{{ route('admin.product.show', $product->id) }}">
+                                View
+                            </a>
                         </td>
-                    <td mobile-title="Delete">
-                        <a class="simple-btn"
-                            onclick="deleteProduct({{ $product->id }})">Delete</a>
+                        <td>
+                            <a class="simple-btn" onclick="deleteProduct({{ $product->id }})">Delete</a>
                         </td>
                     </tr>
                 @endforeach
@@ -73,7 +63,6 @@
 <div id="delete-modal" class="delete-modal">
     <div class="delete-modal-content" id="delete-modal-content">
     </div>
-
 </div>
     {{--  --}}
 @endsection
@@ -91,20 +80,25 @@
 
         const deleteProduct = (id) => {
 
-            console.log(id);
             deleteModalContent.innerHTML = `
-             <form action="/admin/delete/${id}" method="POST" >
-             <div class="delete-modal-header">
-                 <span onclick="closeDeleteModal()" class="delete-close" id="delete-close">&times;</span>
-                 <h2>Are you sure you want to delete this product?</h2>
-             </div>
-                  <div class="delete-modal-body">
-                 <button  class="next-button">Delete</button>
-                 <button  onclick="event.preventDefault(); closeDeleteModal()" class="next-button">Cancel</button>
-                  </div>  
-              </form>
-             `;
-            deleteModal.style.display = "block"
+                <form action="/admin/delete" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <div class="delete-modal-header">
+                        <span onclick="closeDeleteModal()" class="delete-close" id="delete-close">&times;</span>
+                        <h2>Confirmation Request</h2>
+                    </div>
+                    <p style="text-align:center;color: red;font-weight: bold; font-size: 18px;">
+                        Are you sure you want delete this Listing ?
+                    </p>
+                    <input type="hidden" name="product_id" value="${id}" />
+                    <div class="form-btn-wrapper" style="padding: 15px; gap: 10px;">
+                        <button  class="simple-btn">Delete</button>
+                        <button  onclick="event.preventDefault(); closeDeleteModal()" class="simple-btn">Cancel</button>
+                    </div>  
+                </form>
+            `;
+            deleteModal.style.display = "block";
         }
 
 

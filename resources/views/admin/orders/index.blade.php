@@ -14,28 +14,29 @@
 
 
 @section('content')
-    <div class="d-flex">
+    {{-- <div class="d-flex">
         <div class="wrapper2">
             <input wire:model="search" id="searchInput" type="text" placeholder="Search Order By User..." />
         </div>
-    </div>
+    </div> --}}
 
     <div id="filteredResults" class="display-table">
         <table>
             <thead>
                 <tr>
-                    <th>Order ID</th>
-                    <th>Seller nickname</th>
-                    <th>Buyer nickname</th>
-                    <th>Order Title</th>
-                    <th>Order Type</th>
-                    <th>Order Status</th>
-                    <th>Order Price</th>
-                    <th>Order Refund</th>
-                    <th>Order Date</th>
-                    <th>Order Deadline</th>
-                    <th>View</th>
-                    <th>Refund</th>
+                    <th>ID</th>
+                    <th>Seller</th>
+                    <th>Buyer</th>
+                    <th>Type</th>
+                    <th>Status</th>
+                    <th>Price</th>
+                    <th>Refunded</th>
+                    <th>Created At</th>
+                    <th>
+                        <span style="display: block;">D.P</span>
+                        <span style="display: block;font-size: 9px;">(Delivery Period)</span>
+                    </th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -44,9 +45,8 @@
                         <td mobile-title="Order ID"> {{ $order->uuid }} </td>
                         <td mobile-title="Seller nickname"> {{ $order->seller->nickname }} </td>
                         <td mobile-title="Buyer nickname"> {{ $order->buyer->nickname }} </td>
-                        <td mobile-title="Order Title"> {{ $order->title }} </td>
                         <td mobile-title="Order Type">
-                            {{ str_replace('_', ' ', Illuminate\Support\Str::ucfirst($order->type)) }}
+                            {{ ucwords(str_replace('_', ' ', $order->type)) }}
                         </td>
                         @if ($order->status != 'pending')
                             <td mobile-title="Order Status" style="color: green">{{ $order->status }}</td>
@@ -54,22 +54,17 @@
                             <td mobile-title="Order Status">{{ $order->status }}</td>
                         @endif
                         <td mobile-title="Order Price"> ${{ $order->price }} </td>
-                            @if($order->refunded==0)
-                            <td mobile-title="Order Refund"> Non</td>
+                            @if(!$order->refunded)
+                            <td mobile-title="Order Refund">No</td>
                             @else 
-                            <td mobile-title="Order Refund"> Oui</td>
+                            <td mobile-title="Order Refund">Yes</td>
                             @endif
                 
                         <td mobile-title="Order Date"> {{ $order->created_at }} </td>
                         <td mobile-title="Order Deadline">
                             {{ $order->delivery_type != 'instant' ? $order->delivery_period : 'Instant' }} </td>
-                        {{-- <td> <a class="buy-button" href="{{ route('order', $order->uuid) }}">View</a> </td> --}}
                         <td mobile-title="View"><a class="simple-btn" style="text-decoration: none"
                                 href="order/{{ $order->uuid }}">View</a></td>
-                        
-                        <td mobile-title="Refund"><a class="simple-btn" style="text-decoration: none"
-                            href="order/refund/{{ $order->uuid }}">Refund</a></td>
-                        
                     </tr>
                 @endforeach
             </tbody>

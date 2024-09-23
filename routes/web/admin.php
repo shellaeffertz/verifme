@@ -18,11 +18,13 @@ Route::get('/notifications/{id}', [NotificationsController::class, 'handleAdminN
 Route::get('/orders', [AdminController::class, 'orders'])->name('admin.orders');
 Route::get('/order/{uuid}', [AdminController::class, 'showOrder'])->name('admin.order');
 
-Route::post('/order/refund/{uuid}', [AdminController::class, 'refundOrder'])->name('admin.order.refund');
+Route::put('/order/refund', [AdminController::class, 'refundOrder'])->name('admin.order.refund');
 
 Route::get('/products', [AdminController::class, 'products'])->name('admin.products');
 
-Route::post('/delete/{id}', [AdminController::class, 'delete'])->name('admin.destroy');
+Route::get('/products/{id}', [AdminController::class, 'showProduct'])->name('admin.product.show');
+
+Route::delete('/delete', [AdminController::class, 'delete'])->name('admin.destroy');
 
 Route::get('/users/{id}', [UserController::class, 'showUser'])->name('admin.user-edit');
 Route::post('/users/{id}', [UserController::class, 'updateUser'])->name('admin.user-update');

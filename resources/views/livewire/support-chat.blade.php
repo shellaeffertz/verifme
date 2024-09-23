@@ -1,5 +1,5 @@
-<div>
-    <div class="chat">
+<div class="convo">
+    <div class="chatt">
         <div class="chat_headline">Chat</div>
         <div class="chat_subheadline">You can chat with our support team here.</div>
         <div class="chat-container">

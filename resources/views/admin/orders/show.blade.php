@@ -47,7 +47,7 @@
                 @break
 
                 @case('crypto_exchanges')
-                    @include('admin.orders.products.crypto_exchanges')
+                    @include('admin.orders.products.crypto_exchanges') 
                 @break
 
                 @case('cracked_account')
@@ -61,10 +61,21 @@
                 @default
             @endswitch
 
+            @if(! $order->refunded)
             <div style="padding:20px;display:flex;justify-content: flex-end; gap: 15px;">
-                <a class="simple-btn" style="text-decoration: none" href="order/refund/{{ $order->uuid }}">Refund</a>
+                <form method="POST" action="{{ route('admin.order.refund') }}">
+                    @csrf
+                    @method('PUT')
+                    <input type="hidden" name="order_uuid" value="{{ $order->uuid }}" />
+                    <button class="simple-btn" type="submit">Refund</button>
+                </form>
             </div>
-
+            @else
+                <p style="padding:20px; display:flex; justify-content: flex-end; align-items: center; gap:5px;">
+                    <i class="fa-solid fa-check" style="color: green; font-size: 18px;"></i>
+                    <span style="font-size: 14px;">Refunded</span>
+                </p>
+            @endif
         </div>
 
         @livewire('admin-chat', ['order' => $order])

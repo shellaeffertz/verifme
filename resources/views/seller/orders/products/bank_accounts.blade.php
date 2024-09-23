@@ -41,7 +41,6 @@
       @if ($order->private->account_details)
         <div class="private-info">
           <label>Account Details :</label>
-          <p>Please store this information securely and do not share it with anyone.</p>
           <textarea disabled>{{ $order->private->account_details }}</textarea>
         </div>
       @endif
