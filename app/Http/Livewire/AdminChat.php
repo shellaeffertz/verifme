@@ -16,7 +16,7 @@ class AdminChat extends Component
         return view(
             'livewire.admin-chat',
             [
-                'messages' => $messages
+                'messages' => $messages    
             ]
         );
     }

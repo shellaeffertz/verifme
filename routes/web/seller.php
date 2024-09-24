@@ -15,7 +15,7 @@ Route::get('/create', [ProductsController::class, 'create'])->name('seller.creat
 Route::post('/create', [ProductsController::class, 'store'])->name('seller.store');
 Route::get('/edit/{id}', [ProductsController::class, 'edit'])->name('seller.edit');
 Route::post('/edit/{id}', [ProductsController::class, 'update'])->name('seller.update');
-Route::post('/delete/{id}', [ProductsController::class, 'delete'])->name('seller.destroy');
+Route::delete('/delete', [ProductsController::class, 'delete'])->name('seller.destroy');
 
 
 Route::get('/orders', [OrdersController::class, 'getSellerOrders'])->name('seller.orders');

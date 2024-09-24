@@ -114,6 +114,13 @@
 
 
 @section('content')
+
+    <div class="back-btn-wrapper">
+        <a class="simple-btn" href="{{ route('admin.support.index') }}">
+            <i class="fa-solid fa-circle-arrow-left" style="font-size: 24px;"></i>
+        </a>
+    </div>
+
     <div class="order">
         <div class="order-details">
             @if ($support->type == 'report' && $order)

@@ -17,12 +17,12 @@ Route::post('/login', [UserController::class, 'login']);
 Route::get('/reset', [UserController::class, 'forgetPasswordView'])->name('reset');
 Route::post('/reset', [UserController::class, 'forgetPassword']);
 
-Route::get('/reset-password/{token}', [UserController::class, 'validateResetPasswordToken'])->name('reset-password');
+Route::get('/reset-password/{token}', [UserController::class, 'validateResetPasswordToken'])->name('reset-password'); 
 Route::post('/reset-password/{token}', [UserController::class, 'resetPassword']);
 
 Route::get('/logout', [UserController::class, 'logout'])->middleware('auth');
 
-Route::post('/profile', [UserController::class, 'update'])->middleware('auth');
+Route::put('/profile', [UserController::class, 'update'])->middleware('auth');
 Route::get('/profile', [UserController::class, 'show'])->middleware('auth');
 
 Route::get('/buy', [CoinPaymentController::class, 'buy'])->middleware('auth');

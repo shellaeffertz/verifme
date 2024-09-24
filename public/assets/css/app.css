@@ -1059,6 +1059,13 @@ label {
   justify-content: flex-end;
 }
 
+.back-btn-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+}
+
 .form-error-message {
   font-size: 10px;
   color: red;

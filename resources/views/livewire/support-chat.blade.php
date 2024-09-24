@@ -1,34 +1,32 @@
 <div class="convo">
-    <div class="chatt">
-        <div class="chat_headline">Chat</div>
-        <div class="chat_subheadline">You can chat with our support team here.</div>
-        <div class="chat-container">
-            @foreach ($messages as $m)
-                <div class="chat_message" wire:key="{{ $m->id }}">
-                    @if ($m->sender_id == auth()->user()->id)
-                        <div class="chat_message__message__client">
-                            {{ $m->message }}
-                        </div>
-                    @else
-                        <div class="chat_message__message__admin">
-                            {{ $m->message }}
-                        </div>
-                    @endif
+    <h1>Chat With The Support Team</h1>
+    <div class="chatt" wire:poll>
+        @foreach ($messages as $message)
+            @if (auth()->user()->id == $message->sender_id)
+                <div class="sender" style="border-radius: 15px 0 15px 15px ;">
+                    <img src="{{ asset('.././assets/user.png') }}" alt="Avatar" class="right" style="width:100%;">
+                    <p>{{ $message->message }}</p>
+                    <span id="messageTime" class="time-left">{{ $message->created_at->diffForHumans(null,false,false) }}</span>
                 </div>
-            @endforeach
-        </div>
-
-        <div class="send">
-            <input type="text" wire:model="message" class="send__input" onclick="scroll()"
-                wire:keydown.enter="sendMessage">
-            <button class="simple-btn" wire:click="sendMessage" onclick="scroll()">Send</button>
-        </div>
+            @else
+                @if($user->isOnline())
+                    <div class="sender my-msg" style="border-radius: 15px 0 15px 15px ;">
+                        <img src="{{ asset('.././assets/icons/user_online_icon.png') }}" alt="Avatar" style="width:100%;">
+                        <p>{{ $message->message }}</p>
+                        <span id="messageTime" class="time-right" style="color:white;">{{ $message->created_at->diffForHumans(null,false,false) }}</span>
+                    </div>
+                @else
+                    <div class="sender my-msg" style="border-radius: 15px 0 15px 15px ;">
+                        <img src="{{ asset('.././assets/icons/user_offline_icon.png') }}" alt="Avatar" style="width:100%;">
+                        <p>{{ $message->message }}</p>
+                        <span id="messageTime" class="time-right" style="color:white;">{{ $message->created_at->diffForHumans(null,false,false) }}</span>
+                    </div>
+                @endif
+            @endif
+        @endforeach
     </div>
-    <script>
-        let scroll = () => {
-            let chat_container = document.querySelector(".chat-container");
-            chat_container.scrollTop = chat_container.scrollHeight;
-        }
-        scroll();
-    </script>
+    <form wire:submit.prevent="sendMessage" class="msg-form">
+        <textarea rows="3" wire:model="message" class="msg-input" placeholder="Type your message"></textarea>
+        <button type="submit" class="simple-btn">Send</button>
+    </form>
 </div>

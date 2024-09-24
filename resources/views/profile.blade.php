@@ -94,19 +94,29 @@
             <div class="card mb-3">
                 <div class="card-body">
                     <p class="update-pass-title">Update password</p>
-                    <form action="/profile" method="post">
-                        <br>
+                    <form action="/profile" method="POST">
+                        @csrf
+                        @method('PUT')
                         <div class="form-group">
                             <input type="password" name="current_password" class="form-control col-12" placeholder="current password" required>
+                            @error('current_password')
+                                <div class="form-error-message">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <input type="password" name="password" class="form-control col-12" placeholder="password" required>
+                            @error('password')
+                                <div class="form-error-message">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <input type="password" name="password_confirmation" class="form-control col-12" placeholder="password confirmation" required>
+                            @error('password_confirmation')
+                                <div class="form-error-message">{{ $message }}</div>
+                            @enderror
                         </div>                        
-                        <div class="form-group">
-                            <input class="btn btn-primary btn-block" type="submit" value="Change">
+                        <div class="form-btn-wrapper">
+                            <input class="simple-btn" type="submit" value="Change">
                         </div>
                     </form>
                  </div>

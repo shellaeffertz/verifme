@@ -7,6 +7,9 @@
             padding: 20px;
             border: 1px solid #ccc;
             border-radius: 3px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
 
         .ticket_details__subject {
@@ -133,7 +136,54 @@
         .send__input {
             width: 100%;
         }
+
+        .ticket-content {
+            display: flex;
+            gap: 15px;
+            padding: 20px;
+        }
+
+        .ticket-content .ticket_info {
+            border: 1px solid lightgray;
+            background-color: white;
+            border-radius: 15px;
+            flex: 1;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .ticket-content .ticket_info div {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        @media (max-width: 767px) {
+            .ticket-content {
+                flex-direction: column; /* Stack product info and chat on top of each other on mobile screens */
+                padding: 1px;
+            }
+            .ticket_info{
+                width: 100%;
+            }
+
+            .convo {
+                margin-top: 20px; 
+                width: 100% !important; /* Make the chat section take up the full width of the order div */
+                
+            }
+            .chatt{
+                width: 100%;
+                /* height: auto !important; */
+                
+            }
+        }
     </style>
+
+<link rel="stylesheet" href="{{ asset('../././css/chat-modal.css') }}" />
+
 @endsection
 
 @section('title')
@@ -147,19 +197,24 @@
 
 
 @section('content')
-    <div class="ticket_details">
-        <div class="ticket_label">Subject</div>
-        <div class="ticket_details__subject">
-            {{ $support->subject }}
-        </div>
-        <div class="ticket_label">Message</div>
 
-        <div class="ticket_details__message">
-            {{ $support->message }}
+    <div class="ticket-content">
+
+        <div class="ticket_info">
+            <div>
+                <label>Subject:</label>
+                <input type="text" value="{{ $support->subject }}" disabled>
+            </div>
+            <div>
+                <label>Message:</label>
+                <textarea rows="15" disabled>{{ $support->message }}</textarea>
+            </div>
         </div>
+
+        @livewire('support-chat', ['support' => $support], key($support->id))
+
     </div>
 
-    @livewire('support-chat', ['support' => $support], key($support->id))
 @endsection
 
 

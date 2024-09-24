@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\User;
 use App\Models\Message;
 use App\Services\NotificationService;
 use Livewire\Component;
@@ -17,7 +18,8 @@ class SupportChat extends Component
         $messages = Message::where('source_type', 'support_ticket')->where('source_id', $this->support->id)->get();
 
         return view('livewire.support-chat', [
-            'messages' => $messages
+            'messages' => $messages,
+            'user' => User::find($this->support->user_id)
         ]);
     }
 

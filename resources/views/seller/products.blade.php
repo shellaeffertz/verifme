@@ -24,8 +24,8 @@
                     <th>TITLE</th>
                     <th>PRICE</th>
                     <th>STATUS</th>
-                    <th> </th>
-                    <th> </th>
+                    <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -33,7 +33,7 @@
                 @foreach ($products as $product)
                     <tr>
                         <td mobile-title="TYPE">{{ $product->type }}</td>
-                        <td mobile-title="TITLE">{{ $product->title }}</td>
+                        <td mobile-title="TITLE">{{ Str::limit($product->title, 50, '...') }}</td>
                         <td mobile-title="PRICE">{{ $product->price }}$</td>
                         <td mobile-title="STATUS">{{ $product->status }}</td>
                         <td mobile-title="Edit"><a href="{{ route('seller.edit', $product->id) }}" class="simple-btn">Edit</a></td>
@@ -94,7 +94,9 @@
 
         const deleteProduct = (id) => {
             deleteModalContent.innerHTML = `
-             <form action="/seller/delete/${id}" method="POST" >
+             <form action="/seller/delete" method="POST" >
+                @csrf
+                @method('DELETE')
                 <div class="delete-modal-header">
                     <span onclick="closeDeleteModal()" class="delete-close" id="delete-close">&times;</span>
                     <h2>Confirmation Request</h2>
@@ -102,8 +104,9 @@
                 <p style="text-align:center;color: red;font-weight: bold; font-size: 18px;">
                     Are you sure you want delete this product ?
                 </p>
-                <div class="delete-modal-body">
-                    <button  class="simple-btn">Delete</button>
+                <input type="hidden" name="product_id" value="${id}" />
+                <div class="form-btn-wrapper" style="padding: 15px; gap: 10px;">
+                    <button class="simple-btn">Delete</button>
                     <button type="button"  onclick="closeDeleteModal()" class="simple-btn">Cancel</button>
                 </div>  
               </form>

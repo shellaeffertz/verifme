@@ -24,7 +24,7 @@
                 @foreach ($orders as $order)
                     <tr>
                         <td mobile-title="Type">{{ $order->type }}</td>
-                        <td mobile-title="Title">{{ $order->title }}</td>
+                        <td mobile-title="Title">{{ Str::limit($order->title, 50, '...') }}</td>
                         <td mobile-title="Price">{{ $order->price }}$</td>
                         @if ($order->status != 'pending')
                             <td mobile-title="Status" style="color: green">{{ $order->status }}</td>

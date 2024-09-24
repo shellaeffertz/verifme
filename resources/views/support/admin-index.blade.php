@@ -31,18 +31,18 @@
                         <th>Status</th>
                         <th>user</th>
                         <th>email</th>
-                        <th>view</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($support_messages as $tickets)
                         <tr>
-                            <td mobile-title="Subject">{{ $tickets->subject }}</td>
+                            <td mobile-title="Subject"> {{ Str::limit($tickets->subject, 60, '...') }}</td>
                             <td mobile-title="Type">{{ $tickets->type }}</td>
                             <td mobile-title="Status">{{ $tickets->status }}</td>
                             <td mobile-title="user">{{ $tickets->username }}</td>
                             <td mobile-title="email">{{ $tickets->email }}</td>
-                            <td mobile-title="view"><a href="{{ route('admin.support.show', $tickets->id) }}" class="simple-btn">view</a></td>
+                            <td mobile-title=""><a href="{{ route('admin.support.show', $tickets->id) }}" class="simple-btn">view</a></td>
                         </tr>
                     @endforeach
                 </tbody>

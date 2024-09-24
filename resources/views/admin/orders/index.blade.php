@@ -63,7 +63,7 @@
                         <td mobile-title="Order Date"> {{ $order->created_at }} </td>
                         <td mobile-title="Order Deadline">
                             {{ $order->delivery_type != 'instant' ? $order->delivery_period : 'Instant' }} </td>
-                        <td mobile-title="View"><a class="simple-btn" style="text-decoration: none"
+                        <td mobile-title=""><a class="simple-btn" style="text-decoration: none"
                                 href="order/{{ $order->uuid }}">View</a></td>
                     </tr>
                 @endforeach

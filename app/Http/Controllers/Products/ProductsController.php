@@ -181,10 +181,14 @@ class ProductsController extends Controller
         return redirect('/seller/products')->with('success', 'Product updated successfully');
     }
 
-    public function delete(Request $request, $id)
+    public function delete(Request $request)
     {
+        $attributes = $request->validate([
+            'product_id' => "required"
+        ]);
+
         $user = $request->user();
-        $product = Product::where('id', $id)->where('seller_id', $user->id)->first();
+        $product = Product::where('id', $attributes['product_id'])->where('seller_id', $user->id)->first();
         if (!$product) return redirect()->back()->with('error', 'Invalid product selected');
         $product->delete();
         return redirect('/seller/products')->with('success', 'Product deleted successfully');
