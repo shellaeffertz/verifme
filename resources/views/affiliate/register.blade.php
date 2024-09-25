@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title')
+@section('title') 
     Join Our Affiliate Program
 @endsection
 @section('subtitle')
@@ -15,14 +15,19 @@
             Your affiliate request is pending approval.
         </div>
     @else
-        <form method="POST">
-            <div>
-                <label for="code">Referral Code <small>{{config('app.url')}}/register?ref=xxxx</small></label>
-                <br>
-                <input type="text" name="code" placeholder="xxxxx">
+        <div class="create-form">
+            <div class="form-group">
+                <form method="POST">
+                    <div>
+                        <label for="code">Referral Code <br/> <small>URL EXAMPLE : {{config('app.url')}}/register?ref=xxxx</small></label>
+                        <input type="text" name="code" placeholder="xxxxx">
+                    </div>
+                    <div class="form-btn-wrapper">
+                        <button type="submit" class="simple-btn">Submit</button>
+                    </div>
+                </form>
             </div>
-            <input type="submit" value="Submit">
-        </form>
+        </div>
     @endif
 @endsection
 

@@ -64,10 +64,12 @@
             <div class="bold rule">
                 XMR.
             </div>
-            <a class="simple-btn" href="/buy">Add Balance</a>
-            @if(Auth::user()->telegram_chat_id == NULL)
-            <a class="simple-btn" href="/auth/telegram/redirect">Telegram Notification</a>
-            @endif
+            <div class="form-btn-wrapper">
+                <a class="simple-btn" href="/buy">Add Balance</a>
+                @if(Auth::user()->telegram_chat_id == NULL)
+                    <a class="simple-btn" href="/auth/telegram/redirect">Telegram Notification</a>
+                @endif
+            </div>
         </div>
     </div>
 @endsection
@@ -77,42 +79,45 @@
 @endsection
 
 @section('subtitle')
+
     <div class="title-container">
         Hi {{ Auth::user()->nickname }}
     </div>
+
     @if(!Auth::user()->is_seller)
-    <div class="button-container">
-        <a class="simple-btn" href="/support/new">Become a seller</a>
-    </div>
+        <div class="button-container">
+            <a class="simple-btn" href="/support/new">Become a seller</a>
+        </div>
     @endif
+
     <style>
         .title-container {
-    display: inline-block;
-}
+            display: inline-block;
+        }
 
-.button-container {
-    display: inline-block;
-    float: right;
-}
+        .button-container {
+            display: inline-block;
+            float: right;
+        }
 
-.button-container 
-.become-seller-btn {
-  padding: .5rem 1rem;
-  border: 1px solid #6d400622;
-  border-radius: 2px;
-  background-color: #ff0000;
-  color: var(--background--main);
-  font-size: .75rem;
-  cursor: pointer;
-  font-weight: 500;
-  letter-spacing: 2px;
-}
-.button-container 
-.become-seller-btn:hover {
-  background-color: var(--background--main);
-  color: #f70000;
-  transition: all .3s ease-in-out;
-}
-
+        .button-container 
+        .become-seller-btn {
+        padding: .5rem 1rem;
+        border: 1px solid #6d400622;
+        border-radius: 2px;
+        background-color: #ff0000;
+        color: var(--background--main);
+        font-size: .75rem;
+        cursor: pointer;
+        font-weight: 500;
+        letter-spacing: 2px;
+        }
+        .button-container 
+        .become-seller-btn:hover {
+        background-color: var(--background--main);
+        color: #f70000;
+        transition: all .3s ease-in-out;
+        }
     </style>
+
 @endsection

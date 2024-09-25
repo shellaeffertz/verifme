@@ -26,11 +26,11 @@ Route::get('/products/{id}', [AdminController::class, 'showProduct'])->name('adm
 
 Route::delete('/delete', [AdminController::class, 'delete'])->name('admin.destroy');
 
-Route::get('/users/{id}', [UserController::class, 'showUser'])->name('admin.user-edit');
-Route::post('/users/{id}', [UserController::class, 'updateUser'])->name('admin.user-update');
+Route::get('/users/{id}', [UserController::class, 'showUser'])->name('admin.user-edit'); 
+Route::put('/users/{id}', [UserController::class, 'updateUser'])->name('admin.user-update');
 
 Route::get('/withdraws', [WithdrawsController::class, 'withdraws'])->name('admin.withdraws');
-Route::post('/withdraws/{id}', [WithdrawsController::class, 'processWithdraw'])->name('admin.withdraw-update');
+Route::put('/withdraws/{id}', [WithdrawsController::class, 'processWithdraw'])->name('admin.withdraw-update');
 
 Route::get('/support', [SupportController::class, 'indexAdmin'])->name('admin.support.index');
 Route::get('/support/{id}', [SupportController::class, 'showAdmin'])->name('admin.support.show');
@@ -41,7 +41,6 @@ Route::post('/support/{id}/complete', [SupportController::class, 'markAsComplete
 
 Route::get('/affiliates', function (LaravelRequest $request) {
     $affiliate_requests = Request::join('users', 'users.id', '=', 'requests.user_id')->select('requests.*', 'users.username', 'users.email')->where('requests.type', 'affiliate')->where('requests.status', 'pending')->paginate(10);
-    Log::alert($affiliate_requests);
     return view('admin.affiliates', compact('affiliate_requests'));
 })->name('admin.affiliates');
 

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Services;
 use App\Models\CoinPayment;
 use Illuminate\Http\Request;
 use App\Http\Requests\BuyRequest;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Log; 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Services\CoinPaymentServices;
@@ -48,11 +48,6 @@ class CoinPaymentController extends Controller
         $response = CoinPaymentServices::checkTransaction($id);
         return response()->json($response);
     }
-
-
-
-
-    
 
     public function buy(Request $request)
     {

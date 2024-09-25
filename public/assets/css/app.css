@@ -295,12 +295,17 @@ pre {
 }
 
 fieldset {
-  margin: 0;
-  padding: 0;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: 1px solid var(--accent-color-700);
+  border-radius: 6px;
 }
 
 legend {
   padding: 0;
+  font-weight: bold;
 }
 
 ol,
@@ -1033,6 +1038,7 @@ img {
 input[type=text],
 textarea,
 input[type=email],
+input[type=number],
 select {
     padding: .5rem 1rem;
     border: 1px solid var(--accent-color-700);
@@ -1057,6 +1063,7 @@ label {
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  gap: 6px;
 }
 
 .back-btn-wrapper {
@@ -1095,6 +1102,12 @@ form, .form-group {
     display: flex;
     flex-direction: column;
     gap: 1rem;
+}
+
+.form-group div input,
+.form-group div select
+{
+  width: 100%;
 }
 
 .form-group {
@@ -1156,12 +1169,14 @@ form, .form-group {
 
 .section-headline {
     width: 100%;
+    margin: 20px 0;
     padding: 15px 25px;
     background-color: var(--accent-color-700);
     color: var(--background--main);
     font-weight: bold;
     border-radius: 6px;
     font-size: 18px;
+    text-align: left;
 }
 
 .section-headline .sub-title {
@@ -1521,17 +1536,8 @@ main {
     color: #06283D92;
 }
 
-
-
-
-
-
-
-
-
-
-
 .display-table {
+    position: relative;
     max-width: 100%;
     overflow-x: auto;
     gap: 1rem;
@@ -1541,6 +1547,7 @@ main {
 }
 
 .display-table table {
+    position: relative;
     border-collapse: collapse;
     border-spacing: 0;
     width: 100%;
@@ -1739,10 +1746,6 @@ main {
     }
 }
 
-
-
-
-
 table {
     border: 1px solid #ccc;
     border-collapse: collapse;
@@ -1750,9 +1753,8 @@ table {
     padding: 0;
     width: 100%;
     table-layout: fixed;
+    font-size: 14px;
 }
-
-
 
 table tr {
     background-color: #f8f8f8;
@@ -1772,6 +1774,7 @@ table th {
     font-size: clamp(.7rem, 2.5vw, .85rem);
     letter-spacing: .1em;
     text-transform: uppercase;
+    padding: 20px 0;
 }
 
 @media screen and (max-width: 800px) {
@@ -1877,9 +1880,10 @@ table th {
 }
 
 /* product description */
-
+ 
 .description-column {
   position: relative;
+  word-break: break-word;
 }
 
 .description-column .full-description {
@@ -1926,7 +1930,7 @@ table th {
 }
 .d-flex .search-wrapper input {
   width: 100%;
-  height: 50px;
+  height: 50px; 
 }
 
 /* .account-type-btn-wrapper .account-type-btn:not(.active):hover {
@@ -1945,6 +1949,29 @@ table th {
   gap: 10px;
   justify-content: flex-end;
   padding: 15px;
+}
+
+.user-role {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.checkbox-wrapper {
+  display: flex;
+  gap: 15px;
+  width: fit-content;
+}
+
+.checkbox-wrapper label {
+  flex: 1;
+}
+
+.withdraws {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  padding: 25px 0;
 }
 
 @media (prefers-color-scheme: dark) {

@@ -96,7 +96,7 @@ class UserController extends Controller
 
     public function update(UpdateRequest $request)
     {
-        $user = Auth::user();
+        $user = Auth::user(); 
         $data = $request->validated();
         UserServices::update($user->id, $data);
         return redirect()->back()->with('success', 'Profile updated successfully');
@@ -116,7 +116,7 @@ class UserController extends Controller
 
     public function showUser(Request $request, $id)
     {
-        $user = User::find($id);
+        $user = User::findOrFail($id);
         return view('admin.user-edit', [
             'user' => $user
         ]);
@@ -125,10 +125,8 @@ class UserController extends Controller
     public function updateUser(UpdateUserRequest $request, $id)
     {
         $user = User::find($id);
-        // dd($request);
-        $data = $request->validated();
 
-        // dd($data);
+        $data = $request->validated();
 
         $user->update($data);
         return redirect('/admin/users/' . $id)->with('success', 'User updated successfully!');

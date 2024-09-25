@@ -13,7 +13,6 @@
         <div class="display-table">
             <table>
                 <thead>
-
                     <tr>
                         <th>Username</th>
                         <th>Email</th>
@@ -91,10 +90,6 @@
                     modal.style.display = "none";
                 }
             }
-
-
-
-
         }
 
         const decline = (id) => {

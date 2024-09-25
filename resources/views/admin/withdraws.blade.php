@@ -1,7 +1,10 @@
 @extends('layouts.app')
 
 @section('style')
+    <link rel="stylesheet" href="{{ asset('.././assets/css/seller-products.css') }}" />
     <link rel="stylesheet" href="{{ asset('.././assets/css/modal-box.css') }}" />
+    <link rel="stylesheet" href="{{ asset('.././assets/css/modal.css') }}" />
+    <link rel="stylesheet" href="{{ asset('.././css/sucess-modal.css') }}" />
 @endsection
 
 @section('title')
@@ -10,137 +13,155 @@
 
 
 @section('content')
-    <div class="display-table">
-        <table>
-            <thead>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nickname</th>
+                <th>Address</th>
+                <th>Balance</th>
+                <th>AF Balance</th>
+                <th>Amount</th>
+                <th>Type</th>
+                <th>Coin</th>
+                <th>Created At</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($withdraws as $withdraw)
                 <tr>
-                    <th>Username</th>
-                    <th>Nickname</th>
-                    <th>Email</th>
-                    <th>Balance</th>
-                    <th>Amount</th>
-                    <th>Withdraw Id</th>
-                    <th>Withdraw type</th>
-                    <th>Withdraw Coin</th>
-                    <th>Withdraw Adresse</th>
-                    <th>Withdraw Status</th>
-                    <th>Withdraw Created_at</th>
-                    <th></th>
-                    <th></th>
+                    <td mobile-title="Nickname">{{ $withdraw->nickname }}</td>
+                    <td mobile-title="Address" class="description-column">
+                        <p>
+                            {{Str::limit($withdraw->address , 30, '...') }}
+                        </p>
+                        <p class="full-description">
+                            {{ $withdraw->address  }}
+                        </p>
+                    </td>
+                    <td mobile-title="Balance">${{ $withdraw->balance }}</td>
+                    <td mobile-title="AF Balance">${{ $withdraw->affiliate_balance }}</td>
+                    <td mobile-title="Amount">${{ $withdraw->amount }}</td>
+                    <td mobile-title="type">{{ $withdraw->type }}</td>
+                    <td mobile-title="Coin">{{ $withdraw->coin }}</td>
+                    <td mobile-title="Created_at">{{ $withdraw->created_at }}</td>
+                    <td mobile-title="">
+                        <button onclick="approveWithdraw( '{{ $withdraw->uuid }}' )" type="button" class="simple-btn">Approve</button>
+                    </td>
+                    <td mobile-title="" onclick="rejectWithdraw('{{ $withdraw->uuid }}')">
+                        <button class="simple-btn">Reject</button>
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
-                @foreach ($withdraws as $withdraw)
-                    <tr>
-                        <td mobile-title="Username">{{ $withdraw->username }}</td>
-                        <td mobile-title="Nickname">{{ $withdraw->nickname }}</td>
-                        <td mobile-title="Email">
-                            <div class="description-container">
-                            <p class="truncated-description">
-                                {{Str::limit($withdraw->email, 50, '...') }}
-                              </p>
-                           
-                              <span class="tooltip">                  
-                                {{  str_replace("\r\n","\n", $withdraw->email) }}
-                              </span>
-                            </div>
-                        </td>
-                        <td mobile-title="Balance">${{ $withdraw->balance }}</td>
-                        <td mobile-title="Amount">${{ $withdraw->amount }}</td>
-                        <td mobile-title="Withdraw Id">{{ $withdraw->uuid }}</td>
-                        <td mobile-title="Withdraw type">{{ $withdraw->type }}</td>
-                        <td mobile-title="Withdraw Coin">{{ $withdraw->coin }}</td>
-                        <td mobile-title="Withdraw Adresse">
-                            <div class="description-container">
-                            <p class="truncated-description">
-                                {{Str::limit($withdraw->address, 50, '...') }}
-                              </p>
-                           
-                              <span class="tooltip">                  
-                                {{  str_replace("\r\n","\n", $withdraw->address) }}
-                              </span>
-                            </div>
-                        </td>
-                        <td mobile-title="Withdraw Status">{{ $withdraw->status }}</td>
-                        <td mobile-title="Withdraw Created_at">{{ $withdraw->created_at }}</td>
-                        <td mobile-title="Approve" onclick="approve('{{ $withdraw->uuid }}')">
-                            <button class="simple-btn">Approve</button></td>
-                        <td mobile-title="Reject" onclick="reject('{{ $withdraw->uuid }}')"><button
-                                class="simple-btn">Reject</button></td>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-        {{ $withdraws->links() }}
+            @endforeach
+        </tbody>
+    </table>
+    {{ $withdraws->links() }}
 
-    </div>
-
-
-    <div id="reject-modal" class="modal">
-
+    {{-- <div id="reject-modal" class="modal">
         <form method="POST" id="reject-form" class="modal-content">
             <div class="modal-header">
                 <span onclick="closeModal()" class="close">&times;</span>
             </div>
-            <textarea name="reason" placeholder="Reason" style="width: 98%" class="select-box"></textarea>
-            <input type="submit" value="Submit">
+            <textarea name="reason" placeholder="Reason" rows="10" class="select-box"></textarea>
+            <div class="form-btn-wrapper">
+                <button type="submit" class="simple-btn">Submit</button>
+            </div>
         </form>
+    </div> --}}
+
+    <div id="reject-modal" class="delete-modal" style="display: none;">
+        <div class="delete-modal-content" id="reject-modal-content">
+        </div>
     </div>
+
+    <div id="approve-modal" class="delete-modal" style="display: none;">
+        <div class="delete-modal-content" id="approve-modal-content">
+        </div>
+    </div>
+
 @endsection
 
 
 
 @push('script')
     <script>
-        function approve(uuid) {
-            // create a form 
-            var form = document.createElement("form");
-            form.setAttribute("method", "post");
-            form.setAttribute("action", "/admin/withdraws/" + uuid);
-            form.setAttribute("style", "display: none");
-            // create a hidden input
-            var input = document.createElement("input");
-            input.setAttribute("type", "hidden");
-            input.setAttribute("name", "_token");
-            input.setAttribute("value", "{{ csrf_token() }}");
 
-            var status = document.createElement("input");
-            status.setAttribute("type", "hidden");
-            status.setAttribute("name", "status");
-            status.setAttribute("value", "approved");
+        let approveModal = document.getElementById("approve-modal");
+        let approveModalContent = document.getElementById("approve-modal-content");
 
-            // append the input to the form
-            form.appendChild(input);
-            form.appendChild(status);
+        let rejectModal = document.getElementById("reject-modal");
+        let rejectModalContent = document.getElementById("reject-modal-content");
 
-            // append the form to the document
-            document.body.appendChild(form);
-            // submit the form
-            form.submit();
+        const approveWithdraw = (id) => {
+
+            approveModalContent.innerHTML = `
+                <form action="withdraws/${id}" method="POST">
+                    @csrf
+                    @method('PUT')
+                    <div class="delete-modal-header">
+                        <span onclick="closeApproveModal()" class="delete-close" id="delete-close">&times;</span>
+                        <h2>Confirmation Request</h2>
+                    </div>
+                    <p style="text-align:center;color: red;font-weight: bold; font-size: 18px;">
+                        Are you sure you want approve this withdraw ?
+                    </p>
+                    <input type="hidden" name="status" value="approved" />
+                    <div class="form-btn-wrapper" style="padding: 15px; gap: 10px;">
+                        <button  class="simple-btn">Approve</button>
+                        <button  onclick="event.preventDefault(); closeDeleteModal()" class="simple-btn">Cancel</button>
+                    </div>  
+                </form>
+            `;
+            approveModal.style.display = "block";
         }
 
-        function reject(uuid) {
-            // show a modal and ask for reason then submit a form with reason status as rejected and uuid
-            let modal = document.getElementById("reject-modal");
-            modal.style.display = "block";
-            let form = modal.querySelector("form");
-            form.setAttribute("action", "/admin/withdraws/" + uuid);
-            let status = document.createElement("input");
-            status.setAttribute("type", "hidden");
-            status.setAttribute("name", "status");
-            status.setAttribute("value", "rejected");
-            form.appendChild(status);
+        const rejectWithdraw = (id) => {
+
+            rejectModalContent.innerHTML = `
+                <form action="withdraws/${id}" method="POST">
+                    @csrf
+                    @method('PUT')
+                    <div class="delete-modal-header">
+                        <span onclick="closeRejectModal()" class="delete-close" id="delete-close">&times;</span>
+                        <h2>Confirmation Request</h2>
+                    </div>
+                    <p style="text-align:center;color: red;font-weight: bold; font-size: 18px;">
+                        Are you sure you want reject this withdraw ?
+                    </p>
+                    <input type="hidden" name="status" value="rejected" />
+                    <div style="padding: 0 10px">
+                        <label for="reason">Reason of Reject</label>
+                        <textarea style="marging-top: 20px;" id="reason" name="reason" rows="10"></textarea>
+                    </div>
+                    <div class="form-btn-wrapper" style="padding: 15px; gap: 10px;">
+                        <button  class="simple-btn">Reject</button>
+                        <button  onclick="event.preventDefault(); closeRejectModal()" class="simple-btn">Cancel</button>
+                    </div>  
+                </form>
+            `;
+            rejectModal.style.display = "block";
+        }
+
+        function closeApproveModal() {
+            approveModal.style.display = "none";
+        }
+
+        function closeRejectModal() {
+            rejectModal.style.display = "none";
         }
 
         window.onclick = function(event) {
-            if (event.target == document.getElementById("reject-modal")) {
-                document.getElementById("reject-modal").style.display = "none";
+            if (event.target == approveModal) {
+                approveModal.style.display = "none";
             }
         }
 
-        function closeModal() {
-            document.getElementById("reject-modal").style.display = "none";
+        window.onclick = function(event) {
+            if (event.target == rejectModal) {
+                rejectModal.style.display = "none";
+            }
         }
     </script>
 @endpush

@@ -434,16 +434,6 @@ main {
     color: #06283D92;
 }
 
-
-
-
-
-
-
-
-
-
-
 .display-table {
     max-width: 100%;
     overflow-x: auto;
@@ -649,10 +639,6 @@ main {
     }
 }
 
-
-
-
-
 table {
     border: 1px solid #ccc;
     border-collapse: collapse;
@@ -661,8 +647,6 @@ table {
     width: 100%;
     table-layout: fixed;
 }
-
-
 
 table tr {
     background-color: #f8f8f8;

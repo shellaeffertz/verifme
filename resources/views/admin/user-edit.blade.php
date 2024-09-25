@@ -21,71 +21,109 @@
 
 
 @section('content')
-    <h2><small>{{ $user->nickname }}</small></h2>
+
+    <div class="create-form">
+
+        <div class="form-group">
+
+            <h2 class="section-headline">USER INFORMATION</h2>
+
+            <form method="POST" action="{{ route('admin.user-update', $user->id) }}">
+                @csrf
+                @method('PUT')
+
+                <div>
+                    <label>Nickname</label>
+                    <input type="text" value="{{ $user->nickname }}" disabled>
+                </div>
      
-    <form method="POST">
-         <div class="form-group">
-            <label for="nickname">Nickname</label>
-            <input type="text" name="nickname" value="{{ $user->nickname }}" disabled>
-         
- 
-            <label for="email">Email</label>
-            <input type="text" name="email" value="{{ $user->email }}" disabled>
-         
- 
-            <label for="username">Username</label>
-            <input type="text" name="username" value="{{ $user->username }}" disabled>
-         
+                <div>
+                    <label>Email</label>
+                    <input type="text" value="{{ $user->email }}" disabled>
+                </div>
+     
+                <div>
+                    <label>Username</label>
+                    <input type="text" value="{{ $user->username }}" disabled>
+                </div>
+     
+                <div>
+                    <label for="balance">Balance</label>
+                    <input id="balance" type="text" name="balance" value="{{ $user->balance }}">
+                </div>
+    
+                <fieldset>
 
- 
-            <label for="balance">Balance</label>
-            <input type="text" name="balance" value="{{ $user->balance }}">
-         
+                    <legend> USER ROLE </legend>
+                
+                    <div class="user-role">
+
+                        <div class="checkbox-wrapper">
+                            <label for="is_admin">Admin</label>
+                            <input id="is_admin" type="checkbox" name="is_admin" {{ $user->is_admin ? "checked" : '' }}>
+                        </div>
         
- 
-            <label for="is_admin">Admin</label>
-            <input type="checkbox" name="is_admin" {{ $user->is_admin ? "checked" : '' }}>
-         
-
- 
-            <label for="is_seller">Seller</label>
-            <input type="checkbox" name="is_seller" {{ $user->is_seller ? "checked" : '' }}>
-         
-
-            <label for="is_support">Support</label>
-            <input type="checkbox" name="is_support" {{ $user->is_support ? "checked" : '' }}>
- 
-            
-            <label for="commission">Commission %</label>
-            <input type="number" name="commission" value="{{ $user->commission * 100 }}">
-         
-
- 
-            <label for="is_affiliate">Affiliate</label>
-            <input type="checkbox" name="is_affiliate" {{ $user->is_affiliate ? "checked" : '' }}>
-         
-
- 
-            <label for="affiliate_commission">Affiliate Commission %</label>
-            <input type="number" name="affiliate_commission" value="{{ $user->affiliate_commission * 100 }}">
-         
-
- 
-            <label for="affiliate_code">Affiliate Code</label>
-            <input type="text" name="affiliate_code" value="{{ $user->affiliate_code }}">
-         
+                        <div class="checkbox-wrapper">
+                            <label for="is_seller">Seller</label>
+                            <input id="is_seller" type="checkbox" name="is_seller" {{ $user->is_seller ? "checked" : '' }}>
+                        </div>
         
+                        <div class="checkbox-wrapper">
+                            <label for="is_support">Support</label>
+                            <input id="is_support" type="checkbox" name="is_support" {{ $user->is_support ? "checked" : '' }}>
+                        </div>
+        
+                    </div>
 
+                </fieldset>
+     
+                <div>
+                    <label for="commission">Commission %</label>
+                    <input id="commission" type="number" name="commission" value="{{ $user->commission * 100 }}">
+                </div>
+     
+                <fieldset>
 
+                    <legend>  AFFILIATE </legend>
 
- 
-            <label for="is_banned">Banned</label>
-            <input type="checkbox" name="is_banned" {{ $user->is_banned ? "checked" : '' }}>
+                    <div class="checkbox-wrapper">
+                        <label for="is_affiliate">Affiliate</label>
+                        <input id="is_affiliate" type="checkbox" name="is_affiliate" {{ $user->is_affiliate ? "checked" : '' }}>
+                    </div>
+        
+                    <div>
+                        <label for="affiliate_commission">Affiliate Commission %</label>
+                        <input id="affiliate_commission" type="number" name="affiliate_commission" value="{{ $user->affiliate_commission * 100 }}">
+                    </div>
+        
+                    <div>
+                        <label for="affiliate_code">Affiliate Code</label>
+                        <input id="affiliate_code" type="text" name="affiliate_code" value="{{ $user->affiliate_code }}">
+                    </div>
+
+                </fieldset>
+     
+                <fieldset>
+
+                    <legend>Other Actions</legend>
+
+                    <div class="checkbox-wrapper">
+                        <label for="is_banned">Ban</label>
+                        <input id="is_banned" type="checkbox" name="is_banned" {{ $user->is_banned ? "checked" : '' }}>
+                    </div>
+
+                </fieldset>
+    
+                <div class="form-btn-wrapper">
+                    <button type="submit" class="simple-btn">Save</button>
+                </div>
+    
+            </form>
+    
         </div>
 
-        <input type="submit" value="Save">
+    </div>
 
-    </form>
 @endsection
 
 

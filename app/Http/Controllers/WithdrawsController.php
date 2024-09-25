@@ -20,7 +20,12 @@ class WithdrawsController extends Controller
 
     public function withdraws(Request $request)
     {
-        $withdraws = Withdraw::where('status', 'pending')->join('users', 'users.id', '=', 'withdraws.user_id')->select('withdraws.*', 'users.nickname', 'users.username', 'users.email', 'users.balance')->orderBy('created_at', 'desc')->paginate(10);
+        $withdraws = Withdraw::where('status', 'pending')
+                                ->join('users', 'users.id', '=', 'withdraws.user_id')
+                                ->select('withdraws.*', 'users.nickname', 'users.username', 'users.email', 'users.balance', 'users.affiliate_balance')
+                                ->orderBy('created_at', 'desc')
+                                ->paginate(10);
+
         return view('admin.withdraws', [
             'withdraws' => $withdraws
         ]);

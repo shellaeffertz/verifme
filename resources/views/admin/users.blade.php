@@ -2,7 +2,7 @@
 
 
 @section('content')
-    @livewire('admin.users')
+    @livewire('admin.users') 
 @endsection
 
 @section('title')
