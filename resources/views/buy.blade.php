@@ -20,7 +20,7 @@
     
                 <div>
                     <label for="amount">Amount</label>
-                    <input id="amount" type="number" name="amount" value="0">
+                    <input id="amount" type="number" name="amount" value="5">
                 </div>
         
                 <div class="select-box">

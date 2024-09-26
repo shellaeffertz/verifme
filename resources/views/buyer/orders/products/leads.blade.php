@@ -46,12 +46,12 @@
       </div>
     @endif
 
-    @if ($order->private->document_links)
+    {{-- @if ($order->private->document_links)
       <div>
         <label>Document Links :</label>
         <textarea disabled>{{ $order->private->document_links }}</textarea>
       </div>
-    @endif
+    @endif --}}
   @endif
  
 </div> 

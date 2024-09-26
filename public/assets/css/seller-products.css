@@ -45,7 +45,14 @@
   -webkit-animation-duration: 0.4s;
   animation-name: animatetop;
   animation-duration: 0.4s
-}  
+}
+
+@media (max-width: 767px) {
+  .delete-modal-content {
+    width: 90% !important;
+  }
+}
+
  /* Add Animation */
  @-webkit-keyframes animatetop {
   from {top:-300px; opacity:0} 

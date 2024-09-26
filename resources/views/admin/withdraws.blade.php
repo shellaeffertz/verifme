@@ -57,19 +57,8 @@
             @endforeach
         </tbody>
     </table>
+    
     {{ $withdraws->links() }}
-
-    {{-- <div id="reject-modal" class="modal">
-        <form method="POST" id="reject-form" class="modal-content">
-            <div class="modal-header">
-                <span onclick="closeModal()" class="close">&times;</span>
-            </div>
-            <textarea name="reason" placeholder="Reason" rows="10" class="select-box"></textarea>
-            <div class="form-btn-wrapper">
-                <button type="submit" class="simple-btn">Submit</button>
-            </div>
-        </form>
-    </div> --}}
 
     <div id="reject-modal" class="delete-modal" style="display: none;">
         <div class="delete-modal-content" id="reject-modal-content">
@@ -110,7 +99,7 @@
                     <input type="hidden" name="status" value="approved" />
                     <div class="form-btn-wrapper" style="padding: 15px; gap: 10px;">
                         <button  class="simple-btn">Approve</button>
-                        <button  onclick="event.preventDefault(); closeDeleteModal()" class="simple-btn">Cancel</button>
+                        <button  onclick="event.preventDefault(); closeApproveModal()" class="simple-btn">Cancel</button>
                     </div>  
                 </form>
             `;

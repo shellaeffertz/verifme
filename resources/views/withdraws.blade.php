@@ -14,102 +14,78 @@
 
  
 @section('content')
-  
+    
+    <div class="create-form">
 
+        <div class="form-group">
 
-    <form method="POST" class="buy-form">
-        <input type="number" name="amount" placeholder="Amount">
-        <div class="select-box">
-        <select name="coin">
-            <option value="BTC">BTC</option>
-            <option value="ETH">ETH</option>
-            <option value="LTC">LTC</option>
-        </select>
-         </div>
-        <input type="text" name="address" placeholder="Address">
-        <input type="submit" value="Withdraw" class="buton">
-    </form>
+            <h2 class="section-headline">WITHDRAW</h2>
 
-
-        <h2>MY WITHDRAWS : </h2>
-{{-- 
-        <ul class="responsive-table">
-            <li class="table-header">
-                <div class="col col-1">Amount</div>
-                <div class="col col-2">Coin</div>
-                <div class="col col-3">Adresse</div>
-                <div class="col col-4">Date</div>
-                <div class="col col-5">Status</div>
-            </li>
+            <form method="POST">
+ 
+                <div>
+                    <label for="amount">Amount</label>
+                    <input type="number" name="amount" placeholder="Amount" value="{{ old('amount') }}">
+                </div>
         
+                <div>
+                    <label for="coin">Coin</label>
+                    <select name="coin">
+                        <option {{ old('coin') == 'BTC' ? 'selected' : '' }} value="BTC">BTC</option>
+                        <option {{ old('coin') == 'ETH' ? 'selected' : '' }} value="ETH">ETH</option>
+                        <option {{ old('coin') == 'LTC' ? 'selected' : '' }} value="LTC">LTC</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <label for="address">Adress</label>
+                    <input type="text" name="address" placeholder="Address" value="{{ old('address') }}">
+                </div>
+                
+                <div class="form-btn-wrapper">
+                    <button class="simple-btn" type="submit">Withdraw</button>
+                </div>
+        
+            </form>
+
+        </div>
+
+    </div>
+
     <div class="withdraws">
         @foreach ($withdraws as $withdraw)
-        <li class="table-row">
-            <div class="col col-1">{{ $withdraw->amount }} USD</div>
-            <div class="col col-2">{{ $withdraw->coin }}</div>
-            <div class="col col-3 description-container">
-                <p class="truncated-description">
-                {{Str::limit($withdraw->address , 20, '...') }}
-                </p>
-                <span class="tooltip">                  
-                    {{  str_replace("\r\n","\n", $withdraw->address) }}
-                  </span>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <span>{{ $withdraw->amount }} USD</span>
+                    </h5>
+                    <h6 class="card-subtitle mb-2 text-muted">
+                        <span style="font-weight: bold; color: #1c3879;">Coin : </span>
+                        <span>{{ $withdraw->coin }}</span>
+                    </h6>
+                    <h6 class="card-subtitle mb-2 text-muted">
+                        <span style="font-weight: bold; color: #1c3879;">Address : </span>
+                        <span>{{ $withdraw->address }}</span>
+                    </h6>
+                    <p class="card-text">
+                        <span style="font-weight: bold; color: #1c3879;">Registered At : </span>
+                        <span>{{ $withdraw->created_at }}</span>
+                    </p>
+                    <p class="card-text">
+                        <span style="font-weight: bold; color: #1c3879;">Status : </span>
+                        <span>{{ ucfirst($withdraw->status) }}</span>
+                    </p>
+                    @if ($withdraw->status == 'rejected')
+                        <p class="card-text">
+                            <span style="font-weight: bold; color: #1c3879;" >Reason Of Reject : </span>
+                            <p>{{ $withdraw->reject_reason }}</p>
+                        </p>
+                    @endif
+                </div>
             </div>
-
-            <div class="col col-4">{{ $withdraw->created_at }}</div>
-            <div class="col col-5">{{ $withdraw->status }}
-                @if ($withdraw->status == 'rejected')
-               <p style="color: brown">{{ $withdraw->reject_reason }}</p>
-                @endif
-            </div>
-
-        </li>
         @endforeach
-    </div> 
-       </ul> --}}
-
-
-
-       <div class="display-table">
-        <table>
-            <thead>
-                <tr>
-                    <th>Amount</th>
-                    <th>Coin</th>
-                    <th>Adresse</th>
-                    <th>Date</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody>
-
-                @foreach ($withdraws as $withdraw)
-                    <tr>
-                        <td mobile-title="TYPE">{{ $withdraw->amount }} USD</td>
-                        <td mobile-title="TITLE">{{ $withdraw->coin }}</td>
-                        <td mobile-title="PRICE">   
-                            <div class="description-container">
-                            <p class="truncated-description">
-                            {{Str::limit($withdraw->address , 20, '...') }}
-                            </p>
-                            <span class="tooltip">                  
-                                {{  str_replace("\r\n","\n", $withdraw->address) }}
-                              </span>
-                        </div>
-                    </td>
-                        <td mobile-title="STATUS">{{ $withdraw->created_at }}</td>
-                        <td mobile-title="STATUS">     
-                            {{ $withdraw->status }}
-                            @if ($withdraw->status == 'rejected')
-                           <p style="color: brown">{{ $withdraw->reject_reason }}</p>
-                            @endif
-                        </td>
-                   
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-
+        {{ $withdraws->links() }}
+    </div>
 
 @endsection
 

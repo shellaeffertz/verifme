@@ -64,12 +64,14 @@
         @if($product->delivery_type == 'instant')
             <div>
                 <label>Account Details :</label>
-                <input type="text" value="{{ $product->private_data->account_details }}" disabled>
+                <textarea rows="5" disabled>{{ $product->private_data->account_details }}</textarea>
             </div>
-            <div>
-                <label>Document links :</label>
-                <input type="text" value="{{ $product->private_data->document_links }}" disabled>
-            </div>
+            @if(isset($product->private_data->document_links))
+                <div>
+                    <label>Document links :</label>
+                    <textarea rows="5" disabled>{{ $product->private_data->document_links }}</textarea>
+                </div>
+            @endif
         @endif
 
         <div>

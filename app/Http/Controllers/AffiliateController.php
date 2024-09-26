@@ -49,7 +49,7 @@ class AffiliateController extends Controller
     public function createWithdrawRequest(Request $request) {
 
         $user = $request->user();
-        $withdraws = Withdraw::where('user_id', $request->user()->id)->where('type', 'affiliate')->paginate(5);
+        $withdraws = Withdraw::where('user_id', $request->user()->id)->where('type', 'affiliate')->orderBy('created_at', 'DESC')->paginate(5);
         return view('affiliate.withdraw', compact('user', 'withdraws'));
     }
 

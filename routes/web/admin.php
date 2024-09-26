@@ -44,7 +44,7 @@ Route::get('/affiliates', function (LaravelRequest $request) {
     return view('admin.affiliates', compact('affiliate_requests'));
 })->name('admin.affiliates');
 
-Route::post('/affiliates/{id}', function (LaravelRequest $request, $id) {
+Route::put('/affiliates/{id}', function (LaravelRequest $request, $id) {
     $affiliate_request = Request::find($id);
     if(!$affiliate_request) return redirect()->route('admin.affiliates')->withErrors(['Request not found.']);
 
