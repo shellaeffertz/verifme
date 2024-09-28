@@ -8,6 +8,7 @@ use App\Http\Controllers\telegramController;
 use App\Http\Controllers\ImpersonateController;
 use App\Http\Controllers\Products\ProductsController;
 use App\Http\Controllers\Services\CoinPaymentController;
+use App\Http\Controllers\Account\UserController;
 use App\Http\Controllers\OrdersController;
 
 /*
@@ -21,12 +22,18 @@ use App\Http\Controllers\OrdersController;
 |
 */
 
-
+Route::middleware(['auth', 'admin'])->prefix('/admin')->group(function() {
+    Route::get('/users', [UserController::class, 'showUsers'])->name('admin.users');
+    Route::get('/users/{id}', [UserController::class, 'showUser'])->name('admin.user-edit'); 
+    Route::put('/users/{id}', [UserController::class, 'updateUser'])->name('admin.user-update');
+    Route::delete('/delete', [AdminController::class, 'delete'])->name('admin.destroy');
+    Route::get('/products', [AdminController::class, 'products'])->name('admin.products');
+    Route::get('/products/{id}', [AdminController::class, 'showProduct'])->name('admin.product.show');
+});
 
 Route::prefix('/')->group(base_path('routes/web/users.php'));
 
-
-Route::middleware('admin')->prefix('/admin')->group(base_path('routes/web/admin.php'));
+Route::middleware(['auth', 'support'])->prefix('/admin')->group(base_path('routes/web/admin.php'));
 Route::middleware('seller')->prefix('/seller')->group(base_path('routes/web/seller.php'));
 
 Route::any('coinpayment/ipn', [CoinPaymentController::class, 'handleIPN'])->name('coinpayment.ipn');
@@ -51,7 +58,6 @@ Route::middleware('admin')->get('/impersonation/start/{id}', [ImpersonateControl
 
 Route::get('/auth/telegram/redirect', function(){
     return Socialite::driver('telegram')->redirect();
-    // return "hello telegram";
 });
 
 Route::get('/auth/telegram/callback', [telegramController::class,'callback']); 

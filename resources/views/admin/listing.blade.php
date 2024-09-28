@@ -66,7 +66,7 @@
                 <label>Account Details :</label>
                 <textarea rows="5" disabled>{{ $product->private_data->account_details }}</textarea>
             </div>
-            @if(isset($product->private_data->document_links))
+            @if(isset($product->private_data->document_links) && $product->private_data->document_links)
                 <div>
                     <label>Document links :</label>
                     <textarea rows="5" disabled>{{ $product->private_data->document_links }}</textarea>

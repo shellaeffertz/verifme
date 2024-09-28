@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class isAdmin
+class IsSupport
 {
     /**
      * Handle an incoming request.
@@ -17,8 +17,8 @@ class isAdmin
     public function handle(Request $request, Closure $next)
     {
         $user = $request->user();
-        
-        if(!$user->is_admin){
+
+        if(!$user->is_support && !$user->is_admin){
             return redirect('/')->withErrors(["Sorry you're not authorized to see this page"]);
         }
 

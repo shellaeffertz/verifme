@@ -42,9 +42,10 @@ class SellerChat extends Component
         $message->save();
         $this->message = '';
 
-        if($this->order->buyer->telegram_chat_id!=NULL){
-        $noticeContent ='Hello'."\t".$this->order->seller->nickname."\n" .'You have a new message : '.$message->message."\n"."From the user:".$this->order->buyer->nickname."\n"."for your order:".$this->order->product->title."\n"."Price :".$this->order->price."\n".'please visite our market place to complete your order with the buyer'."\t".$this->order->buyer->nickname;
+        if($this->order->seller->telegram_chat_id!=NULL){
+        // $noticeContent ='Hello'."\t".$this->order->seller->nickname."\n" .'You have a new message : '.$message->message."\n"."From the user:".$this->order->buyer->nickname."\n"."for your order:".$this->order->product->title."\n"."Price :".$this->order->price."\n".'please visite our market place to complete your order with the buyer'."\t".$this->order->buyer->nickname;
 
+        $noticeContent = 'you sent a message';
 
         $notice = new Notice([
             'id'  =>  Uuid::uuid4()->toString(),
@@ -53,9 +54,9 @@ class SellerChat extends Component
             'noticelink' => "https://verifme.com/orders/".$this->order->uuid,
        ]);
     
-           $notice->notify(new userNotification());
+        $notice->notify(new userNotification());
 
-              Log::info('Telegram notif sent');
+        Log::info('Telegram notif sent');
     }
 
         NotificationService::addNotification( $this->order->buyer , 'message_received', 'You have a new message', 'You have a new message', '/orders/' . $this->order->uuid);

@@ -45,7 +45,7 @@
         </div>
       @endif
   
-      @if ($order->private->document_links)
+      @if (isset($order->private->document_links) && $order->private->document_links)
         <div>
           <label>Document Links :</label>
           <textarea disabled>{{ $order->private->document_links }}</textarea>

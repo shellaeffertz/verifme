@@ -48,7 +48,6 @@ class ProductsController extends Controller
 
         $noticeContent ='Hello'."\t".$user->nickname."\n" .'You have a new order'."\n"."Type:".$product->type."\n"."Title:".$product->title."\n"."Price :".$order->price."\n".'please visite our market place for more detail about the order';
 
-        // dd($order);
         $notice = new Notice([
             'id'  =>  Uuid::uuid4()->toString(),
             'notice' => $noticeContent,
@@ -56,9 +55,9 @@ class ProductsController extends Controller
             'noticelink' => "https://verifme.com/orders/".$order->uuid,
        ]);
     
-           $notice->notify(new userNotification());
+        $notice->notify(new userNotification());
 
-           Log::info('Telegram notif sent');
+        Log::info('Telegram notif sent');
     }else{
         $user->notify(new OrderNotification($order));
         Log::info('Email notif sent');
@@ -95,8 +94,6 @@ class ProductsController extends Controller
     public function create(Request $request)
     {
         $products = config('products');
-
-        // dd($products);
     
         $request->validate([
             'type' => 'required|string|in:' . implode(',', array_keys($products)),
@@ -115,9 +112,6 @@ class ProductsController extends Controller
         $data = $request->only(['type', 'delivery_type', 'title', 'delivery_period', 'price', 'public_data', 'private_data']);
         $data['seller_id'] = $user->id;
         $data['status'] = 'active';
-        // $data['price'] = $data['price'] + ($data['price']*0.2);
-        // $data['commission'] = $data['price']*0.2;
-        // $data['priceTotal'] = $data['price'] + $data['commission'];
         $data['priceTotal'] = $data['price'];
 
         Product::forceCreate($data);
@@ -126,24 +120,22 @@ class ProductsController extends Controller
             $noticeContent = 'New product added visite the market place'."\n".$data['type']."\n".$data['title']."\n".$data['price'];
         else{
             $jsonString = $data['public_data'];
-            $dataArray = json_decode($jsonString, true); // true to get an associative array
+            $dataArray = json_decode($jsonString, true);
             $accountType = $dataArray['account_type'];
             $noticeContent = 'New product added visite the market place'."\n"."Type:".$data['type']."\n"."Title:".$data['title']."\n"."Price :".$data['priceTotal']."\n"."account type :".$accountType;
         }
             
-        // $notice = new Notice([
-        //      'id'  =>  Uuid::uuid4()->toString(),
-        //      'notice' => $noticeContent,
-        //      'noticedes' => $data['type'],
-        //      'noticelink' => "https://verifme.com/products/".$data['type'],
-        //     //  'telegramid' => Config::get('services.telegram-id')
-        // ]);
+        $notice = new Notice([
+             'id'  =>  Uuid::uuid4()->toString(),
+             'notice' => $noticeContent,
+             'noticedes' => $data['type'],
+             'noticelink' => config('app.url') . "/products/" . $data['type'],
+             'telegramid' => config('services.telegram-id')
+        ]);
 
-        // $notice->save();
-        // $notice->notify(new TelegramRegister());
-
+        $notice->notify(new TelegramRegister());
         
-        return redirect('/seller/products')->with('success', 'Product created successfully');
+        return redirect('/seller/products')->with('success', 'Product added successfully');
     }
 
     public function edit(Request $request, $id)

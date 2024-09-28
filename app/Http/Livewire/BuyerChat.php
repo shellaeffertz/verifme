@@ -21,7 +21,6 @@ class BuyerChat extends Component
     
     public function render()
     {
-        Log::info('Rendering buyer chat');
         $messages = Message::where('source_id', $this->order->id)->where('source_type', "order")->latest()->take(20)->get()->sortBy('id');
         // dd(User::find($this->order->seller_id)->isOnline());
         return view(
@@ -57,14 +56,12 @@ class BuyerChat extends Component
             'noticelink' => "https://verifme.com/orders/".$this->order->uuid,
        ]);
     
-           $notice->notify(new userNotification());
+        $notice->notify(new userNotification());
 
-           Log::info('Telegram notif sent');
+        Log::info('Telegram notif sent');
     }
 
         // Mail::send(new NotificationMail($message,$url,$order_type,$seller));
-
-       
 
         Log::info('Message sent');
         NotificationService::addNotification( $this->order->seller , 'message_received', 'You have a new message', 'You have a new message', '/seller/orders/' . $this->order->uuid);

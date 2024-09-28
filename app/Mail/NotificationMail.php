@@ -21,7 +21,6 @@ class NotificationMail extends Mailable
      */
     public function __construct($message,$url,$order_type,$seller)
     {
-        //
         $this->message = $message;
         $this->url = $url;
         $this->order_type = $order_type;
@@ -35,13 +34,13 @@ class NotificationMail extends Mailable
      */
     public function build()
     {
-        return  $this // Set the view for the email
-                        ->from('support@verifme.com')
-                        ->to($this->seller)
-                        ->line('You have a new message '.$this->message->message."\n".'for the order :'.$order_type)
-                        ->action('Viste your space for more action', url($this->url))
-                        ->line('The team verifme thanks you for trusting us and using our market place!')
-                        ->markdown('email.custom_email_view');
+        return  $this 
+                    ->from('support@verifme.com')
+                    ->to($this->seller)
+                    ->line('You have a new message '.$this->message->message."\n".'for the order :'.$order_type)
+                    ->action('Viste your space for more action', url($this->url))
+                    ->line('The team verifme thanks you for trusting us and using our market place!')
+                    ->markdown('email.custom_email_view');
                    
         // $this->view('view.name');
     }

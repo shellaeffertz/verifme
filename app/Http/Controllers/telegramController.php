@@ -11,8 +11,6 @@ use Laravel\Socialite\Facades\Socialite;
 
 class telegramController extends Controller
 {
-    //
-
     public function message(Request $request)
     {
         auth()->user()->notify(new telegramNotif($request->get('message')));
@@ -22,32 +20,25 @@ class telegramController extends Controller
     public function callback(Request $request)
     {
         
-    $telegramUser = Socialite::driver('telegram')->user();
+        $telegramUser = Socialite::driver('telegram')->user();
 
-//    dd(auth()->user());
-    $user = User::where('id', auth()->user()->id)->first();
+        $user = User::where('id', auth()->user()->id)->first();
 
-    if ($user) {
-        // User found, update the column
-        $user->update([
-            'telegram_chat_id' => $telegramUser->getId(), // Replace with your column name and new value
-        ]);
+        if ($user) {
 
-        Auth::login($user);
+            $user->update([
+                'telegram_chat_id' => $telegramUser->getId(), // Replace with your column name and new value
+            ]);
 
-        auth()->user()->notify(new registerWithTeleg("you have been registered successfuly to our notification chanel verifme team thanks you for trusting our market place"));
-    
-        return redirect('/');
-    } else {
-        // Handle the case where the user is not found
-        return redirect('/')->with('error', 'User not found');
-    }
+            Auth::login($user);
 
-    // $user = User::updateOrCreate([
-    //     'telegram_chat_id'=> $telegramUser->getId()
-    // ]);
-    // dd($telegramUser->getId());
-    // dd(auth()->user()->id);
+            auth()->user()->notify(new registerWithTeleg("you have been registered successfuly to our notification chanel verifme team thanks you for trusting our market place"));
+        
+            return redirect('/');
+        } else {
+
+            return redirect('/')->with('error', 'User not found');
+        }
 
     }
 }
