@@ -10,6 +10,7 @@ use App\Http\Controllers\Products\ProductsController;
 use App\Http\Controllers\Services\CoinPaymentController;
 use App\Http\Controllers\Account\UserController;
 use App\Http\Controllers\OrdersController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
