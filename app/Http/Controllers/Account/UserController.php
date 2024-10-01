@@ -19,8 +19,6 @@ class UserController extends Controller
 {
     public function registerView(Request $request)
     {
-        $user = Auth::user();
-        if ($user)  return Redirect::route('home');
         return view('user.register');
     }
 
@@ -33,8 +31,6 @@ class UserController extends Controller
 
     public function loginView(Request $request)
     {
-        $user = Auth::user();
-        if ($user)  return Redirect::route('home');
         return view('user.login');
     }
 
@@ -48,8 +44,6 @@ class UserController extends Controller
 
     public function forgetPasswordView(Request $request)
     {
-        $user = Auth::user();
-        if ($user)  return Redirect::route('home');
         return view('user.forgot-password');
     }
 
@@ -62,8 +56,6 @@ class UserController extends Controller
 
     public function validateResetPasswordToken(Request $request, $token)
     {
-        $user = Auth::user();
-        if ($user)  return Redirect::route('home');
         $response = UserServices::validateResetPasswordToken($token);
         if (!$response) return Redirect::route('login')->withErrors(['token' => 'Invalid token']);
         return view('user.reset-password', ['token' => $token]);
@@ -72,8 +64,6 @@ class UserController extends Controller
 
     public function resetPassword(ResetPasswordRequest $request, $token)
     {
-        $user = Auth::user();
-        if ($user)  return Redirect::route('home');
         $record = UserServices::validateResetPasswordToken($token);
         if (!$record) return Redirect::route('login')->withErrors(['token' => 'Invalid token']);
         UserServices::resetPassword($request->password, $record->user_id);

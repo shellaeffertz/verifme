@@ -10,4 +10,4 @@ Route::post('/', [AffiliateController::class, 'storeAffiliateRequest'])->name('a
 
 Route::get('/withdraw', [AffiliateController::class, 'createWithdrawRequest'])->name('affiliate.withdraw')->middleware('affiliate');
 
-Route::post('/withdraw', [AffiliateController::class, 'storeWithdrawRequest'])->name('affiliate.withdraw.store');
+Route::post('/withdraw', [AffiliateController::class, 'storeWithdrawRequest'])->name('affiliate.withdraw.store')->middleware('affiliate');
