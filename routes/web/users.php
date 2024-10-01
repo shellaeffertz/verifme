@@ -9,11 +9,6 @@ use App\Http\Controllers\NotificationsController;
 use App\Http\Controllers\Products\ProductsController;
 use App\Http\Controllers\Services\CoinPaymentController;
 
-
-Route::get('/', function () {    
-    return view('welcome');
-})->name('home');
-
 Route::prefix('/products')->group(function () {
     Route::post('/buy', [ProductsController::class, 'buy'])->name('products.buy');
     Route::get('/accounts', [ProductsController::class, 'accounts'])->name('products.accounts');

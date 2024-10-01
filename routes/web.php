@@ -62,6 +62,18 @@ Route::middleware('guest')->group(function() {
     Route::post('/reset-password/{token}', [UserController::class, 'resetPassword']);
 });
 
+Route::prefix('/products')->group(function () {
+    Route::get('/accounts', [ProductsController::class, 'accounts'])->name('products.accounts');
+    Route::get('/cracked', [ProductsController::class, 'rdps'])->name('products.rdps');
+    Route::get('/payement-process', [ProductsController::class, 'hostings'])->name('products.hostings');
+    Route::get('/smtps', [ProductsController::class, 'smtps'])->name('products.smtps');
+    Route::get('/crypto', [ProductsController::class, 'leads'])->name('products.leads');
+});
+
+Route::get('/', function () {    
+    return view('welcome');
+})->name('home');
+
 Route::fallback(function (Request $request) {
     return "404";
 })->name('404')->middleware('auth');

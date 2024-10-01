@@ -2,25 +2,24 @@
     <nav>
         <div class="nav-header">
             <div class="mobile-toggle">
-                {{-- <img src="{{ asset('./assets/list.png') }}" alt="menu"> --}}
                 <i style="font-size: 28px;color: #1C3879;" class="fa-solid fa-bars"></i>
             </div>
             <div class="logo">
-                <a href="{{ route('home') }}"> <!-- Replace "your_link_here" with the actual URL you want the logo to link to -->
+                <a href="{{ route('home') }}">
                   <img src="{{ asset('./assets/logo3.png') }}" alt="logo" class="custom-image">
                 </a>
             </div>              
-            <a href="/notifications">
+            {{-- <a href="/notifications">
                 <div class="spacer"
                     data-count="{{ \App\Models\Notification::where('user_id', Auth::user()->id)->where('seen', false)->count() }}">
                     <img src="{{ asset('./assets/icons/bell.png') }}" alt="notification">
                 </div>
-            </a>
+            </a> --}}
         </div>
 
         <div class="nav-links">
             <div class="nav-groups">
-                @if (Auth::user()->is_admin)
+                @if (Auth::user()?->is_admin)
                     <div class="nav-group">
                         <div class="nav-group-title">ADMIN</div>
                         <div class="nav-group-items">
@@ -98,7 +97,7 @@
                     </div>
                 @endif
 
-                @if (Auth::user()->is_support)
+                @if (Auth::user()?->is_support)
                     <div class="nav-group">
                         <div class="nav-group-title">SUPPORT</div>
                         <div class="nav-group-items">
@@ -156,7 +155,7 @@
                     </div>
                 @endif
                 
-                @if (Auth::user()->is_seller)
+                @if (Auth::user()?->is_seller)
                     <div class="nav-group">
                         <div class="nav-group-title">SELLER</div>
                         <div class="nav-group-items">
@@ -185,33 +184,17 @@
                         </div>
                     </div>
                 @endif
+
                 <div class="nav-group">
+
                     <div class="nav-group-title">PRODUCTS</div>
+
                     <div class="nav-group-items">
 
                         <a class="link" href="{{ route('products.accounts') }}" style="cursor: pointer;">
                             <img src="{{ asset('./assets/icons/bank.png') }}" alt="banks" />
                             Bank-Accounts
                         </a>
-
-                        {{-- <a class="link" style="cursor: pointer;" onclick="showsubsection(1)">
-
-                            <img src="{{ asset('./assets/icons/bank.png') }}" alt="banks" />
-                            Bank-Accounts
-
-                            <i class="fa fa-arrow-down icone" id="test1"></i>
-                        </a>
-
-                        <div class="subsection" id="subsection1">
-                            <a class="link" href="/products/accounts?query=personal">
-                                Personal
-                            </a>
-                            <a class="link" href="/products/accounts?query=business">
-                                Business
-                            </a>
-                        </div> --}}
-
-
 
                         <a class="link" href="/products/payement-process">
                             <img src="{{ asset('./assets/icons/creditcard.png') }}" alt="creditcard" />
@@ -232,73 +215,76 @@
                         </a>
 
                     </div>
+
                 </div>
-                <div class="nav-group nav-group-bottom">
-                    <div class="nav-group-title">ACCOUNT</div>
-                    <div class="nav-group-items">
-                        <div class="balance">
-                            <div class="current-balance">
-                                ${{ Auth::user()->balance }}
+
+                @auth
+                    <div class="nav-group nav-group-bottom">
+                        <div class="nav-group-title">ACCOUNT</div>
+                            <div class="nav-group-items">
+
+                                <div class="balance">
+                                    <div class="current-balance">
+                                        ${{ Auth::user()->balance }}
+                                    </div>
+                                    <a class="buy-balance" href="/buy">
+                                        Add Balance
+                                    </a>
+                                </div>
+
+                                <a class="link" href="/notifications">
+                                    <img src="{{ asset('./assets/icons/bell.png') }}" alt="notifications" />
+                                    <div class="nav-item">
+                                        <div class="nav-item-title">
+                                            Notifications
+                                        </div>
+                                        <div class="nav-item-count">
+                                            {{ \App\Models\Notification::where('user_id', Auth::user()->id)->where('seen', false)->count() }}
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <a class="link" href="/profile">
+                                    <img src="{{ asset('./assets/icons/profile.png') }}" alt="profile" />
+                                    Profile
+                                </a>
+                                <a class="link" href="/orders">
+                                    <img src="{{ asset('./assets/icons/pursheses.png') }}" alt="orders" />
+                                    My Purchases
+                                    <div class="nav-item-count">
+                                        {{ \App\Models\Order::where('status', 'pending')->where('buyer_id', Auth::user()->id)->count() }}
+                                    </div>
+                                </a>
+                                @if (Auth::user()->is_seller)
+                                    <a class="link" href="/withdraw">
+                                        <img src="{{ asset('./assets/icons/with2.png') }}" alt="profile" />
+                                        Withdraw
+                                    </a>
+                                @endif
+
+                                <a class="link" href="/affiliate">
+                                    <img src="{{ asset('./assets/icons/affiliate.png') }}" alt="affiliate" />
+                                    Affiliate Program
+                                </a>
+                                <a class="link" href="/support">
+                                    <img src="{{ asset('./assets/icons/support-ticket.png') }}" alt="affiliate" />
+                                    Support Tickets
+                                </a>
+                                @if (session('impersonate'))
+                                    <a class="link" href="/impersonation/end">
+                                        <img src="{{ asset('./assets/icons/shift.png') }}" alt="shift" />
+                                        Leave Impersonation
+                                    </a>
+                                @endif
+
+                                <a class="link" href="/logout">
+                                    <img src="{{ asset('./assets/icons/logout.png') }}" alt="logout" />
+                                    Logout
+                                </a>
                             </div>
-                            <a class="buy-balance" href="/buy">
-                                Add Balance
-                            </a>
                         </div>
-                        <a class="link" href="/notifications">
-                            <img src="{{ asset('./assets/icons/bell.png') }}" alt="notifications" />
-                            <div class="nav-item">
-                                <div class="nav-item-title">
-                                    Notifications
-                                </div>
-                                <div class="nav-item-count">
-                                    {{ \App\Models\Notification::where('user_id', Auth::user()->id)->where('seen', false)->count() }}
-                                </div>
-                            </div>
-                        </a>
-
-
-
-                        <a class="link" href="/profile">
-                            <img src="{{ asset('./assets/icons/profile.png') }}" alt="profile" />
-                            Profile
-                        </a>
-                        <a class="link" href="/orders">
-                            <img src="{{ asset('./assets/icons/pursheses.png') }}" alt="orders" />
-                            My Purchases
-                            <div class="nav-item-count">
-                                {{ \App\Models\Order::where('status', 'pending')->where('buyer_id', Auth::user()->id)->count() }}
-                            </div>
-                        </a>
-                        @if (Auth::user()->is_seller)
-                            <a class="link" href="/withdraw">
-                                <img src="{{ asset('./assets/icons/with2.png') }}" alt="profile" />
-                                Withdraw
-                            </a>
-                        @endif
-
-                        <a class="link" href="/affiliate">
-                            <img src="{{ asset('./assets/icons/affiliate.png') }}" alt="affiliate" />
-                            Affiliate Program
-                        </a>
-                        <a class="link" href="/support">
-                            <img src="{{ asset('./assets/icons/support-ticket.png') }}" alt="affiliate" />
-                            Support Tickets
-                        </a>
-                        @if (session('impersonate'))
-                            <a class="link" href="/impersonation/end">
-                                <img src="{{ asset('./assets/icons/shift.png') }}" alt="shift" />
-                                Leave Impersonation
-                            </a>
-                        @endif
-
-
-                        <a class="link" href="/logout">
-                            <img src="{{ asset('./assets/icons/logout.png') }}" alt="logout" />
-                            Logout
-                        </a>
                     </div>
-                </div>
-            </div>
+                @endauth
         </div>
 
     </nav>

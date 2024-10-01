@@ -4,11 +4,20 @@
         Notes
     </div>
     
-    @if(!Auth::user()->is_seller)
-    <div class="button-container">
-        <a class="simple-btn" href="/support/new">Become a seller</a>
+    <div>
+        @auth
+            @if(!Auth::user()?->is_seller)
+                <div class="button-container">
+                    <a class="simple-btn" href="/support/new">Become a seller</a>
+                </div>
+            @endif
+        @else
+            <div class="button-container">
+                <a class="simple-btn" href="/login">Sign-In</a>
+            </div>
+        @endauth
     </div>
-    @endif
+
     <div class="card-body">
         <div class="rule">
             All the product that you will buy are warrantied for <span class="special-span">48H</span>.
@@ -70,14 +79,23 @@
                         <p>
                             {{Str::limit($product->public_data->description, 50, '...') }}
                         </p>
-                        <p class="full-description">
-                            {{ $product->public_data->description }}
-                        </p>            
+                        @if(Str::length($product->public_data->description) > 50)
+                            <p class="full-description">
+                                {{ $product->public_data->description }}
+                            </p>
+                        @endif            
                     </td>
-                    <td mobile-title="Seller">{{ $product->seller->nickname }}</td>
+                    <td mobile-title="Seller">{{ str_replace('User', 'Seller', $product->seller->nickname) }}</td>
                     <td mobile-title="">
-                        <button class="simple-btn"
-                            onclick="buy_confirm('{{ $product->id }}', '{{ $product->title }}', '{{ $product->price }}')">Buy</button>
+                        @auth
+                            <button class="simple-btn"
+                                onclick="buy_confirm('{{ $product->id }}', '{{ $product->title }}', '{{ $product->price }}')"
+                            >
+                                Buy
+                            </button>
+                        @else
+                            <a href="/login" class="simple-btn">Buy</a>
+                        @endauth
                     </td>
                 </tr>
             @endforeach

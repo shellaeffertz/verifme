@@ -6,6 +6,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 @endsection
 
+@section('title')
+    @if ($type == 'bank_accounts')
+        Bank accounts
+    @elseif($type == 'payement_processors')
+        Payement processors
+    @elseif($type == 'crypto_exchanges')
+        Crypto and exchanges
+    @elseif($type == 'real_fackedocs')
+    Real and fake docs
+    @elseif($type == 'cracked_account')
+        Cracked accounts
+    @endif
+@endsection
 
 @section('content')
     @if ($type == 'bank_accounts')
@@ -13,28 +26,11 @@
     @elseif($type == 'payement_processors')
         @livewire('products.hostings')
     @elseif($type == 'crypto_exchanges')
-        {{-- @livewire('products.leads', ['query' => $query]) --}}
         @livewire('products.leads')
     @elseif($type == 'real_fackedocs')
         @livewire('products.smtps')
     @elseif($type == 'cracked_account')
         @livewire('products.rdps')
-    @endif
-@endsection
-
-@section('title')
-    @if ($type == 'bank_accounts')
-        Bank accounts
-    @elseif($type == 'payement_processors')
-        {{-- @livewire('products.hostings',['query' => $query]) --}}
-        Payement processors
-    @elseif($type == 'crypto_exchanges')
-        {{-- @livewire('products.leads', ['query' => $query]) --}}
-        Crypto and exchanges
-    @elseif($type == 'real_fackedocs')
-    Real and fake docs
-    @elseif($type == 'cracked_account')
-        Cracked accounts
     @endif
 @endsection
 
