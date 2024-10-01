@@ -1070,6 +1070,7 @@ label {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: -moz-fit-content;
   width: fit-content;
 }
 
@@ -1082,7 +1083,6 @@ label {
 input[type=submit] {
     padding: .5rem 1rem;
     border: 1px solid #06466d22;
-    border-radius: 2px;
     background-color: var(--accent-color-700);
     color: white;
     font-size: .75rem;
@@ -1659,7 +1659,6 @@ main {
 .simple-btn {
     padding: .5rem 1rem;
     border: 1px solid #06466d22;
-    border-radius: 2px;
     background-color: var(--accent-color-700);
     color: white;
     font-size: .75rem;
@@ -1910,6 +1909,7 @@ table th {
   align-items: center;
   border: 1px solid var(--accent-color-700);
   border-radius: 6px;
+  width: -moz-fit-content;
   width: fit-content;
   margin-bottom: 10px;
 }
@@ -1960,6 +1960,7 @@ table th {
 .checkbox-wrapper {
   display: flex;
   gap: 15px;
+  width: -moz-fit-content;
   width: fit-content;
 }
 
@@ -2054,3 +2055,4 @@ table th {
     padding-right: 2rem;
   }
 }
+
