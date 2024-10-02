@@ -1,39 +1,33 @@
+let infoModal = document.getElementById("info-modal");
+let infoModalContent = document.getElementById("info-modal-content");
 
-
-
-
-function showDetails (id) {
-
-    var arrow_button = document.getElementById("test"+id);
-    var content = document.getElementById(id);
-
-        
-
-        if(content.style.display == "block"){
-            console.log("if")
-            content.style.display = "none";
-            arrow_button.classList.add("fa-arrow-down");
-            arrow_button.classList.remove("fa-arrow-up");
-        }
-        else {
-            console.log("else")
-            document.querySelectorAll('.payment-details').forEach((elem)=>{
-                elem.style.display = "none"
-               })
-           document.querySelectorAll('.icone').forEach((elem)=>{
-            elem.classList.add("fa-arrow-down");
-        })
-            content.style.display = "block";
-            arrow_button.classList.add("fa-arrow-up");
-            arrow_button.classList.remove("fa-arrow-down");
-
-         
-        }
-
-  
-
-
+const info = (qrcode, address, url) => {
     
+    infoModalContent.innerHTML = `
+        <div class="delete-modal-header">
+            <span onclick="closeInfoModal()" class="delete-close" id="delete-close">&times;</span>
+            <h2>Show Info</h2>
+        </div>
+        <div style="display: flex;gap: 30px;">
+            <img src="${qrcode}" alt="qr code" style="width: 30%">
+            <div class="details-items-under">
+                <span style="font-weight: bold;">Address : </span>
+                <p style="word-break: break-word;"> ${address} </p>
+            </div>
+        </div>
+        <div class="form-btn-wrapper" style="padding: 15px; gap: 10px;">
+            <a  target="_blank" href="${url}" class="simple-btn">Status</a>
+        </div>  
+    `;
+    infoModal.style.display = "block";
+}
 
-    
-  };
+function closeInfoModal() {
+    infoModal.style.display = "none";
+}
+
+window.onclick = function(event) {
+    if (event.target == infoModal) {
+        infoModal.style.display = "none";
+    }
+}

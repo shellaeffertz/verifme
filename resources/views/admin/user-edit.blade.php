@@ -60,17 +60,17 @@
 
                         <div class="checkbox-wrapper">
                             <label for="is_admin">Admin</label>
-                            <input id="is_admin" type="checkbox" name="is_admin" {{ $user->is_admin ? "checked" : '' }}>
+                            <input id="is_admin" type="checkbox" value="on" name="is_admin" {{ $user->is_admin ? "checked" : '' }}>
                         </div>
         
                         <div class="checkbox-wrapper">
                             <label for="is_seller">Seller</label>
-                            <input id="is_seller" type="checkbox" name="is_seller" {{ $user->is_seller ? "checked" : '' }}>
+                            <input id="is_seller" type="checkbox" value="on" name="is_seller" {{ $user->is_seller ? "checked" : '' }}>
                         </div>
         
                         <div class="checkbox-wrapper">
                             <label for="is_support">Support</label>
-                            <input id="is_support" type="checkbox" name="is_support" {{ $user->is_support ? "checked" : '' }}>
+                            <input id="is_support" type="checkbox" value="on" name="is_support" {{ $user->is_support ? "checked" : '' }}>
                         </div>
         
                     </div>
@@ -88,7 +88,7 @@
 
                     <div class="checkbox-wrapper">
                         <label for="is_affiliate">Affiliate</label>
-                        <input id="is_affiliate" type="checkbox" name="is_affiliate" {{ $user->is_affiliate ? "checked" : '' }}>
+                        <input id="is_affiliate" type="checkbox" value="on" name="is_affiliate" {{ $user->is_affiliate ? "checked" : '' }}>
                     </div>
         
                     <div>
@@ -107,9 +107,18 @@
 
                     <legend>Other Actions</legend>
 
-                    <div class="checkbox-wrapper">
-                        <label for="is_banned">Ban</label>
-                        <input id="is_banned" type="checkbox" name="is_banned" {{ $user->is_banned ? "checked" : '' }}>
+                    <div class="user-role">
+                        <div class="checkbox-wrapper">
+                            <label for="is_banned">Ban</label>
+                            <input id="is_banned" type="checkbox" name="is_banned" {{ $user->is_banned ? "checked" : '' }}>
+                        </div>
+    
+                        @if($user->is_seller)
+                            <div class="checkbox-wrapper">
+                                <label for="is_verified_seller">Verified</label>
+                                <input id="is_verified_seller" type="checkbox" value="on" name="is_verified_seller" {{ $user->is_verified_seller ? "checked" : '' }}>
+                            </div>
+                        @endif
                     </div>
 
                 </fieldset>

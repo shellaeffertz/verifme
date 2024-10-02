@@ -9,12 +9,6 @@
                   <img src="{{ asset('./assets/logo3.png') }}" alt="logo" class="custom-image">
                 </a>
             </div>              
-            {{-- <a href="/notifications">
-                <div class="spacer"
-                    data-count="{{ \App\Models\Notification::where('user_id', Auth::user()->id)->where('seen', false)->count() }}">
-                    <img src="{{ asset('./assets/icons/bell.png') }}" alt="notification">
-                </div>
-            </a> --}}
         </div>
 
         <div class="nav-links">
@@ -193,7 +187,7 @@
 
                         <a class="link" href="{{ route('products.accounts') }}" style="cursor: pointer;">
                             <img src="{{ asset('./assets/icons/bank.png') }}" alt="banks" />
-                            Bank-Accounts
+                            Bank Accounts
                         </a>
 
                         <a class="link" href="/products/payement-process">
@@ -285,6 +279,7 @@
                         </div>
                     </div>
                 @endauth
+            </div>
         </div>
 
     </nav>

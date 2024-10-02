@@ -137,7 +137,9 @@ canvas {
                   {{-- error handler --}}
                     <div class="text-center logocontainer">
                         <!-- logo -->
-                        <img src="{{asset('./assets/logo3.png')}}" alt="logo" class="logo">
+                        <a href="/">
+                          <img src="{{asset('./assets/logo3.png')}}" alt="logo" class="logo">
+                        </a>
                     </div>
                     <div class="special-paragraph">
                       More than 80% of Sellers Are reselling to you Products for x2 at least                          

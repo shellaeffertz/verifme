@@ -118,6 +118,8 @@ class UserController extends Controller
 
         $data = $request->validated();
 
+        logger($data);
+        
         $user->update($data);
         return redirect('/admin/users/' . $id)->with('success', 'User updated successfully!');
     }

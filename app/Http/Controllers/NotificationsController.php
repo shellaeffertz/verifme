@@ -54,7 +54,3 @@ class NotificationsController extends Controller
         return redirect($notification->link);
     }
 }
-
-
-
-// NotificationService::addNotification($user, 'new_post', 'New Product was created', 'A new product was created', '/seller/products/[]');

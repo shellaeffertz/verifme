@@ -23,7 +23,6 @@ class CoinPaymentController extends Controller
     public function handleIPN(Request $request)
     {
         $data = $request->all();
-        Log::alert($data);
         $response = CoinPaymentServices::handleIPN($data);
         return response()->json($response);
     }

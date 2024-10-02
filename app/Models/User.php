@@ -27,6 +27,7 @@ class User extends Authenticatable
         'username',
         'balance',
         'is_seller',
+        'is_verified_seller',
         'is_support',
         'is_banned',
         'commission',

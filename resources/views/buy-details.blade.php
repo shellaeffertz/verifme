@@ -36,7 +36,7 @@
                 <div class="line">
                     <p class="char1">Check the status here :</p>
                     <div>
-                        <a href="{{ $coin_payment->status_url }}" target="_blank">Status</a>
+                        <a class="simple-btn" href="{{ $coin_payment->status_url }}" target="_blank">Status</a>
                     </div>
 
                 </div>

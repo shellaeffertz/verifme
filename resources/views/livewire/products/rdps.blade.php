@@ -45,6 +45,9 @@
         </div>
     </div>
 
+    <div style="display: none;" wire:loading>
+        <div class="loader"></div>
+    </div>
 
     <table>
         <thead>
@@ -75,7 +78,17 @@
                             </p>
                         @endif            
                     </td>
-                    <td mobile-title="Seller">{{ str_replace('User', 'Seller', $product->seller->nickname) }}</td>
+                    <td mobile-title="Seller">
+                        @if($product->seller->is_verified_seller)
+                            <div class="badge-wrapper">
+                                <span class="badge">This seller is Verified</span>
+                                {{ str_replace('User', 'Seller', $product->seller->nickname) }}
+                                <i class="fa-solid fa-check" style="color: green;font-size: 14px;"></i>
+                            </div>
+                        @else
+                            {{ str_replace('User', 'Seller', $product->seller->nickname) }}
+                        @endif
+                    </td>
                     <td mobile-title="">
                         @auth
                             <button class="simple-btn"

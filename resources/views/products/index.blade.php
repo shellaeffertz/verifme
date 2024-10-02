@@ -14,9 +14,23 @@
     @elseif($type == 'crypto_exchanges')
         Crypto and exchanges
     @elseif($type == 'real_fackedocs')
-    Real and fake docs
+        Real and fake docs
     @elseif($type == 'cracked_account')
         Cracked accounts
+    @endif
+@endsection
+
+@section('subtitle')
+    @if ($type == 'bank_accounts')
+        welcome in Bank accounts listings page
+    @elseif($type == 'payement_processors')
+        welcome in Payement processors listings page
+    @elseif($type == 'crypto_exchanges')
+        welcome in Crypto and exchanges listings page
+    @elseif($type == 'real_fackedocs')
+        welcome in Real and fake docs listings page
+    @elseif($type == 'cracked_account')
+        welcome in Cracked accounts listings page
     @endif
 @endsection
 
@@ -49,8 +63,8 @@
             confirmation_model.style.display = 'block';
             confirmation_model_content.innerHTML = `
                <div class="modal-header">
-                <span onclick="buy_cancel()" class="close">&times;</span>
-                <h2>Confirmation Requested</h2>
+                    <span onclick="buy_cancel()" class="close">&times;</span>
+                    <h2>Confirmation Requested</h2>
                </div>
                 <div class="modal-body">
                     <p style="text-align:center;color: red;font-weight: bold; font-size: 18px;padding: 15px 0px;">

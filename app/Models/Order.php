@@ -10,6 +10,16 @@ class Order extends Model
     use HasFactory;
     use \HighIdeas\UsersOnline\Traits\UsersOnlineTrait;
 
+    public function getPublicDataAttribute($value)
+    {
+        return json_decode($value);
+    }
+
+    public function getPrivateDataAttribute($value)
+    {
+        return json_decode($value);
+    }
+    
     public function product()
     {
         return $this->belongsTo(Product::class, 'product_id');

@@ -22,7 +22,7 @@
 .delete-modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
-  z-index: 1000; /* Sit on top */
+  z-index: 99999; /* Sit on top */
   padding-top: 100px; /* Location of the box */
   left: 0;
   top: 0;
@@ -81,6 +81,19 @@
   padding: 10px 16px;
   background-color: #1C3879;
   color: #fefeff;
+  font-weight: bold;
+}
+
+.delete-modal-header h2{
+  font-size: 22px;
+}
+
+@media (max-width: 767px) {
+
+  .modal-header h2 {
+    font-size: 18px !important;
+  }
+  
 }
 
 .delete-modal-body {

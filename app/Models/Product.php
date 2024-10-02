@@ -21,6 +21,16 @@ class Product extends Model
         'status',
     ];
 
+    public function getPublicDataAttribute($value)
+    {
+        return json_decode($value);
+    }
+
+    public function getPrivateDataAttribute($value)
+    {
+        return json_decode($value);
+    }
+
 
     public function seller()
     {

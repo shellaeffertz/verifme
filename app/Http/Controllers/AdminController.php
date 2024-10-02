@@ -13,10 +13,9 @@ class AdminController extends Controller
 {
     public function orders(Request $request)
     {
-        $orders = Order::orderBy('created_at', 'desc')->paginate(10);
+        $orders = Order::orderBy('created_at', 'desc')->paginate(5);
         return view('admin.orders.index', [
             'orders' => $orders,
-            
         ]);
     }
 
@@ -25,8 +24,6 @@ class AdminController extends Controller
         $order = Order::where('uuid', $id)->first();
         // Update the order type here based on your logic
         if (!$order) return redirect('/admin/orders')->withErrors('Order not found');
-        $order->public = json_decode($order->public_data);
-        $order->private = json_decode($order->private_data);
         // dd($order);
         return view('admin.orders.show', [
             'order' => $order
@@ -120,8 +117,6 @@ class AdminController extends Controller
             $product->type = 'Crypto and Exchanges';
         elseif($product->type == "real_fakedocs")
             $product->type = 'Real and fake documents';
-
-            $product->public = json_decode($product->public_data);
         }
         return view('admin.product', [
 
@@ -133,9 +128,6 @@ class AdminController extends Controller
 
         $product = Product::where('id', $product_id)->first();
         if(!$product) return redirect()->back()->withErrors('Product not found');
-
-        $product['public_data'] = json_decode($product['public_data']);
-        $product['private_data'] = json_decode($product['private_data']);
 
         return view('admin.listing', [
             'product' => $product

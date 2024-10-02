@@ -1,35 +1,36 @@
 
 <div>
 
-<div>
-    <div class="title-container card-title">
-        Notes 
-    </div>
     <div>
-        @auth
-            @if(!Auth::user()?->is_seller)
+        <div class="title-container card-title">
+            Notes 
+        </div>
+        <div>
+            @auth
+                @if(!Auth::user()?->is_seller)
+                    <div class="button-container">
+                        <a class="simple-btn" href="/support/new">Become a seller</a>
+                    </div>
+                @endif
+            @else
                 <div class="button-container">
-                    <a class="simple-btn" href="/support/new">Become a seller</a>
+                    <a class="simple-btn" href="/login">Sign-In</a>
                 </div>
-            @endif
-        @else
-            <div class="button-container">
-                <a class="simple-btn" href="/login">Sign-In</a>
+            @endauth
+        </div>
+        <div class="card-body">
+            <div class="rule">
+                All the product that you will buy are warrantied for <span class="special-span">48H</span>.
             </div>
-        @endauth
-    </div>
-    <div class="card-body">
-        <div class="rule">
-            All the product that you will buy are warrantied for <span class="special-span">48H</span>.
-        </div>
-        <div class="rule">
-            If You Have Any Questions  ,Problem Or Request Please Feel Free To <a class="contact-button" href="/support"> Open Ticket</a>.
-        </div>
-        <div class="rule">
-            All Money Stay Safe with us neither Buyer or  Seller Can Scam   <a class="contact-button" href="/support">contact us</a>.
+            <div class="rule">
+                If You Have Any Questions  ,Problem Or Request Please Feel Free To <a class="contact-button" href="/support"> Open Ticket</a>.
+            </div>
+            <div class="rule">
+                All Money Stay Safe with us neither Buyer or  Seller Can Scam   <a class="contact-button" href="/support">contact us</a>.
+            </div>
         </div>
     </div>
-</div>
+
     <div class="d-flex">
         <div class="wrapper2">
             <div class="search-wrapper">
@@ -45,9 +46,14 @@
         </div>
     </div>
 
-    <div class="account-type-btn-wrapper">
-        <button wire:click="changeAccountType('personal')" class="{{$query == 'personal' ? 'account-type-btn active' : 'account-type-btn'}}" type="button">Personal</button>
-        <button class="{{$query == 'business' ? 'account-type-btn active' : 'account-type-btn'}}" wire:click="changeAccountType('business')" class="account-type-btn" type="button">Business</button>
+    <div class="d-flex">
+        <div class="account-type-btn-wrapper">
+            <button wire:click="changeAccountType('personal')" class="{{$query == 'personal' ? 'account-type-btn active' : 'account-type-btn'}}" type="button">Personal</button>
+            <button class="{{$query == 'business' ? 'account-type-btn active' : 'account-type-btn'}}" wire:click="changeAccountType('business')" class="account-type-btn" type="button">Business</button>
+        </div>
+        <div style="display: none;" wire:loading>
+            <div class="loader"></div>
+        </div>
     </div>
 
     <table>
@@ -84,7 +90,17 @@
                             </p>
                         @endif            
                     </td>
-                    <td mobile-title="Seller">{{ str_replace('User', 'Seller', $product->seller->nickname) }}</td>
+                    <td mobile-title="Seller">
+                            @if($product->seller->is_verified_seller)
+                                <div class="badge-wrapper">
+                                    <span class="badge">This seller is Verified</span>
+                                    {{ str_replace('User', 'Seller', $product->seller->nickname) }}
+                                    <i class="fa-solid fa-check" style="color: green;font-size: 14px;"></i>
+                                </div>
+                            @else
+                                {{ str_replace('User', 'Seller', $product->seller->nickname) }}
+                            @endif
+                    </td>
                     <td mobile-title="">
                         @auth
                             <button class="simple-btn"
@@ -116,9 +132,6 @@
             </div>
         </div>
     </div>
-
-    {{-- <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
-    <div class="elfsight-app-bc77e82b-43eb-41cc-b7ef-5e159654a169" data-elfsight-app-lazy></div> --}}
 
 </div>
 

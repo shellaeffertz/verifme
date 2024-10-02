@@ -14,13 +14,13 @@
 
 
 @section('content')
-    {{-- <div class="d-flex">
+
+    <div class="d-flex">
         <div class="wrapper2">
             <input wire:model="search" id="searchInput" type="text" placeholder="Search Order By User..." />
         </div>
-    </div> --}}
+    </div>
 
-    <div id="filteredResults" class="display-table">
         <table>
             <thead>
                 <tr>
@@ -69,9 +69,8 @@
                 @endforeach
             </tbody>
         </table>
-        {{ $orders->links() }}
 
-    </div>
+        {{ $orders->links() }}
 
     <script>
         const searchInput = document.getElementById('searchInput');

@@ -20,7 +20,6 @@
         </div>
     </div> --}}
 
-    <div class="display-table">
         <table>
             <thead>
                 <tr>
@@ -55,16 +54,14 @@
                 @endforeach
             </tbody>
         </table>
+        
         {{ $products->links() }}
 
-    </div>
+        <div id="delete-modal" class="delete-modal">
+            <div class="delete-modal-content" id="delete-modal-content">
+            </div>
+        </div>
 
-{{--  --}}
-<div id="delete-modal" class="delete-modal">
-    <div class="delete-modal-content" id="delete-modal-content">
-    </div>
-</div>
-    {{--  --}}
 @endsection
 
 @push('script')
