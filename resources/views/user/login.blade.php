@@ -125,6 +125,9 @@ canvas {
                             <div class="col-md-12">
                               <label for="Username" class="form-label">Username</label>
                               <input value="{{ old('username') }}" type="text" class="form-control" id="Username" name="username" placeholder="Email / Username" required>
+                              @error('credentiels')
+                                <div class="form-error-message">{{ $message }}</div>
+                              @enderror
                             </div>
                             <div class="col-md-12">
                               <label for="Password" class="form-label">Password</label>
