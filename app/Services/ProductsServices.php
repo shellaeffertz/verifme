@@ -30,8 +30,10 @@ class ProductsServices
         $user->balance = $user->balance - $product->priceTotal;
         $user->save();
 
+        logger(json_encode($product->public_data));
+
         $order = Order::forceCreate([
-            'product_id' => $product->id,
+            'product_id' => $product->id, 
             'buyer_id' => $user->id,
             'title' => $product->title,
             'seller_id' => $product->seller_id,
@@ -39,8 +41,8 @@ class ProductsServices
             'uuid' => Str::uuid(),
             'type' => $product->type,
             'delivery_type' => $product->delivery_type,
-            'public_data' => $product->public_data,
-            'private_data' => $product->private_data,
+            'public_data' => json_encode($product->public_data),
+            'private_data' => json_encode($product->private_data ?? '{}'),
             'price' => $product->price,
         ]);
 
@@ -139,8 +141,8 @@ class ProductsServices
             'type' => $product->type,
             'delivery_type' => $product->delivery_type,
             'delivery_period' => $product->delivery_period,
-            'public_data' => $product->public_data,
-            'private_data' => $product->private_data,
+            'public_data' => json_encode($product->public_data),
+            'private_data' => json_encode($product->private_data),
             'price' => $product->price,
         ]);
 

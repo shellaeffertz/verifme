@@ -18,9 +18,9 @@ class UserServices
         $data['is_seller'] = false;
         $data['channel_id'] = Str::random(64);
         $totalUser = User::all()->count() + 1;
-        $data['nickname'] = "User".$totalUser;
-        $user = User::create($data);
+        $data['nickname'] = "User#".$totalUser;
         $data['commission'] = 0.2;
+        $user = User::create($data);
         return $user;
     }
 

@@ -19,6 +19,10 @@
     Edit User
 @endsection
 
+@section('subtitle')
+    modify User personal information
+@endsection
+
 
 @section('content')
 

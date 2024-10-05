@@ -4,6 +4,10 @@
     Affiliate Dashboard
 @endsection
 
+@section('subtitle')
+    Here are all your Affiliate information
+@endsection
+
 
 @section('content')
 
@@ -15,7 +19,7 @@
     
             <div>
                 <label>My Referral Link</label>
-                <input type="text" value="{{config('app.url')}}/?ref={{$user->affiliate_code}}" disabled/>
+                <input type="text" value="{{config('app.url')}}/register/?ref={{$user->affiliate_code}}" disabled/>
             </div>
     
     

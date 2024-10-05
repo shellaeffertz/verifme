@@ -29,9 +29,6 @@
                 </select>
             </div>
 
-
-
-
             <div class="hidden" id="delivery_period_container">
                 <label for="delivery_period">Delivery Period</label>
                 <select name="delivery_period" id="delivery_period">
@@ -43,9 +40,9 @@
             <div>
                 <label for="account_type">Account Type</label>
                 <select name="account_type" id="account_type">
-                    <option value="personal" {{ $product->public->account_type == 'personal' ? 'selected' : '' }}>Personal
+                    <option value="personal" {{ $product->public_data->account_type == 'personal' ? 'selected' : '' }}>Personal
                     </option>
-                    <option value="business" {{ $product->public->account_type == 'business' ? 'selected' : '' }}>Business
+                    <option value="business" {{ $product->public_data->account_type == 'business' ? 'selected' : '' }}>Business
                     </option>
                 </select>
             </div>
@@ -55,43 +52,39 @@
                 <select name="country" id="country">
                     @foreach (config('country') as $country)
                         <option value="{{ $country }}"
-                            {{ $product->public->country == $country ? 'selected' : '' }}>
+                            {{ $product->public_data->country == $country ? 'selected' : '' }}>
                             {{ $country }}</option>
                     @endforeach
                 </select>
             </div>
 
-
-
             <div>
                 <label for="description">Description</label>
                 <textarea rows=5 type="text" placeholder="was created 5 years ago..." id="description" name="description">
-                {{ $product->public->description }}
+                {{ $product->public_data->description }}
               </textarea>
             </div>
 
         </div>
         <!--  Details -->
         <div class="form-group" id="private_data_container">
-            <h2 class="section-headline">PRIVATE DETAILS <small>Only shared with Clients after the purchase process is
-                    completed</small></h2>
+
+            <h2 class="section-headline">PRIVATE DETAILS <small>Only shared with Clients after the purchase process is completed</small></h2>
             <div>
                 <label for="account_details">Account Private Details</label>
                 <textarea rows=5 type="text" placeholder="Username: aaa, Password: bbb, Login Link: xxxx..." id="account_details"
-                    name="account_details">{{ $product->private->account_details }}</textarea>
+                    name="account_details">{{ $product->private_data->account_details }}</textarea>
             </div>
 
             <div>
                 <label for="document_links">PRIVATE LINKS</label>
-                <textarea rows=5 type="text" placeholder="Documents Link  , Nox Profile ..." id="document_links" name="document_links">{{ $product->private->document_links }} </textarea>
+                <textarea rows=5 type="text" placeholder="Documents Link  , Nox Profile ..." id="document_links" name="document_links">{{ $product->private_data->document_links }} </textarea>
             </div>
 
-
-
-
-        </div> <!-- /.form-group -->
+        </div>
+        
         <div class="form-btn-wrapper">
-            <input type="submit" value="UPDATE">
+            <button class="simple-btn" type="submit">Update</button>
         </div>
 
     </form>

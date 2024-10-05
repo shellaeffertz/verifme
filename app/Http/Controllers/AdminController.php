@@ -13,10 +13,7 @@ class AdminController extends Controller
 {
     public function orders(Request $request)
     {
-        $orders = Order::orderBy('created_at', 'desc')->paginate(5);
-        return view('admin.orders.index', [
-            'orders' => $orders,
-        ]);
+        return view('admin.orders.index');
     }
 
     public function showOrder(Request $request, $id)
@@ -101,27 +98,7 @@ class AdminController extends Controller
 
     public function products(Request $request)
     {
-        // $user = $request->user();
-        $products = Product::paginate(10);
-
-        // Loop through each product and update the product type
-        foreach ($products as $product) {
-            // Update the product type here based on your logic
-        if($product->type == "bank_accounts")
-            $product->type = 'Banck Accounts';
-        elseif($product->type == "cracked_account")
-            $product->type = 'Cracked Accounts';
-        elseif($product->type == "payement_processors")
-            $product->type = 'Payements process';       
-        elseif($product->type == "crypto_exchanges")
-            $product->type = 'Crypto and Exchanges';
-        elseif($product->type == "real_fakedocs")
-            $product->type = 'Real and fake documents';
-        }
-        return view('admin.product', [
-
-            'products' => $products
-        ]);
+        return view('admin.product');
     }
 
     public function showProduct($product_id) {

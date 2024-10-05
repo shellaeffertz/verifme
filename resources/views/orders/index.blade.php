@@ -59,7 +59,3 @@
 </table>
 
 @endsection
-
-@section('title')
-    My Orders
-@endsection

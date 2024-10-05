@@ -28,12 +28,6 @@ input[type=text], input[type=password] {
     
 }
 
-.page-title{
-    font-weight: bold;
-    color: #434343;
-    padding: .5rem 0;
-}
-
 .navarea{
     margin: .1rem 0;
 }

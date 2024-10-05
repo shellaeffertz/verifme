@@ -13,7 +13,7 @@
 @endsection
 
 @section('subtitle')
-    In case you need help, please don't hesitate to contact us. and we will be happy to help you.
+    In case you need help, please don't hesitate to open a new ticket.
 @endsection
 
 

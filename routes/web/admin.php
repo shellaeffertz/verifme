@@ -27,11 +27,11 @@ Route::post('/support/{id}', [SupportController::class, 'supportReplay'])->name(
 Route::post('/support/{id}/complete', [SupportController::class, 'markAsCompleted'])->name('admin.support.complete');
 
 Route::get('/affiliates', function (LaravelRequest $request) {
-    $affiliate_requests = Request::join('users', 'users.id', '=', 'requests.user_id')->select('requests.*', 'users.username', 'users.email')->where('requests.type', 'affiliate')->where('requests.status', 'pending')->paginate(10);
-    return view('admin.affiliates', compact('affiliate_requests'));
+    return view('admin.affiliates');
 })->name('admin.affiliates');
 
 Route::put('/affiliates/{id}', function (LaravelRequest $request, $id) {
+
     $affiliate_request = Request::find($id);
     if(!$affiliate_request) return redirect()->route('admin.affiliates')->withErrors(['Request not found.']);
 
@@ -49,7 +49,8 @@ Route::put('/affiliates/{id}', function (LaravelRequest $request, $id) {
         $user->save();
     }
 
-    $affiliate_request->delete();
+    $affiliate_request->status = $request->status;
+    $affiliate_request->save();
 
     return redirect()->route('admin.affiliates');
 })->name('admin.affiliate-update');

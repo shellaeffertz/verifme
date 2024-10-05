@@ -57,69 +57,71 @@
         </div>
     </div>
 
-    <table>
-        <thead>
-            <tr>
-                <th style="width:17%;">Title</th>
-                <th>Price</th>
-                <th>Delivery</th>
-                <th>
-                    <span style="display: block;">D.P</span>
-                    <span style="display: block;font-size: 9px;">(Delivery Period)</span>
-                </th>
-                <th>Country</th>
-                <th style="width:30%;">Description</th>
-                <th>Seller</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($products as $product)
+    <div class="display-table">
+        
+        <table>
+            <thead>
                 <tr>
-                    <td mobile-title="Title" class="title-column">{{ $product->title }}</td>
-                    <td mobile-title="Price">${{ $product->priceTotal }}</td>
-                    <td mobile-title="Delivery Type">{{ ucfirst($product->delivery_type) }}</td>
-                    <td mobile-title="Delivery Period">{{ $product->delivery_period }}</td>
-                    <td mobile-title="Country">{{ $product->public_data->country }}</td>
-                    <td mobile-title="Description" class="description-column">
-                        <p>
-                            {{Str::limit($product->public_data->description, 50, '...') }}
-                        </p>
-                        @if(Str::length($product->public_data->description) > 50)
-                            <p class="full-description">
-                                {{ $product->public_data->description }}
-                            </p>
-                        @endif            
-                    </td>
-                    <td mobile-title="Seller">
-                        @if($product->seller->is_verified_seller)
-                            <div class="badge-wrapper">
-                                <span class="badge">This seller is Verified</span>
-                                {{ str_replace('User', 'Seller', $product->seller->nickname) }}
-                                <i class="fa-solid fa-check" style="color: green;font-size: 14px;"></i>
-                            </div>
-                        @else
-                            {{ str_replace('User', 'Seller', $product->seller->nickname) }}
-                        @endif
-                    </td>
-                    <td mobile-title="">
-                        @auth
-                            <button class="simple-btn"
-                                onclick="buy_confirm('{{ $product->id }}', '{{ $product->title }}', '{{ $product->price }}')"
-                            >
-                                Buy
-                            </button>
-                        @else
-                            <a href="/login" class="simple-btn">Buy</a>
-                        @endauth
-                    </td>
+                    <th style="width:17%;">Title</th>
+                    <th>Price</th>
+                    <th>Delivery</th>
+                    <th>
+                        <span style="display: block;">D.P</span>
+                        <span style="display: block;font-size: 9px;">(Delivery Period)</span>
+                    </th>
+                    <th>Country</th>
+                    <th style="width:30%;">Description</th>
+                    <th>Seller</th>
+                    <th></th>
                 </tr>
-            @endforeach
-        </tbody>
-    </table>
-
-    <div class="d-flex justify-content-center">
+            </thead>
+            <tbody>
+                @foreach ($products as $product)
+                    <tr>
+                        <td mobile-title="Title" class="title-column">{{ $product->title }}</td>
+                        <td mobile-title="Price">${{ $product->priceTotal }}</td>
+                        <td mobile-title="Delivery Type">{{ ucfirst($product->delivery_type) }}</td>
+                        <td mobile-title="Delivery Period">{{ $product->delivery_type == 'instant' ? 'Instant' : $product->delivery_period }}</td>
+                        <td mobile-title="Country">{{ $product->public_data->country }}</td>
+                        <td mobile-title="Description" class="description-column">
+                            <p>
+                                {{Str::limit($product->public_data->description, 50, '...') }}
+                            </p>
+                            @if(Str::length($product->public_data->description) > 50)
+                                <p class="full-description">
+                                    {{ $product->public_data->description }}
+                                </p>
+                            @endif            
+                        </td>
+                        <td mobile-title="Seller">
+                            @if($product->seller->is_verified_seller)
+                                <div class="badge-wrapper">
+                                    <span class="badge">This seller is Verified</span>
+                                    {{ str_replace('User', 'Seller', $product->seller->nickname) }}
+                                    <i class="fa-solid fa-check" style="color: green;font-size: 14px;"></i>
+                                </div>
+                            @else
+                                {{ str_replace('User', 'Seller', $product->seller->nickname) }}
+                            @endif
+                        </td>
+                        <td mobile-title="">
+                            @auth
+                                <button class="simple-btn"
+                                    onclick="buy_confirm('{{ $product->id }}', '{{ $product->title }}', '{{ $product->price }}')"
+                                >
+                                    Buy
+                                </button>
+                            @else
+                                <a href="/login" class="simple-btn">Buy</a>
+                            @endauth
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    
         {{ $products->links() }}
+
     </div>
 
     <div class="modal">

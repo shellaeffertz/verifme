@@ -19,7 +19,8 @@
             <div class="form-group">
                 <form method="POST">
                     <div>
-                        <label for="code">Referral Code <br/> <small>URL EXAMPLE : {{config('app.url')}}/register?ref=xxxx</small></label>
+                        <label for="code">Referral Code</label>
+                        <p><small>URL EXAMPLE : {{config('app.url')}}/register?ref=xxxx</small></p>
                         <input type="text" name="code" placeholder="xxxxx">
                     </div>
                     <div class="form-btn-wrapper">

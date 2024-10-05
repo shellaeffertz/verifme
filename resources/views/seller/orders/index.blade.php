@@ -4,12 +4,18 @@
 @endsection
 
 @section('title')
-    Pending Orders
+    My Orders
+@endsection
+
+@section('subtitle')
+    all Your registered Orders
 @endsection
 
 
 @section('content')
+
     <div class="display-table">
+        
         <table>
             <thead>
                 <tr>
@@ -17,7 +23,7 @@
                     <th>Title</th>
                     <th>Price</th>
                     <th>Status</th>
-                    <th>view</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -31,12 +37,13 @@
                         @else
                             <td mobile-title="Status">{{ $order->status }}</td>
                         @endif
-                        <td mobile-title="View"><a href="{{ route('seller.order', $order->uuid) }}" class="simple-btn"
+                        <td mobile-title=""><a href="{{ route('seller.order', $order->uuid) }}" class="simple-btn"
                                 style="text-decoration: none">View</a></td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
+
         {{ $orders->links() }}
 
     </div>

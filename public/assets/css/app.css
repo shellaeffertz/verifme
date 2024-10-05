@@ -1547,6 +1547,7 @@ main {
     border-radius: 6px;
     background-color: #fff;
     border: 1px solid #011b2b32;
+    margin-bottom: 40px;
 }
 
 .display-table table {
@@ -1904,6 +1905,10 @@ table th {
   display: block;
 }
 
+.no-results {
+  margin: 30px 0;
+}
+
 /* Account type buttons */
 .account-type-btn-wrapper {
   display: flex;
@@ -1970,12 +1975,13 @@ table th {
   display: none;
   position: absolute;
   left: 0;
-  top: 75%;
+  top: 90%;
   width: fit-content;
   color: white;
   background-color: rgba(0, 0, 0, 0.8);
   border-radius: 6px;
   padding: 6px;
+  z-index: 99;
 }
 
 .badge-wrapper:hover .badge {

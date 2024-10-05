@@ -39,8 +39,9 @@ class ProductsController extends Controller
 
         $order = ProductsServices::handleBuyProduct($product, $user);
 
-        //mailer for order 
+        logger($order);
 
+        //mailer for order 
 
         $user = User::where('id',$product->seller->id)->first();
 
@@ -71,22 +72,8 @@ class ProductsController extends Controller
     {
         $user = $request->user();
         $products = Product::where('seller_id', $user->id)->orderBy('created_at', 'desc')->paginate(8);
-        // Loop through each product and update the product type
-        foreach ($products as $product) {
-            // Update the product type here based on your logic
-        if($product->type == "bank_accounts")
-            $product->type = 'Banck Accounts';
-        elseif($product->type == "cracked_account")
-            $product->type = 'Cracked Accounts';
-        elseif($product->type == "payement_processors")
-            $product->type = 'Payements process';       
-        elseif($product->type == "crypto_exchanges")
-            $product->type = 'Crypto and Exchanges';
-        elseif($product->type == "real_fakedocs")
-            $product->type = 'Real and fake documents';
-        }
-        return view('seller.products', [
 
+        return view('seller.products', [
             'products' => $products
         ]);
     }
@@ -144,12 +131,6 @@ class ProductsController extends Controller
         $product = Product::where('id', $id)->where('seller_id', $user->id)->first();
         if (!$product) return redirect()->back()->with('error', 'Invalid product selected');
 
-        $private_data = json_decode($product->private_data);
-        $public_data = json_decode($product->public_data);
-
-        $product->private = $private_data;
-        $product->public = $public_data;
-
         return view('seller.edit', [
             'product' => $product,
         ]);
@@ -191,10 +172,7 @@ class ProductsController extends Controller
     public function accounts(Request $request)
     {
         $type = 'bank_accounts';
-        // return view('products.index', [
-        //     'type' => $type,
-        //     'query' => $request->input('query'),
-        // ]);
+
         return view('products.index', [
             'type' => $type
         ]);

@@ -26,9 +26,6 @@ class OrdersController extends Controller
         $order = Order::where('buyer_id', $user->id)->where('uuid', $uuid)->first();
 
         if (!$order) return redirect('/orders')->with('error', 'Order not found');
-
-        $order->public = json_decode($order->public_data);
-        $order->private = json_decode($order->private_data);
         
         $seller = $order->seller;
         return view('buyer.orders.show', [
@@ -63,8 +60,6 @@ class OrdersController extends Controller
         $user = auth()->user();
         $order = Order::where('seller_id', $user->id)->where('uuid', $uuid)->first();
         if (!$order) return redirect('/seller/orders')->withErrors('Order not found');
-        $order->public = json_decode($order->public_data);
-        $order->private = json_decode($order->private_data);
         return view('seller.orders.show', [
             'order' => $order
         ]);

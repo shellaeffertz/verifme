@@ -22,18 +22,16 @@ class RegisterRequest extends FormRequest
      * Get the validation rules that apply to the request.
      *
      * @return array
-     */
+     */ 
     public function rules()
     {
         return [
             'email' => 'required|unique:users,email|email',
             'username' => 'required|string|min:3|max:20|unique:users,username',
-            'nickname' => 'required|string|min:3|max:20',
             'password' => 'required|string|min:6|max:20',
             'password_confirmation' => 'required|same:password',
-            'referrer' => 'nullable|exists:users,id',
+            'referrer' => 'nullable|exists:users,id', // add validation error
             'g-recaptcha-response' => 'required|recaptcha'
-
         ];
     }
 
@@ -43,7 +41,6 @@ class RegisterRequest extends FormRequest
         $this->merge([
             'email' => strtolower($this->email),
             'username' => strtolower($this->username),
-            'nickname' => strtolower($this->nickname),
         ]);
 
 

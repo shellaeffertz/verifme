@@ -166,11 +166,18 @@
                     </div>
                 </div>
     
-                <form action="{{ route('admin.support.complete', $support->id) }}" method="POST">
-                    <div class="form-btn-wrapper">
-                        <button type="submit" class="simple-btn">Complete</button>
-                    </div>
-                </form>
+                @if($support->status !== 'completed')
+                    <form action="{{ route('admin.support.complete', $support->id) }}" method="POST">
+                        <div class="form-btn-wrapper">
+                            <button type="submit" class="simple-btn">Complete</button>
+                        </div>
+                    </form>
+                @else
+                    <p style="padding:20px; display:flex; justify-content: flex-end; align-items: center; gap:5px;">
+                        <i class="fa-solid fa-check" style="color: green; font-size: 18px;"></i>
+                        <span style="font-size: 14px;">Completed</span>
+                    </p>
+                @endif
     
             </div>
         </div>

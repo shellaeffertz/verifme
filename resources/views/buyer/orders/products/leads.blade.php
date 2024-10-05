@@ -2,19 +2,19 @@
 
   <div class="product-info">
 
-    <span>{{ ucfirst($order->public->account_type)}} Crypto & Exchanges</span>
+    <span>{{ ucfirst($order->public_data->account_type)}} Crypto & Exchanges</span>
 
-    @if ($order->public->country)
-      <span>{{ $order->public->country }}</span>
+    @if ($order->public_data->country)
+      <span>{{ $order->public_data->country }}</span>
     @endif
 
   </div>
 
   <h1>{{ $order->title }}</h1>
 
-  @if($order->public->description)
+  @if($order->public_data->description)
     <p>
-      {{ $order->public->description }}
+      {{ $order->public_data->description }}
     </p>
   @endif
 
@@ -38,20 +38,13 @@
   </ul>
  
   @if($order->delivery_type == 'instant')
-    @if ($order->private->account_details)
+    @if (isset($order->private_data->account_details))
       <div class="private-info">
         <label>Account Details :</label>
         <p>Please store this information securely and do not share it with anyone.</p>
-        <textarea disabled>{{ $order->private->account_details }}</textarea>
+        <textarea disabled>{{ $order->private_data->account_details }}</textarea>
       </div>
     @endif
-
-    {{-- @if ($order->private->document_links)
-      <div>
-        <label>Document Links :</label>
-        <textarea disabled>{{ $order->private->document_links }}</textarea>
-      </div>
-    @endif --}}
   @endif
  
 </div> 

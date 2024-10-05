@@ -12,55 +12,19 @@
     All Products
 @endsection
 
+@section('subtitle')
+    All listed Products
+@endsection
+
 
 @section('content')
-    {{-- <div class="d-flex">
-        <div class="wrapper2">
-            <input wire:model="search" type="text" placeholder="Search Order By User..." />
-        </div>
-    </div> --}}
 
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Seller</th>
-                    <th>Type</th>
-                    <th>Status</th>
-                    <th>Price</th>
-                    <th>Created At</th>
-                    <th></th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($products as $product)
-                    <tr>
-                        <td mobile-title="ID">{{$product->id}}</td>
-                        <td mobile-title="SellerName">{{$product->seller->nickname}}</td>
-                        <td mobile-title="TYPE">{{ $product->type }}</td>
-                        <td mobile-title="STATUS">{{ $product->status }}</td>
-                        <td mobile-title="PRICE">{{ $product->price }}$</td>
-                        <td mobile-title="DATE">{{ $product->created_at }}</td>
-                        <td>
-                            <a class="simple-btn" href="{{ route('admin.product.show', $product->id) }}">
-                                View
-                            </a>
-                        </td>
-                        <td>
-                            <a class="simple-btn" onclick="deleteProduct({{ $product->id }})">Delete</a>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-        
-        {{ $products->links() }}
+    @livewire('admin.products') 
 
-        <div id="delete-modal" class="delete-modal">
-            <div class="delete-modal-content" id="delete-modal-content">
-            </div>
+    <div id="delete-modal" class="delete-modal">
+        <div class="delete-modal-content" id="delete-modal-content">
         </div>
+    </div>
 
 @endsection
 
@@ -116,4 +80,4 @@
             }
         }
     </script>
-    @endpush
+@endpush

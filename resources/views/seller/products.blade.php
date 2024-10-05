@@ -8,6 +8,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 @endsection
 
+@section('title')
+    Products
+@endsection
+
+@section('subtitle')
+    All Your listings are shown here
+@endsection
 
 @section('content')
     <div class="btn-mgl">
@@ -17,6 +24,7 @@
 
 
     <div class="display-table">
+
         <table>
             <thead>
                 <tr>
@@ -32,8 +40,17 @@
 
                 @foreach ($products as $product)
                     <tr>
-                        <td mobile-title="TYPE">{{ $product->type }}</td>
-                        <td mobile-title="TITLE">{{ Str::limit($product->title, 50, '...') }}</td>
+                        <td mobile-title="TYPE">{{ ucwords(implode(' ', explode('_', $product->type))) }}</td>
+                        <td mobile-title="TITLE" class="description-column">
+                            <p>
+                                {{Str::limit($product->title, 50, '...') }}
+                            </p>
+                            @if(Str::length($product->title) > 50)
+                                <p class="full-description">
+                                    {{ $product->title }}
+                                </p>
+                            @endif            
+                        </td>
                         <td mobile-title="PRICE">{{ $product->price }}$</td>
                         <td mobile-title="STATUS">{{ $product->status }}</td>
                         <td mobile-title="Edit"><a href="{{ route('seller.edit', $product->id) }}" class="simple-btn">Edit</a></td>
@@ -41,8 +58,10 @@
                                 onclick="deleteProduct({{ $product->id }})">Delete</a></td>
                     </tr>
                 @endforeach
+
             </tbody>
         </table>
+
         {{ $products->links() }}
 
     </div>
@@ -75,10 +94,6 @@
         </div>
 
     </div>
-@endsection
-
-@section('title')
-    Products
 @endsection
 
 @push('script')

@@ -12,8 +12,7 @@ class SupportController extends Controller
 {
     public function indexAdmin(Request $request)
     {
-        $support_messages = SupportTicket::join('users', 'users.id', '=', 'support_tickets.user_id')->select('support_tickets.*', 'users.username', 'users.email')->orderBy('id', 'desc')->where('status', '!=', 'completed')->paginate(10);
-        return view('support.admin-index', ['support_messages' => $support_messages]);
+        return view('support.admin-index');
     }
 
     public function indexClient(Request $request)

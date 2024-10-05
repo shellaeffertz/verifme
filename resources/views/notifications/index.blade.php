@@ -4,6 +4,13 @@
     <link rel="stylesheet" href="{{ asset('./assets/css/notifications.css') }}" />
 @endsection
 
+@section('title')
+    Notifications
+@endsection
+
+@section('subtitle')
+    all my notifications
+@endsection
 
 @section('content')
     @if(Auth::user()->telegram_chat_id==NULL)
@@ -37,8 +44,9 @@
                 @endforeach
             </tbody>
         </table>
-@endsection
 
-@section('title')
-    Notifications
+        {{ $notifications->links() }}
+        
+    </div>
+
 @endsection

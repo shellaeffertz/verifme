@@ -9,9 +9,14 @@
     My Orders
 @endsection
 
+@section('subtitle')
+    My purchased Orders
+@endsection
 
 @section('content')
+
     <div class="display-table">
+
         <table>
             <thead>
                 <tr>
@@ -44,9 +49,11 @@
                 @endforeach
             </tbody>
         </table>
+
         {{ $orders->links() }}
 
     </div>
+
 @endsection
 
 

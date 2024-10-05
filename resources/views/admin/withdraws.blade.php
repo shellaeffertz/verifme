@@ -11,54 +11,62 @@
     withdraws
 @endsection
 
+@section('subtitle')
+    all withdraws requests
+@endsection
+
 
 @section('content')
 
-    <table>
-        <thead>
-            <tr>
-                <th>Nickname</th>
-                <th>Address</th>
-                <th>Balance</th>
-                <th>AF Balance</th>
-                <th>Amount</th>
-                <th>Type</th>
-                <th>Coin</th>
-                <th>Created At</th>
-                <th></th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($withdraws as $withdraw)
+    <div class="display-table">
+
+        <table>
+            <thead>
                 <tr>
-                    <td mobile-title="Nickname">{{ $withdraw->nickname }}</td>
-                    <td mobile-title="Address" class="description-column">
-                        <p>
-                            {{Str::limit($withdraw->address , 30, '...') }}
-                        </p>
-                        <p class="full-description">
-                            {{ $withdraw->address  }}
-                        </p>
-                    </td>
-                    <td mobile-title="Balance">${{ $withdraw->balance }}</td>
-                    <td mobile-title="AF Balance">${{ $withdraw->affiliate_balance }}</td>
-                    <td mobile-title="Amount">${{ $withdraw->amount }}</td>
-                    <td mobile-title="type">{{ $withdraw->type }}</td>
-                    <td mobile-title="Coin">{{ $withdraw->coin }}</td>
-                    <td mobile-title="Created_at">{{ $withdraw->created_at }}</td>
-                    <td mobile-title="">
-                        <button onclick="approveWithdraw( '{{ $withdraw->uuid }}' )" type="button" class="simple-btn">Approve</button>
-                    </td>
-                    <td mobile-title="" onclick="rejectWithdraw('{{ $withdraw->uuid }}')">
-                        <button class="simple-btn">Reject</button>
-                    </td>
+                    <th>Nickname</th>
+                    <th>Address</th>
+                    <th>Balance</th>
+                    <th>AF Balance</th>
+                    <th>Amount</th>
+                    <th>Type</th>
+                    <th>Coin</th>
+                    <th>Created At</th>
+                    <th></th>
+                    <th></th>
                 </tr>
-            @endforeach
-        </tbody>
-    </table>
-    
-    {{ $withdraws->links() }}
+            </thead>
+            <tbody>
+                @foreach ($withdraws as $withdraw)
+                    <tr>
+                        <td mobile-title="Nickname">{{ $withdraw->nickname }}</td>
+                        <td mobile-title="Address" class="description-column">
+                            <p>
+                                {{Str::limit($withdraw->address , 30, '...') }}
+                            </p>
+                            <p class="full-description">
+                                {{ $withdraw->address  }}
+                            </p>
+                        </td>
+                        <td mobile-title="Balance">${{ $withdraw->balance }}</td>
+                        <td mobile-title="AF Balance">${{ $withdraw->affiliate_balance }}</td>
+                        <td mobile-title="Amount">${{ $withdraw->amount }}</td>
+                        <td mobile-title="type">{{ $withdraw->type }}</td>
+                        <td mobile-title="Coin">{{ $withdraw->coin }}</td>
+                        <td mobile-title="Created_at">{{ $withdraw->created_at }}</td>
+                        <td mobile-title="">
+                            <button onclick="approveWithdraw( '{{ $withdraw->uuid }}' )" type="button" class="simple-btn">Approve</button>
+                        </td>
+                        <td mobile-title="" onclick="rejectWithdraw('{{ $withdraw->uuid }}')">
+                            <button class="simple-btn">Reject</button>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+        
+        {{ $withdraws->links() }}
+
+    </div>
 
     <div id="reject-modal" class="delete-modal" style="display: none;">
         <div class="delete-modal-content" id="reject-modal-content">

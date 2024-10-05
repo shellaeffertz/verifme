@@ -41,6 +41,10 @@
     Update Product
 @endsection
 
+@section('subtitle')
+    You can update your listing information here
+@endsection
+
 
 @push('script')
     <script>

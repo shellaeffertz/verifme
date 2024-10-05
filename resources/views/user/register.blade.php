@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Account Stealth - Login</title>
+    <title>Verifme - Register</title>
     {{-- <link rel="stylesheet" href="{{ asset('./assets/css/user.css') }}" /> --}}
     <link rel="stylesheet" href="{{ asset('./assets/css/modal.css') }}" />
     <link rel="stylesheet" href="{{ asset('./assets/css/login.css') }}"> 
@@ -17,33 +17,28 @@
     <link rel="icon" href="{{ asset('./assets/logo3.png') }}" type="image/x-icon">
 
    <style>
+
       .loginContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin-top: 60px !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
-.loginContainer .row div .loginCard {
-    width: 100%;
-    padding: 20px;
-    border-radius: 10px;
-    margin-top: 150px ;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-}
+  .loginContainer .row div .loginCard {
+      width: 100%;
+      padding: 20px;
+      border-radius: 10px;
+  }
 
 .loginContainer .row div .accordionCard {
     width: 100%;
+    height: fit-content;
     padding: 4px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     border: 0;
-    height: 60%;
-    margin-top: 150px ;
 }
 
-/* Add media query to make the login card and accordion card full-width on small screens */
+
 @media (max-width: 767px) {
 
     .loginContainer .row div .loginCard,
@@ -56,17 +51,13 @@
         display: none;
     }
 
-    /* Make the canvas occupy the full width and height of the screen */
-canvas#canvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-    pointer-events: none;
-    z-index: -1;
-    /* Change the z-index to -1 to move it behind other elements */
-    width: 100%;
-    height: 150vh;
-}
+  canvas#canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: -1;
+  }
 }
 
 /* Update logo container to center the logo properly */
@@ -83,9 +74,6 @@ canvas#canvas {
     left: 0;
     pointer-events: none;
     z-index: -1;
-    /* Change the z-index to -1 to move it behind other elements */
-    width: 100%;
-    height: 150vh;
 }
 
 .logocontainer img {
@@ -107,6 +95,12 @@ canvas {
     text-align: center;
     margin: 10px 0;
 }
+
+.form-error-message {
+  font-size: 10px;
+  color: red;
+  margin-top: 6px;
+}
     </style>
 </head>
 
@@ -119,22 +113,6 @@ canvas {
             <!-- Login Card -->
             <div class="col-md-6">
                 <div class="card loginCard">
-                  {{--  error handler --}}
-                  <div class="errors">
-                    @if ($errors->any())
-                        @foreach ($errors->all() as $error)
-                            <label>
-                                <input type="checkbox" class="alertCheckbox" autocomplete="off" />
-                                <div class="alert error">
-                                    <span class="alertClose">X</span>
-                                    <span class="alertText">ERROR : {{ $error }}
-                                        <br class="clear" /></span>
-                                </div>
-                            </label>
-                        @endforeach
-                    @endif
-                </div>
-                  {{-- error handler --}}
                     <div class="text-center logocontainer">
                         <!-- logo -->
                         <a href="/">
@@ -146,31 +124,33 @@ canvas {
                   </div>
                     <div class="card-body">
                         <form method="POST" id="sign-up" class="row g-3">
-                            <div class="col-md-12">
-                                <label for="Nickname" class="form-label">Nickname</label>
-                                <input type="text" class="form-control" id="Nickname" name="nickname" placeholder="Nickname" required>
-                              </div>
                               <div class="col-md-12">
                                 <label for="Username" class="form-label">Username</label>
-                                <input type="text" class="form-control" id="Username" name="username" placeholder="Username" required>
+                                <input value="{{ old('username') }}" type="text" class="form-control" id="Username" name="username" placeholder="Username" required>
+                                @error('username')
+                                    <div class="form-error-message">{{ $message }}</div>
+                                @enderror
                               </div>
-                              {{-- New field register telegram --}}
-                              <div class="col-md-12">
-                                <label for="telegram" class="form-label">Your Telegram</label>
-                                <input type="text" class="form-control" id="telegram" name="telegram" placeholder="Your Telegram" required>
-                              </div>
-                              {{--  --}}
                               <div class="col-md-12">
                                 <label for="Email" class="form-label">Email</label>
-                                <input type="text" class="form-control" id="Email" name="email" placeholder="Email" required>
+                                <input value="{{ old('email') }}" type="text" class="form-control" id="Email" name="email" placeholder="Email" required>
+                                @error('email')
+                                    <div class="form-error-message">{{ $message }}</div>
+                                @enderror
                               </div>
                               <div class="col-md-12">
                                 <label for="Password" class="form-label">Password</label>
                                 <input type="password" class="form-control" id="Password" placeholder="Password" name="password" required>
+                                @error('password')
+                                    <div class="form-error-message">{{ $message }}</div>
+                                @enderror
                               </div>
                               <div class="col-md-12">
-                                <label for="password_confirmation" class="form-label">Password</label>
+                                <label for="password_confirmation" class="form-label">Password Confirmation</label>
                                 <input type="password" class="form-control" id="password_confirmation" placeholder="Repeat password" name="password_confirmation" required>
+                                @error('password_confirmation')
+                                    <div class="form-error-message">{{ $message }}</div>
+                                @enderror
                               </div>
                               <div class="col-md-6">
                                   <div class="form-check form-switch">

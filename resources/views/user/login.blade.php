@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Account Stealth - Login</title>
+    <title>Verifme - Login</title>
     {{-- <link rel="stylesheet" href="{{ asset('./assets/css/user.css') }}" /> --}}
     <link rel="stylesheet" href="{{ asset('./assets/css/modal.css') }}" />
     <link rel="stylesheet" href="{{ asset('./assets/css/login.css') }}"> 
@@ -33,11 +33,9 @@
 
 .loginContainer .row div .accordionCard {
     width: 100%;
+    height: fit-content;
     padding: 4px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    border: 0;
-    height: 100%;
 }
 
 /* Add media query to make the login card and accordion card full-width on small screens */
@@ -92,6 +90,12 @@ canvas {
     margin: 20px 0;
 }
 
+.form-error-message {
+  font-size: 10px;
+  color: red;
+  margin-top: 6px;
+}
+
     </style>
 
 </head>
@@ -105,22 +109,6 @@ canvas {
             <!-- Login Card -->
             <div class="col-md-6">
                 <div class="card loginCard">
-                  {{--  error handler --}}
-                  <div class="errors">
-                    @if ($errors->any())
-                        @foreach ($errors->all() as $error)
-                            <label>
-                                <input type="checkbox" class="alertCheckbox" autocomplete="off" />
-                                <div class="error alert">
-                                    <span class="alertClose">X</span>
-                                    <span class="alertText">ERROR : {{ $error }}
-                                        <br class="clear" /></span>
-                                </div>
-                            </label>
-                        @endforeach
-                    @endif
-                </div>
-                  {{-- error handler --}}
                     <div class="text-center logocontainer">
                         <!-- logo -->
                         <a href="/">
@@ -136,7 +124,7 @@ canvas {
                         <form method="POST" id="login-form" class="row g-3">
                             <div class="col-md-12">
                               <label for="Username" class="form-label">Username</label>
-                              <input type="text" class="form-control" id="Username" name="username" placeholder="Email / Username" required>
+                              <input value="{{ old('username') }}" type="text" class="form-control" id="Username" name="username" placeholder="Email / Username" required>
                             </div>
                             <div class="col-md-12">
                               <label for="Password" class="form-label">Password</label>

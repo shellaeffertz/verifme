@@ -38,7 +38,7 @@
     </ul>
    
     @if($order->delivery_type == 'instant')
-      @if ($order->private_data->account_details)
+      @if (isset($order->private_data->account_details))
         <div>
           <label>Account Details :</label>
           <textarea disabled>{{ $order->private_data->account_details }}</textarea>

@@ -47,7 +47,7 @@
                 <select name="country" id="country">
                     @foreach (config('country') as $country)
                         <option value="{{ $country }}"
-                            {{ $product->public->country == $country ? 'selected' : '' }}>
+                            {{ $product->public_data->country == $country ? 'selected' : '' }}>
                             {{ $country }}</option>
                     @endforeach
                 </select>
@@ -58,7 +58,7 @@
             <div>
                 <label for="description">Description</label>
                 <textarea rows=5 type="text" placeholder="was created 5 years ago..." id="description" name="description">
-                {{ $product->public->description }}
+                {{ $product->public_data->description }}
               </textarea>
             </div>
 
@@ -70,7 +70,7 @@
             <div>
                 <label for="account_details">Account Private Details</label>
                 <textarea rows=5 type="text" placeholder="Username: aaa, Password: bbb, Login Link: xxxx..." id="account_details"
-                    name="account_details">{{ $product->private->account_details }}</textarea>
+                    name="account_details">{{ $product->private_data->account_details }}</textarea>
             </div>
 
 
