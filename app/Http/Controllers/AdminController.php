@@ -86,7 +86,7 @@ class AdminController extends Controller
            }
 
             $order->refunded = true;
-            $order->save();
+            $order->save();  
 
            return redirect('/admin/order/' . $order->uuid)->with('success', 'Order refunded successfully');
 
