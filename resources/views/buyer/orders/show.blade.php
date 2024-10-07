@@ -68,26 +68,6 @@
 
 @section('content')
 
-    {{-- @if ($order->status == 'pending')
-        <div class="order-status">
-            <div class="order-status-title"> 
-                Order Status
-            </div>
-            <div class="order-status-content">
-                <div class="order-status-content-title">
-                    Pending
-                </div>
-                <div class="order-status-content-description">
-                    Your order is pending. Please wait for the seller to accept your order.
-                    <br>
-                    You can contact the seller by clicking the chat button.
-                    <br>
-                    or create a dispute by clicking the dispute button.
-                </div>
-            </div>
-        </div>
-    @endif --}}
-
     <div class="order">
         
         <div class="order-details">
@@ -135,12 +115,5 @@
         @livewire('buyer-chat', ['order' => $order])
         
     </div>
+    
     @endsection
-    {{-- <style>
-        @media (max-width: 768px) {
-            /* CSS rules for mobile screens */
-            .order .order-details {
-                flex-direction: column;
-            }
-        }
-    </style> --}}
